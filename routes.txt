@@ -1,0 +1,42 @@
+route / 
+    owner log in
+    staff log in
+    
+
+route 
+/menue
+    /create menue
+    /edit menu
+    /delete menu
+
+
+route 
+/staff
+    /get staff
+    /new staff
+    /delete staff
+
+        route staff/tips
+            get /tips
+
+route 
+/inventory
+    /get inventory 
+    /post inventory
+
+route 
+/reviews
+    /get reviews
+    /post reviews
+
+
+route 
+/tables
+    /post tables
+    /get tables
+    /delete tables
+
+route
+/qr code
+    /get menue from qr code
+
