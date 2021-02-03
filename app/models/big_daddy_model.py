@@ -275,6 +275,7 @@ class Customer(db.Model):
     tip = db.Column(db.Float)
     total_price = db.Column(db.Float)
     server_review = db.Column(db.String)
+    server_rating = db.Column(db.Float)
     order_issue = db.Column(db.String)
     instagram = db.Column(db.Boolean)
 
@@ -291,6 +292,7 @@ class Customer(db.Model):
         "tip": self.tip,
         "total_price": self.total_price,
         "server_review": self.server_review,
+        "server_rating": self.server_rating,
         "order_issue": self.order_issue,
         "instagram": self.instagram
       }

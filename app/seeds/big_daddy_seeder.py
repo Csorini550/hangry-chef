@@ -50,11 +50,14 @@ def seed_all():
         price = 2.00,
         picture = None
     )
+    
 
 
     db.session.add(food_or_drink1)
     db.session.add(food_or_drink2)
     db.session.add(food_or_drink3)
+    db.session.add(food_or_drink4)
+    
 
 
     
@@ -375,6 +378,121 @@ def seed_all():
     db.session.add(tips2)
     db.session.add(tips3)
 
+#Customer
+    customer1 = Customer(
+        table_number = 1,
+        tip = 2.00,
+        total_price = None,
+        server_review = "She was very nice but spilled my husbands drink all over us. At least she got me a towel, and offered to clean it up.",
+        server_rating = 3.5,
+        order_issue = "Didn't get my beer",
+        instagram = None
+    )
+    customer2 = Customer(
+        table_number = 2,
+        tip = 2.00,
+        total_price = None,
+        server_review = "Kind of looked like a famous dj I used to listen too, he even gave me extra bacon for free. What a man!",
+        server_rating = 5,
+        order_issue = "Didn't get my beer",
+        instagram = None
+    )
+    customer3 = Customer(
+        table_number = 3,
+        tip = 2.00,
+        total_price = None,
+        server_review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
+        server_rating = 1,
+        order_issue = None,
+        instagram = None
+    )
+    db.session.add(customer1)
+    db.session.add(customer2)
+    db.session.add(customer3)
+
+    food_or_drink_customer1 = Food_or_drink_customer(
+        customer_id: 1,
+        food_or_drink_id: 1,
+    )
+    food_or_drink_customer2 = Food_or_drink_customer(
+        customer_id: 1,
+        food_or_drink_id: 2,
+    )
+    food_or_drink_customer3 = Food_or_drink_customer(
+        customer_id: 2,
+        food_or_drink_id: 2,
+    )
+    food_or_drink_customer4 = Food_or_drink_customer(
+        customer_id: 2,
+        food_or_drink_id: 4,
+    )
+    food_or_drink_customer5 = Food_or_drink_customer(
+        customer_id: 2,
+        food_or_drink_id: 3,
+    )
+    food_or_drink_customer6 = Food_or_drink_customer(
+        customer_id: 2,
+        food_or_drink_id: 1,
+    )
+    food_or_drink_customer7 = Food_or_drink_customer(
+        customer_id: 3,
+        food_or_drink_id: 1,
+    )
+    food_or_drink_customer8 = Food_or_drink_customer(
+        customer_id: 3,
+        food_or_drink_id: 4,
+    )
+    db.session.add(food_or_drink_customer1)
+    db.session.add(food_or_drink_customer2)
+    db.session.add(food_or_drink_customer3)
+    db.session.add(food_or_drink_customer4)
+    db.session.add(food_or_drink_customer5)
+    db.session.add(food_or_drink_customer6)
+    db.session.add(food_or_drink_customer7)
+    db.session.add(food_or_drink_customer8)
+
+
+    table_food_or_drink1 = Table_food_or_drink(
+        table_id = 1,
+        food_or_drink_id = 1
+    )
+    table_food_or_drink2 = Table_food_or_drink(
+        table_id = 1,
+        food_or_drink_id = 2
+    )
+    table_food_or_drink3 = Table_food_or_drink(
+        table_id = 2,
+        food_or_drink_id = 2
+    )
+    table_food_or_drink4 = Table_food_or_drink(
+        table_id = 2,
+        food_or_drink_id = 1
+    )
+    table_food_or_drink5 = Table_food_or_drink(
+        table_id = 2,
+        food_or_drink_id = 3
+    )
+    table_food_or_drink6 = Table_food_or_drink(
+        table_id = 2,
+        food_or_drink_id = 1
+    )
+    table_food_or_drink7 = Table_food_or_drink(
+        table_id = 3,
+        food_or_drink_id = 1
+    )
+    table_food_or_drink8 = Table_food_or_drink(
+        table_id = 3,
+        food_or_drink_id = 4
+    )
+    db.session.add(table_food_or_drink1)
+    db.session.add(table_food_or_drink2)
+    db.session.add(table_food_or_drink3)
+    db.session.add(table_food_or_drink4)
+    db.session.add(table_food_or_drink5)
+    db.session.add(table_food_or_drink6)
+    db.session.add(table_food_or_drink7)
+    db.session.add(table_food_or_drink8)
+
 
 def undo_all():
     db.session.execute('TRUNCATE ingredients restart identity cascade;')
@@ -387,3 +505,6 @@ def undo_all():
     db.session.execute('TRUNCATE food_or_drinks restart identity cascade;')
     db.session.execute('TRUNCATE menues restart identity cascade;')
     db.session.execute('TRUNCATE tips restart identity cascade;')
+    db.session.execute('TRUNCATE customers restart identity cascade;')
+    db.session.execute('TRUNCATE food_or_drink_customers restart identity cascade;')
+    db.session.execute('TRUNCATE table_food_or_drinks restart identity cascade;')
