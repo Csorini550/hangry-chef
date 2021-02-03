@@ -32,7 +32,7 @@ def new_employee():
         last_name=form.data["last_name"],
         salary=form.data["salary"],
         table_number=form.data["table_number"],
-        picture=form.data["picture"],
+        picture=form.data["picture"]
     )
 
     db.session.add(newEmployee)

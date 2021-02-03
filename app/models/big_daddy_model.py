@@ -110,13 +110,14 @@ class Ingredient(db.Model):
     __tablename__ = 'ingredients'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable = False)
     food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"), nullable = False)
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Integer, nullable = False)
     picture = db.Column(db.String)
 
     food_or_drink = db.relationship("Food_or_drink", secondary="ingredient_food_or_drinks")
-
+    user = db.relationship("User", backref="ingredients")
     def to_dict(self):
       return {
         "id": self.id,

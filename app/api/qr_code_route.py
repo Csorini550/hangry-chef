@@ -20,7 +20,7 @@ def qr_code_by_menue(menueId):
 def new_qr_code():
     form = NewQrCodeForm()
     newQrCode = Qr_code(
-      menue_id=form.data["menue_id"]
+      menue_id=form.data["menue_id"],
       qr_code=form.data["qr_code"]
     )
 
