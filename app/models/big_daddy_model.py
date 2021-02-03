@@ -61,6 +61,7 @@ class Menue(db.Model):
         "menue_name": self.menue_name,
         "food_item": self.food_item,
         "qr_code": self.email,
+        "menue_array": self.menue_array,
         "picture": self.picture
       }
 
@@ -121,6 +122,7 @@ class Ingredient(db.Model):
     def to_dict(self):
       return {
         "id": self.id,
+        "user_id": self.user,
         "food_or_drink_id": self.food_or_drink_id,
         "name": self.name,
         "price": self.price,
@@ -156,7 +158,7 @@ class Employee(db.Model):
     first_name = db.Column(db.String, nullable = False)
     last_name = db.Column(db.String, nullable = False)
     salary = db.Column(db.Integer, nullable = False)
-    table_number = db.Column(db.Integer, nullable = False)
+    table_number = db.Column(db.Integer)
     picture = db.Column(db.String)
 
     user = db.relationship("User", backref="employees")

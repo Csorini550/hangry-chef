@@ -9,5 +9,5 @@ class NewEmployeeForm(FlaskForm):
     first_name = StringField("first_name", validators=[DataRequired()])
     last_name = StringField("last_name", validators=[DataRequired()])
     salary = FloatField("salary", validators=[DataRequired()])
-    table_number = IntegerField("table_number", validators=[DataRequired()])
+    table_number = IntegerField("table_number")
     picture = StringField("picture")
