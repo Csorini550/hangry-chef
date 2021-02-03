@@ -1,7 +1,8 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Review, Tip, Customer, Food_or_drink_customer
 
-def seed_menues():
+def seed_all():
+#menue
     menue1 = Menue(
         user_id = 1,
         menue_name = 'Example Menue',
@@ -12,43 +13,45 @@ def seed_menues():
     )
 
     db.session.add(menue1)
-    db.session.commit()
+    
 
-def undo_menues():
-    db.session.execute('TRUNCATE menues restart identity cascade;')
-    db.session.commit()
-
-
-def seed_qr_codes():
+#qr_code
     qr_code1 = Qr_code(
         menue_id = 1, 
         qr_code = None
     )
 
     db.session.add(qr_code1)
-    db.session.commit()
+    
 
-def undo_qr_codes():
-    db.session.execute('TRUNCATE qr_codes restart identity cascade;')
-    db.session.commit()
 
-def seed_food_or_drinks():
+#food_or_drink
     food_or_drink1 = Food_or_drink(
         menue_id = 1,
         name = 'Cheeseburger',
+        price = 12.00,
+        picture = None
+    )
+    food_or_drink2 = Food_or_drink(
+        menue_id = 1,
+        name = "Beer",
+        price = 4.00,
+        picture = None
+    )
+    food_or_drink3 = Food_or_drink(
+        menue_id = 1,
+        name = "Salad",
         price = 9.00,
         picture = None
     )
 
+
     db.session.add(food_or_drink1)
-    db.session.commit()
-
-def undo_food_or_drinks():
-    db.session.execute('TRUNCATE food_or_drinks restart identity cascade;')
-    db.session.commit()
 
 
-def seed_ingredients():
+
+    
+#Ingredients
     ingredients1 = Ingredient(
         user_id = 1,
         food_or_drink_id =1,
@@ -56,7 +59,7 @@ def seed_ingredients():
         price = 00.25,
         picture = None
     )
-def seed_ingredients():
+
     ingredients2 = Ingredient(
         user_id = 1,
         food_or_drink_id =1,
@@ -64,28 +67,36 @@ def seed_ingredients():
         price = 00.50,
         picture = None
     )
-def seed_ingredients():
+
     ingredients3 = Ingredient(
         user_id = 1,
         food_or_drink_id =1,
         name = 'patty',
-        price = 01.25,
+        price = 03.25,
         picture = None
     )
-def seed_ingredients():
+
     ingredients4 = Ingredient(
         user_id = 1,
         food_or_drink_id =1,
         name = 'pickle',
-        price = 00.15,
+        price = 00.75,
         picture = None
     )
-def seed_ingredients():
+
     ingredients5 = Ingredient(
         user_id = 1,
         food_or_drink_id =1,
         name = 'tomato',
-        price = 00.25,
+        price = 00.50,
+        picture = None
+    )
+
+    ingredients6 = Ingredient(
+        user_id = 1,
+        food_or_drink_id =1,
+        name = 'bacon',
+        price = 01.75,
         picture = None
     )
 
@@ -94,34 +105,31 @@ def seed_ingredients():
     db.session.add(ingredients3)
     db.session.add(ingredients4)
     db.session.add(ingredients5)
-    db.session.commit()
+    db.session.add(ingredients6)
 
-def undo_ingredients():
-    db.session.execute('TRUNCATE ingredients restart identity cascade;')
-    db.session.commit()
 
-def seed_ingredient_food_or_drink():
+#ingredient_food_or_drinks
     ingredient_food_or_drinks1 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 1
     )
 
-def seed_ingredient_food_or_drink():
+
     ingredient_food_or_drinks2 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 2
     )
-def seed_ingredient_food_or_drink():
+
     ingredient_food_or_drinks3 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 3
     )
-def seed_ingredient_food_or_drink():
+
     ingredient_food_or_drinks4 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 4
     )
-def seed_ingredient_food_or_drink():
+
     ingredient_food_or_drinks5 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 5
@@ -131,13 +139,9 @@ def seed_ingredient_food_or_drink():
     db.session.add(ingredient_food_or_drinks3)
     db.session.add(ingredient_food_or_drinks4)
     db.session.add(ingredient_food_or_drinks5)
-    db.session.commit()
+    
 
-def undo_ingredient_food_or_drink():
-    db.session.execute('TRUNCATE ingredient_food_or_drinks restart identity cascade;')
-    db.session.commit()
-
-def seed_employee():
+#Employees
     employees1 = Employee(
         user_id = 1,
         first_name = "Karen",
@@ -146,7 +150,7 @@ def seed_employee():
         table_number = 1,
         picture = None
     )
-def seed_employee():
+
     employees2 = Employee(
         user_id = 1,
         first_name = "Steve",
@@ -155,7 +159,7 @@ def seed_employee():
         table_number = 2,
         picture = None
     )
-def seed_employee():
+
     employees3 = Employee(
         user_id = 1,
         first_name = "Harry",
@@ -167,25 +171,21 @@ def seed_employee():
     db.session.add(employees1)
     db.session.add(employees2)
     db.session.add(employees3)
-    db.session.commit()
 
-def undo_employee():
-    db.session.execute('TRUNCATE employees restart identity cascade;')
-    db.session.commit()
 
-def seed_table():
+#Tables
     tables1 = Table(
         table_number = 1,
         customer_id = 1,
         employee_id =1,
     )
-def seed_table():
+
     tables1 = Table(
         table_number = 2,
         customer_id = 2,
         employee_id =2,
     )
-def seed_table():
+
     tables1 = Table(
         table_number = 3,
         customer_id = 3,
@@ -194,16 +194,114 @@ def seed_table():
     db.session.add(tables1)
     db.session.add(tables2)
     db.session.add(tables3)
-    db.session.commit()
 
-def undo_table():
-    db.session.execute('TRUNCATE tables restart identity cascade;')
-    db.session.commit()
 
-def seed_inventory():
+#Inventory
     inventories1 = Inventory(
         ingredient_id = 1,
-        food_item = 
-        quantity = 
-        market_price =
+        food_item = "lettuce",
+        quantity = 250,
+        market_price = 00.05
     )
+
+    inventories2 = Inventory(
+        ingredient_id = 2,
+        food_item = "bun",
+        quantity = 183,
+        market_price = 00.80
+    )
+
+    inventories3 = Inventory(
+        ingredient_id = 3,
+        food_item = "patty",
+        quantity = 181,
+        market_price = 1.25
+    )
+
+    inventories4 = Inventory(
+        ingredient_id = 4,
+        food_item = 'pickle',
+        quantity = 270,
+        market_price = 00.35
+    )
+
+    inventories5 = Inventory(
+        ingredient_id = 5,
+        food_item = "tomato",
+        quantity = 52,
+        market_price = 00.30
+    )
+
+    inventories6 = Inventory(
+        ingredient_id = 6,
+        food_item = "bacon",
+        quantity = 28,
+        market_price = 00.99
+    )
+
+    db.session.add(inventories1)
+    db.session.add(inventories2)
+    db.session.add(inventories3)
+    db.session.add(inventories4)
+    db.session.add(inventories5)
+    db.session.add(inventories6)
+
+
+#REVIEWS
+    reviews1 = Review(
+        customer_id = 1,
+        employee_id = 1,
+        review = "She was very nice but spilled my husbands drink all over us. At least she got me a towel, and offered to clean it up.",
+        rating = 3.5
+    )
+
+    reviews2 = Review(
+        customer_id = 2,
+        employee_id = 2,
+        review = "Kind of looked like a famous dj I used to listen too, he even gave me extra bacon for free. What a man!",
+        rating = 5
+    )
+
+    reviews3 = Review(
+        customer_id = 3,
+        employee_id = 3,
+        review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
+        rating = 1
+    )
+    db.session.add(reviews1)
+    db.session.add(reviews2)
+    db.session.add(reviews3)
+
+#tips
+    tips1 = Tip(
+        customer_id = 1,
+        employee_id = 1,
+        tip = 2.00
+    )
+    tips2 = Tip(
+        customer_id = 2,
+        employee_id = 2,
+        tip = 8.00
+    )
+    tips3 = Tip(
+        customer_id = 3,
+        employee_id = 3,
+        tip = 1.00
+    )
+
+    db.session.add(tips1)
+    db.session.add(tips2)
+    db.session.add(tips3)
+
+
+def undo_all():
+    db.session.execute('TRUNCATE ingredients restart identity cascade;')
+    db.session.execute('TRUNCATE employees restart identity cascade;')
+    db.session.execute('TRUNCATE tables restart identity cascade;')
+    db.session.execute('TRUNCATE inventories restart identity cascade;')
+    db.session.execute('TRUNCATE reviews restart identity cascade;')
+    db.session.execute('TRUNCATE ingredient_food_or_drinks restart identity cascade;')
+    db.session.execute('TRUNCATE qr_codes restart identity cascade;')
+    db.session.execute('TRUNCATE food_or_drinks restart identity cascade;')
+    db.session.execute('TRUNCATE menues restart identity cascade;')
+    db.session.execute('TRUNCATE tips restart identity cascade;')

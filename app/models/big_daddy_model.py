@@ -229,6 +229,7 @@ class Review(db.Model):
     customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
     employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
     review = db.Column(db.String)
+    rating = db.Column(db.Float)
 
     employee = relationship("Employee", backref="reviews")
     customer = relationship("Customer", backref="reviews")
@@ -238,7 +239,8 @@ class Review(db.Model):
         "id": self.id,
         "customer_id": self.customer_id,
         "employee_id": self.employee_id,
-        "review": self.review
+        "review": self.review,
+        "rating": self.rating
       }
 
 
@@ -249,7 +251,7 @@ class Tip(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
     employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
-    tip = db.Column(db.String)
+    tip = db.Column(db.Float)
     
     employee = relationship("Employee", backref="tips")
     customer = relationship("Customer", backref="tips")
