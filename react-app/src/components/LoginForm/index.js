@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
-import { login } from "../../services/auth";
+import { login } from "../../store/session";
 import SignUpModal from "../SignUpModal";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {

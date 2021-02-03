@@ -106,7 +106,7 @@ class Food_or_drink(db.Model):
         "picture": self.picture,
       }
 
-
+# help, is food_or drink_id wrong should it be to the joined table
 class Ingredient(db.Model):
     __tablename__ = 'ingredients'
     __table_args__ = {'extend_existing': True}
@@ -249,17 +249,14 @@ class Tip(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
     employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     tip = db.Column(db.String)
     
     employee = relationship("Employee", backref="tips")
     customer = relationship("Customer", backref="tips")
-    user = relationship("User", backref="tips")
 
     def to_dict(self):
       return {
         "id": self.id,
-        "user_id":self.user_id,
         "customer_id": self.customer_id,
         "employee_id": self.employee_id,
         "tip": self.tip

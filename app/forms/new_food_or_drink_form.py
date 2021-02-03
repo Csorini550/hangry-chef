@@ -4,8 +4,8 @@ from app.models import Food_or_drink
 from wtforms.validators import DataRequired
 
 
-class NewFoodOrDrink(FlaskForm):
-    menue_id = IntegerField("menue_id" validators=[DataRequired()])
-    name = StringField("name" validators=[DataRequired()])
-    price = FloatField("price" validators=[DataRequired()])
+class NewFoodOrDrinkForm(FlaskForm):
+    menue_id = IntegerField("menue_id", validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired()])
+    price = FloatField("price", validators=[DataRequired()])
     picture = StringField("picture")

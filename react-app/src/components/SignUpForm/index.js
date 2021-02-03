@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import * as sessionActions from "../../store/session"
+import { useDispatch, useSelector } from "react-redux";
 
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [restaurant_name, setRestaurant_name] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const onSignUp = async (e) => {
+  const [errors, setErrors] = useState([]);
+
+
+  if (sessionUser) return <Redirect to="/" />;
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const user = await signUp(restaurant_name, email, password);
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+    if (password === confirmPassword) {
+      setErrors([]);
+      return dispatch(sessionActions.signup({ email, password, restaurant_name, name }))
+        .catch(res => {
+          if (res.data && res.data.errors) setErrors(res.data.errors);
+        });
     }
+    return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   const updateRestaurant = (e) => {
@@ -34,16 +43,16 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  // const updateRepeatPassword = (e) => {
+  //   setRepeatPassword(e.target.value);
+  // };
 
   if (authenticated) {
     return <Redirect to="/" />;
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Restaurant Name</label>
         <input
@@ -80,16 +89,15 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           value={password}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
+      <label>
+        Confirm Password
+          <input
           type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
+        />
+      </label>
       <button type="submit">Sign Up</button>
     </form>
   );
