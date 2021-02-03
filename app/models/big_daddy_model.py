@@ -114,7 +114,7 @@ class Ingredient(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable = False)
     # food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"), nullable = False)
     name = db.Column(db.String, nullable = False)
-    price = db.Column(db.Integer, nullable = False)
+    price = db.Column(db.Float, nullable = False)
     picture = db.Column(db.String)
 
     food_or_drink = db.relationship("Food_or_drink", secondary="ingredient_food_or_drinks")
@@ -157,7 +157,7 @@ class Employee(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
     first_name = db.Column(db.String, nullable = False)
     last_name = db.Column(db.String, nullable = False)
-    salary = db.Column(db.Integer, nullable = False)
+    salary = db.Column(db.Float, nullable = False)
     table_number = db.Column(db.Integer)
     picture = db.Column(db.String)
 

@@ -129,6 +129,7 @@ def seed_all():
         price = 2.00,
         # food_or_drink_id = 4,
         picture = None
+    )
 
     db.session.add(ingredients1)
     db.session.add(ingredients2)
@@ -209,7 +210,7 @@ def seed_all():
         user_id = 1,
         first_name = "Karen",
         last_name = "Heffer",
-        salary = 15.00
+        salary = 15.00,
         table_number = 1,
         picture = None
     )
@@ -218,7 +219,7 @@ def seed_all():
         user_id = 1,
         first_name = "Steve",
         last_name = "Aioli",
-        salary = 11.00
+        salary = 11.00,
         table_number = 2,
         picture = None
     )
@@ -227,7 +228,7 @@ def seed_all():
         user_id = 1,
         first_name = "Harry",
         last_name = "Proper",
-        salary = 8.00
+        salary = 8.00,
         table_number = 3,
         picture = None
     )
@@ -240,19 +241,19 @@ def seed_all():
     tables1 = Table(
         table_number = 1,
         customer_id = 1,
-        employee_id =1,
+        employee_id =1
     )
 
-    tables1 = Table(
+    tables2 = Table(
         table_number = 2,
         customer_id = 2,
-        employee_id =2,
+        employee_id =2
     )
 
-    tables1 = Table(
+    tables3 = Table(
         table_number = 3,
         customer_id = 3,
-        employee_id =3,
+        employee_id =3
     )
     db.session.add(tables1)
     db.session.add(tables2)
@@ -411,36 +412,36 @@ def seed_all():
     db.session.add(customer3)
 
     food_or_drink_customer1 = Food_or_drink_customer(
-        customer_id: 1,
-        food_or_drink_id: 1,
+        customer_id = 1,
+        food_or_drink_id = 1
     )
     food_or_drink_customer2 = Food_or_drink_customer(
-        customer_id: 1,
-        food_or_drink_id: 2,
+        customer_id = 1,
+        food_or_drink_id = 2
     )
     food_or_drink_customer3 = Food_or_drink_customer(
-        customer_id: 2,
-        food_or_drink_id: 2,
+        customer_id = 2,
+        food_or_drink_id = 2
     )
     food_or_drink_customer4 = Food_or_drink_customer(
-        customer_id: 2,
-        food_or_drink_id: 4,
+        customer_id = 2,
+        food_or_drink_id = 4
     )
     food_or_drink_customer5 = Food_or_drink_customer(
-        customer_id: 2,
-        food_or_drink_id: 3,
+        customer_id = 2,
+        food_or_drink_id = 3
     )
     food_or_drink_customer6 = Food_or_drink_customer(
-        customer_id: 2,
-        food_or_drink_id: 1,
+        customer_id = 2,
+        food_or_drink_id = 1
     )
     food_or_drink_customer7 = Food_or_drink_customer(
-        customer_id: 3,
-        food_or_drink_id: 1,
+        customer_id = 3,
+        food_or_drink_id = 1
     )
     food_or_drink_customer8 = Food_or_drink_customer(
-        customer_id: 3,
-        food_or_drink_id: 4,
+        customer_id = 3,
+        food_or_drink_id = 4
     )
     db.session.add(food_or_drink_customer1)
     db.session.add(food_or_drink_customer2)
@@ -495,16 +496,16 @@ def seed_all():
 
 
 def undo_all():
-    db.session.execute('TRUNCATE ingredients restart identity cascade;')
-    db.session.execute('TRUNCATE employees restart identity cascade;')
-    db.session.execute('TRUNCATE tables restart identity cascade;')
-    db.session.execute('TRUNCATE inventories restart identity cascade;')
-    db.session.execute('TRUNCATE reviews restart identity cascade;')
-    db.session.execute('TRUNCATE ingredient_food_or_drinks restart identity cascade;')
-    db.session.execute('TRUNCATE qr_codes restart identity cascade;')
-    db.session.execute('TRUNCATE food_or_drinks restart identity cascade;')
     db.session.execute('TRUNCATE menues restart identity cascade;')
-    db.session.execute('TRUNCATE tips restart identity cascade;')
-    db.session.execute('TRUNCATE customers restart identity cascade;')
-    db.session.execute('TRUNCATE food_or_drink_customers restart identity cascade;')
-    db.session.execute('TRUNCATE table_food_or_drinks restart identity cascade;')
+    # db.session.execute('TRUNCATE employees restart identity cascade;')
+    # db.session.execute('TRUNCATE tables restart identity cascade;')
+    # db.session.execute('TRUNCATE inventories restart identity cascade;')
+    # db.session.execute('TRUNCATE reviews restart identity cascade;')
+    # db.session.execute('TRUNCATE ingredient_food_or_drinks restart identity cascade;')
+    # db.session.execute('TRUNCATE qr_codes restart identity cascade;')
+    # db.session.execute('TRUNCATE food_or_drinks restart identity cascade;')
+    # db.session.execute('TRUNCATE menues restart identity cascade;')
+    # db.session.execute('TRUNCATE tips restart identity cascade;')
+    # db.session.execute('TRUNCATE customers restart identity cascade;')
+    # db.session.execute('TRUNCATE food_or_drink_customers restart identity cascade;')
+    # db.session.execute('TRUNCATE table_food_or_drinks restart identity cascade;')

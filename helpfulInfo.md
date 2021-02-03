@@ -1,5 +1,15 @@
 # Flask React Project
 
+flask seed undo
+flask db downgrade
+flask db upgrade
+flask seed all
+IF YOU GET ERROR: TARGET DATABASE IS NOT UP TO DATE:*
+RUN THE FOLLOWING!
+flask db stamp head
+flask db migrate
+flask db upgrade
+
 This is the backend for the Flask React project.
 
 ## Getting started
