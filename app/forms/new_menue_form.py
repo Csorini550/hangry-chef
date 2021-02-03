@@ -6,4 +6,4 @@ from app.models import Menue
 
 
 class NewMenueForm(FlaskForm):
-    user_id = Integer
+    user_id = IntegerField
