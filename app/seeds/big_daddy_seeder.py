@@ -44,17 +44,24 @@ def seed_all():
         price = 9.00,
         picture = None
     )
+    food_or_drink4 = Food_or_drink(
+        menue_id = 1,
+        name = "Coke",
+        price = 2.00,
+        picture = None
+    )
 
 
     db.session.add(food_or_drink1)
-
+    db.session.add(food_or_drink2)
+    db.session.add(food_or_drink3)
 
 
     
 #Ingredients
     ingredients1 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
+        # food_or_drink_id =1,
         name = 'lettuce',
         price = 00.25,
         picture = None
@@ -62,43 +69,63 @@ def seed_all():
 
     ingredients2 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
-        name = 'bun',
+        # food_or_drink_id =1,
+        name = 'Bun',
         price = 00.50,
         picture = None
     )
 
     ingredients3 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
-        name = 'patty',
+        # food_or_drink_id =1,
+        name = 'Patty',
         price = 03.25,
         picture = None
     )
 
     ingredients4 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
-        name = 'pickle',
+        # food_or_drink_id =1,
+        name = 'Pickle',
         price = 00.75,
         picture = None
     )
 
     ingredients5 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
-        name = 'tomato',
+        # food_or_drink_id =1,
+        name = 'Tomato',
         price = 00.50,
         picture = None
     )
 
     ingredients6 = Ingredient(
         user_id = 1,
-        food_or_drink_id =1,
-        name = 'bacon',
+        # food_or_drink_id =1,
+        name = 'Bacon',
         price = 01.75,
         picture = None
     )
+    ingredients7 = Ingredient(
+        user_id = 1,
+        # food_or_drink_id =2,
+        name = 'Beer',
+        price = 04.00,
+        picture = None
+    )
+    ingredients8 = Ingredient(
+        user_id = 1,
+        # food_or_drink_id =3,
+        name = 'Chicken',
+        price = 03.75,
+        picture = None
+    )
+    ingredients9 = Ingredient(
+        user_id =1,
+        name = "Coke",
+        price = 2.00,
+        # food_or_drink_id = 4,
+        picture = None
 
     db.session.add(ingredients1)
     db.session.add(ingredients2)
@@ -106,6 +133,9 @@ def seed_all():
     db.session.add(ingredients4)
     db.session.add(ingredients5)
     db.session.add(ingredients6)
+    db.session.add(ingredients7)
+    db.session.add(ingredients8)
+    db.session.add(ingredients9)
 
 
 #ingredient_food_or_drinks
@@ -113,8 +143,6 @@ def seed_all():
         food_or_drink_id = 1,
         ingredient_id = 1
     )
-
-
     ingredient_food_or_drinks2 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 2
@@ -124,21 +152,53 @@ def seed_all():
         food_or_drink_id = 1,
         ingredient_id = 3
     )
-
     ingredient_food_or_drinks4 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 4
     )
-
     ingredient_food_or_drinks5 = Ingredient_food_or_drink(
         food_or_drink_id = 1,
         ingredient_id = 5
+    )
+    ingredient_food_or_drinks5 = Ingredient_food_or_drink(
+        food_or_drink_id = 1,
+        ingredient_id = 6
+    )
+    ingredient_food_or_drinks6 = Ingredient_food_or_drink(
+        food_or_drink_id = 3,
+        ingredient_id = 1
+    )
+    ingredient_food_or_drinks7 = Ingredient_food_or_drink(
+        food_or_drink_id = 3,
+        ingredient_id = 5
+    )
+    ingredient_food_or_drinks8 = Ingredient_food_or_drink(
+        food_or_drink_id = 3,
+        ingredient_id = 6
+    )
+    ingredient_food_or_drinks9 = Ingredient_food_or_drink(
+        food_or_drink_id = 3,
+        ingredient_id = 8
+    )
+    ingredient_food_or_drinks10 = Ingredient_food_or_drink(
+        food_or_drink_id = 2,
+        ingredient_id = 7
+    )
+    ingredient_food_or_drinks10 = Ingredient_food_or_drink(
+        food_or_drink_id = 4,
+        ingredient_id = 9
     )
     db.session.add(ingredient_food_or_drinks1)
     db.session.add(ingredient_food_or_drinks2)
     db.session.add(ingredient_food_or_drinks3)
     db.session.add(ingredient_food_or_drinks4)
     db.session.add(ingredient_food_or_drinks5)
+    db.session.add(ingredient_food_or_drinks6)
+    db.session.add(ingredient_food_or_drinks7)
+    db.session.add(ingredient_food_or_drinks8)
+    db.session.add(ingredient_food_or_drinks9)
+    db.session.add(ingredient_food_or_drinks10)
+    
     
 
 #Employees
@@ -199,45 +259,64 @@ def seed_all():
 #Inventory
     inventories1 = Inventory(
         ingredient_id = 1,
-        food_item = "lettuce",
+        food_item = "Lettuce",
         quantity = 250,
         market_price = 00.05
     )
 
     inventories2 = Inventory(
         ingredient_id = 2,
-        food_item = "bun",
+        food_item = "Bun",
         quantity = 183,
         market_price = 00.80
     )
 
     inventories3 = Inventory(
         ingredient_id = 3,
-        food_item = "patty",
+        food_item = "Patty",
         quantity = 181,
         market_price = 1.25
     )
 
     inventories4 = Inventory(
         ingredient_id = 4,
-        food_item = 'pickle',
+        food_item = 'Pickle',
         quantity = 270,
         market_price = 00.35
     )
 
     inventories5 = Inventory(
         ingredient_id = 5,
-        food_item = "tomato",
+        food_item = "Tomato",
         quantity = 52,
         market_price = 00.30
     )
 
     inventories6 = Inventory(
         ingredient_id = 6,
-        food_item = "bacon",
+        food_item = "Bacon",
         quantity = 28,
         market_price = 00.99
     )
+    inventories7 = Inventory(
+        ingredient_id = 7,
+        food_item = "Beer",
+        quantity = 280,
+        market_price = 01.00
+    )
+    inventories8 = Inventory(
+        ingredient_id = 8,
+        food_item = "Chicken",
+        quantity = 43,
+        market_price = 01.50
+    )
+    inventories9 = Inventory(
+        ingredient_id = 9,
+        food_item = "Coke",
+        quantity = 412,
+        market_price = 00.15
+    )
+
 
     db.session.add(inventories1)
     db.session.add(inventories2)
@@ -245,6 +324,9 @@ def seed_all():
     db.session.add(inventories4)
     db.session.add(inventories5)
     db.session.add(inventories6)
+    db.session.add(inventories7)
+    db.session.add(inventories8)
+    db.session.add(inventories9)
 
 
 #REVIEWS
