@@ -196,25 +196,6 @@ class Table(db.Model):
       }
 
 
-#joiner
-    # class Table_food_or_drink(db.Model):
-    #   __tablename__ = 'table_food_or_drinks'
-    #   # __table_args__ = {'extend_existing': True}
-
-    #   id = db.Column(db.Integer, primary_key = True)
-    #   table_id = db.Column(db.Integer, db.ForeignKey("table.id"))
-    #   food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drink.id"))
-
-    #   food_or_drink = relationship(Food_or_drink, backref=backref("table_food_or_drink", cascade="all, delete-orphan" ) )
-    #   table = relationship(Table, backref=backref("table_food_or_drink", cascade="all, delete-orphan"))
-
-
-    # def to_dict(self):
-    #   return {
-    #     "id": self.id,
-    #     "table_id": self.table_id,
-    #     "food_or_drink_id": self.food_or_drink_id
-    #   }
 
 #Do i need a joiner, I don't thinks so -- (tables kind of suck)
 class Inventory(db.Model):
@@ -268,14 +249,17 @@ class Tip(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
     employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     tip = db.Column(db.String)
     
     employee = relationship("Employee", backref="tips")
     customer = relationship("Customer", backref="tips")
+    user = relationship("User", backref="tips")
 
     def to_dict(self):
       return {
         "id": self.id,
+        "user_id":self.user_id,
         "customer_id": self.customer_id,
         "employee_id": self.employee_id,
         "tip": self.tip
