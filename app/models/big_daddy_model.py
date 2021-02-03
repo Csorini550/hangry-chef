@@ -39,7 +39,7 @@ class User(db.Model, UserMixin):
     }
 
 
-
+#HELP - what should i store the menue array as
 class Menue(db.Model):
     __tablename__ = 'menues'
     __table_args__ = {'extend_existing': True}
@@ -47,6 +47,7 @@ class Menue(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     menue_name = db.Column(db.String, nullable = False)
     food_item = db.Column(db.String, nullable = False)
+    menue_array = db.Column(db.String)
     qr_code = db.Column(db.String)
     picture = db.Column(db.String)
 
