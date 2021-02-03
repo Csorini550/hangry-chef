@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.forms import NewEmployee
+from app.forms import NewEmployeeForm
 from app.models import Employee
 from app.models import db
 

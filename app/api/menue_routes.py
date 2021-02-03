@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.forms import NewMenue
+from app.forms import NewMenueForm
 from app.models import Menue
 from app.models import db
 
