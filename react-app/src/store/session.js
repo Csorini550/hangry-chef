@@ -1,16 +1,16 @@
 import { fetch } from './csrf.js';
 // import { login, signup, logout } from "../services/auth.js"
 
-const SET_OWNER = 'session/setUser';
-const REMOVE_OWNER = 'session/removeUser';
+const SET_USER = 'session/setUser';
+const REMOVE_USER = 'session/removeUser';
 
 export const setUser = (user) => ({
-    type: SET_OWNER,
+    type: SET_USER,
     payload: user
 });
 
 const removeUser = () => ({
-    type: REMOVE_OWNER
+    type: REMOVE_USER
 });
 
 export const login = async (email, password) => {
@@ -18,7 +18,7 @@ export const login = async (email, password) => {
         method: 'POST',
         body: JSON.stringify({ email, password })
     });
-    console.log(res.data, "OWNER RES DATA")
+    console.log(res.data, "USER RES DATA")
     // dispatch(setUser(res.data.user));
     return res;
 };
@@ -58,10 +58,10 @@ const initialState = { user: null };
 function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
-        case SET_OWNER:
+        case SET_USER:
             newState = Object.assign({}, state, { user: action.payload });
             return newState;
-        case REMOVE_OWNER:
+        case REMOVE_USER:
             newState = Object.assign({}, state, { user: null });
             return newState;
         default:

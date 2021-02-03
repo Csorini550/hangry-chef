@@ -1,11 +1,11 @@
-from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .db import db
 from sqlalchemy.orm import relationship, backref
-
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
+  __table_args__ = {'extend_existing': True}
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable = False)
@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  menue = db.relationship("Menue", backref="users")
+  # menue = db.relationship("Menue", backref="users")
 
 
   @property
@@ -38,17 +38,20 @@ class User(db.Model, UserMixin):
       "email": self.email
     }
 
+
+
 class Menue(db.Model):
     __tablename__ = 'menues'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     menue_name = db.Column(db.String, nullable = False)
     food_item = db.Column(db.String, nullable = False)
     qr_code = db.Column(db.String)
     picture = db.Column(db.String)
 
 
-    # food_or_drink = db.relationship("User", backref="menue")
+    user = db.relationship("User", backref="menues")
 
     def to_dict(self):
       return {
@@ -62,8 +65,9 @@ class Menue(db.Model):
 
 class Qr_code(db.Model):
     __tablename__ = "qr_codes"
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    menue_id = db.Column(db.Integer, db.ForeignKey("menue.id"), nullable = False)
+    menue_id = db.Column(db.Integer, db.ForeignKey("menues.id"), nullable = False)
     qr_code = db.Column(db.String, nullable = False)
 
     menue = db.relationship("Menue", backref="qr_codes")
@@ -79,15 +83,16 @@ class Qr_code(db.Model):
 
 class Food_or_drink(db.Model):
     __tablename__ = 'food_or_drinks'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    menue_id = db.Column(db.Integer, nullable = False)
+    menue_id = db.Column(db.Integer, db.ForeignKey("menues.id"), nullable = False)
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Float, nullable = False)
     picture = db.Column(db.String)
 
     menue = db.relationship("Menue", backref="Food_or_drinks")
-    food_or_drink = db.relationship("food_or_drink", secondary="table_food_or_drinks")
-    ingredient = db.relationship("ingredient", secondary="ingredient_food_or_drink")
+    table = db.relationship("Table", secondary="table_food_or_drinks")
+    ingredient = db.relationship("Ingredient", secondary="ingredient_food_or_drinks")
     customer = relationship("Customer", secondary="food_or_drink_customers")
 
     def to_dict(self):
@@ -102,13 +107,14 @@ class Food_or_drink(db.Model):
 
 class Ingredient(db.Model):
     __tablename__ = 'ingredients'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    food_or_drink_id = db.Column(db.Integer, ForeignKey("food_or_drink.id"), nullable = False)
+    food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"), nullable = False)
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Integer, nullable = False)
-    picture = db.Column(String)
+    picture = db.Column(db.String)
 
-    food_or_drink = db.relationship("food_or_drink", secondary="ingredient_food_or_drinks")
+    food_or_drink = db.relationship("Food_or_drink", secondary="ingredient_food_or_drinks")
 
     def to_dict(self):
       return {
@@ -121,32 +127,34 @@ class Ingredient(db.Model):
 
 # Join table for food_or_drink and ingredient
 class Ingredient_food_or_drink(db.Model):
-    __tablename__ = 'Ingredient_food_or_drinks'
+    __tablename__ = 'ingredient_food_or_drinks'
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key = True)
-    food_or_drink_id = db.Column(db.Integer, ForeignKey("food_or_drink.id"), nullable= False)
-    ingredient = db.Column(db.Integer, ForeignKey("Ingredient.id"), nullable = False)
+    food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"), nullable= False)
+    ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.id"), nullable = False)
 
-    ingredient = db.relationship("Ingredient", backref=backref("ingredient_food_or_drink", cascade="all, delete-orphan"))
-    food_or_drink = db.relationship("Food_or_drink", backref=backref("ingredient_food_or_drink", cascade="all, delete-orphan"))
+    ingredients = db.relationship(Ingredient, backref=backref("ingredient_food_or_drinks", cascade="all, delete-orphan"))
+    food_or_drinks = db.relationship(Food_or_drink, backref=backref("ingredient_food_or_drinks", cascade="all, delete-orphan"))
 
 
     def to_dict(self):
       return {
         "id": self.id,
         "food_or_drink_id": self.food_or_drink_id,
-        "ingredient": self.ingredient
+        "ingredient_id": self.ingredient_id
       }
 
 
 class Employee(db.Model):
     __tablename__ = 'employees'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, ForeignKey("user.id"), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
     first_name = db.Column(db.String, nullable = False)
     last_name = db.Column(db.String, nullable = False)
     salary = db.Column(db.Integer, nullable = False)
-    tables = db.Column(db.Integer, nullable = False)
+    table_number = db.Column(db.Integer, nullable = False)
     picture = db.Column(db.String)
 
     user = db.relationship("User", backref="employees")
@@ -158,17 +166,20 @@ class Employee(db.Model):
         "first_name": self.first_name,
         "last_name": self.last_name,
         "salary": self.salary,
-        "tables": self.tables,
+        "table_number": self.tables,
         "picture": self.picture
       }
 
-#DO I need this?
+#DO I need this? #put back
 class Table(db.Model):
     __tablename__ = 'tables'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
     table_number = db.Column(db.Integer, nullable = False)
-    customer_id = db.Column(db.Integer, ForeignKey("customer.id"))
+    customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"))
+    employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"))
 
+    employee = relationship("Employee", backref="tables")
     food_or_drink = relationship("Food_or_drink", secondary="table_food_or_drinks")
     customer = relationship("Customer", backref="tables")
 
@@ -176,33 +187,37 @@ class Table(db.Model):
       return {
         "id": self.id,
         "table_number": self.table_number,
-        "customer_id":self.customer_id
-
+        "customer_id":self.customer_id,
+        "employee_id": self.employee_id
       }
+
+
 #joiner
-    class Table_food_or_drink(db.Model):
-      __tablename__ = 'table_food_or_drinks'
+    # class Table_food_or_drink(db.Model):
+    #   __tablename__ = 'table_food_or_drinks'
+    #   # __table_args__ = {'extend_existing': True}
 
-      id = db.Column(db.Integer, primary_key = True)
-      table_id = db.Column(db.Integer, ForeignKey("table.id"))
-      food_or_drink_id = db.Column(db.Integer, ForeignKey("food_or_drink.id"))
+    #   id = db.Column(db.Integer, primary_key = True)
+    #   table_id = db.Column(db.Integer, db.ForeignKey("table.id"))
+    #   food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drink.id"))
 
-      table = relationship(Table, backref=backref("tables", cascade="all, delete-orphan"))
-      food_or_drink = relationship(Food_or_drink, backref=backref("food_or_drinks", cascade="all, delete-orphan" ) )
+    #   food_or_drink = relationship(Food_or_drink, backref=backref("table_food_or_drink", cascade="all, delete-orphan" ) )
+    #   table = relationship(Table, backref=backref("table_food_or_drink", cascade="all, delete-orphan"))
 
 
-    def to_dict(self):
-      return {
-        "id": self.id,
-        "table_id": self.table_id
-      }
+    # def to_dict(self):
+    #   return {
+    #     "id": self.id,
+    #     "table_id": self.table_id,
+    #     "food_or_drink_id": self.food_or_drink_id
+    #   }
 
 #Do i need a joiner, I don't thinks so -- (tables kind of suck)
 class Inventory(db.Model):
     __tablename__ = 'inventories'
-
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
-    food_or_drink_id = db.Column(db.Integer, ForeignKey("food_or_drink.id"), nullable = False)
+    ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.id"), nullable = False)
     food_item = db.Column(db.String, nullable = False)
     quantity = db.Column(db.Float, nullable = False)
     market_price = db.Column(db.Float)
@@ -212,6 +227,7 @@ class Inventory(db.Model):
     def to_dict(self):
       return {
         "id": self.id,
+        "ingredient_id": self.ingredient_id,
         "food_or_drink": self.food_or_drink_id,
         "food_item": self.food_item,
         "quantity": self.quantity,
@@ -222,10 +238,11 @@ class Inventory(db.Model):
 
 class Review(db.Model):
     __tablename__ = 'reviews'
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key = True)
-    customer_id = db.Column(db.Integer, ForeignKey("customer.id"), nullable = False)
-    employee_id = db.Column(db.Integer, ForeignKey("employee.id"), nullable = False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
+    employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
     review = db.Column(db.String)
 
     employee = relationship("Employee", backref="reviews")
@@ -242,10 +259,11 @@ class Review(db.Model):
 
 class Tip(db.Model):
     __tablename__ = 'tips'
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key = True)
-    customer_id = db.Column(db.Integer, ForeignKey("customer.id"), nullable = False)
-    employee_id = db.Column(db.Integer, ForeignKey("employee.id"), nullable = False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
+    employee_id = db.Column(db.Integer, db.ForeignKey("employees.id"), nullable = False)
     tip = db.Column(db.String)
     
     employee = relationship("Employee", backref="tips")
@@ -262,10 +280,11 @@ class Tip(db.Model):
 
 class Customer(db.Model):
     __tablename__ = 'customers'
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key = True)
     table_number = db.Column(db.Integer)
-    food_or_drink_customer_id = db.Column(db.String, ForeignKey("food_or_drink_customer.id "))
+    # food_or_drink_customer_id = db.Column(db.Integer, db.ForeignKey("food_or_drink_customers.id "))
     tip = db.Column(db.Float)
     total_price = db.Column(db.Float)
     server_review = db.Column(db.String)
@@ -292,20 +311,41 @@ class Customer(db.Model):
 #Join table
 class Food_or_drink_customer(db.Model):
     __tablename__ = 'food_or_drink_customers'
+    __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key = True)
-    customer_id = db.Column(db.Integer, ForeignKey("customer.id"), nullable = False)
-    food_or_drink_id = db.Column(db.Integer, ForeignKey("food_or_drink.id"), nullable = False)
+    customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable = False)
+    food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"), nullable = False)
 
-    customer = relationship(Customer, backref=backref("food_or_drink_customer", cascade="all, delete-orphan"))
-    food_or_drink = relationship(Food_or_drink, backref=backref("food_or_drink_customer", cascade="all, delete-orphan"))
+    customer = relationship(Customer, backref=backref("food_or_drink_customers", cascade="all, delete-orphan"))
+    food_or_drink = relationship(Food_or_drink, backref=backref("food_or_drink_customers", cascade="all, delete-orphan"))
 
     def to_dict(self):
       return {
         "id": self.id,
         "customer_id": self.customer_id,
-        "food_or_drink": self.food_or_drink_id
+        "food_or_drink_id": self.food_or_drink_id
       }
 
 
+
+class Table_food_or_drink(db.Model):
+      __tablename__ = 'table_food_or_drinks'
+      __table_args__ = {'extend_existing': True}
+
+      id = db.Column(db.Integer, primary_key = True)
+      table_id = db.Column(db.Integer, db.ForeignKey("tables.id"))
+      food_or_drink_id = db.Column(db.Integer, db.ForeignKey("food_or_drinks.id"))
+
+      food_or_drink = relationship(Food_or_drink, backref=backref("table_food_or_drinks", cascade="all, delete-orphan" ) )
+      table = relationship(Table, backref=backref("table_food_or_drinks", cascade="all, delete-orphan"))
+      def to_dict(self):
+        return {
+          "id": self.id,
+          "table_id": self.table_id,
+          "food_or_drink_id": self.food_or_drink_id
+        }
+
+
+    
 
