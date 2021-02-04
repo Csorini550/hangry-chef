@@ -28,20 +28,20 @@ class Table(db.Model):
       }
 
 #todo Seeder
-table_food_or_drinks=db.Table(
-        "table_food_or_drinks",
-        db.Column(
-            "food_or_drink_id",
-            db.Integer,
-            db.ForeignKey("food_or_drinks.id"),
-            primary_key=True
-        ),
-        db.Column(
-            "table_id",
-            db.Integer,
-            db.ForeignKey("tables.id")
-        )
-)
+# table_food_or_drinks=db.Table(
+#         "table_food_or_drinks",
+#         db.Column(
+#             "food_or_drink_id",
+#             db.Integer,
+#             db.ForeignKey("food_or_drinks.id"),
+#             primary_key=True
+#         ),
+#         db.Column(
+#             "table_id",
+#             db.Integer,
+#             db.ForeignKey("tables.id")
+#         )
+# )
       
       # def to_dict(self):
       #   return {

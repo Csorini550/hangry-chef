@@ -13,11 +13,11 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  menues = db.relationship("Menue", back_populates="users")
-  employees = db.relationship("Employees", back_populates="users")
-  ingredients = db.relationship("Ingredient", back_populates="users")
-  inventories = db.relationship("Inventory", back_populates="users")
-  food_or_drinks = db.relationship("Food_or_drink", back_populates="users")
+  # menues = db.relationship("Menue", back_populates="users")
+  # employees = db.relationship("Employees", back_populates="users")
+  # ingredients = db.relationship("Ingredient", back_populates="users")
+  # inventories = db.relationship("Inventory", back_populates="users")
+  # food_or_drinks = db.relationship("Food_or_drink", back_populates="users")
 
 
   @property
@@ -41,3 +41,13 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "restaurant_name": self.restaurant_name
     }
+
+def seed_users():
+    #user
+    demo = User( 
+    email='demo@aa.io',
+    password='password',
+    name='demo',
+    restaurant_name="Demo restaurant"
+    )
+

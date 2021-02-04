@@ -8,7 +8,7 @@ class Menue(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     menue_name = db.Column(db.String, nullable = False)
     food_item = db.Column(db.String, nullable = False)
-    menue_array = db.Column(db.String)
+    menue_array = db.Column(db.Array)
     qr_code = db.Column(db.String)
     picture = db.Column(db.String)
 

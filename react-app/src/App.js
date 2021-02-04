@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 // import SignUpModal from "./components/SignUpModal"
 import { authenticate } from "./services/auth";
+import CreateMenue from "./components/CreateMenue";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path="/create-menue" exact={true} authenticated={authenticated}>
+          {/* <CreateMenue /> */}
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

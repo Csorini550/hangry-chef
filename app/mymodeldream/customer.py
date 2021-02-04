@@ -22,7 +22,7 @@ class Customer(db.Model):
     
     # tip = relationship('Tip', backref='customers')
     table = db.relationship("Table", back_populates="customers")
-    review = relationship('Review', back_populates='customers')
+    # review = relationship('Review', back_populates='customers')
 
     def to_dict(self):
       return {

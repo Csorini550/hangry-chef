@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, User, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Review, Tip, Customer, Food_or_drink_customer
+from app.models import db, User, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Customer, Food_or_drink_customer #Tip, Review
 
 def seed_all():
     #user
@@ -30,7 +30,24 @@ def seed_all():
         qr_code = None
     )
 
-    
+#join -
+#menue_food_or_drinks
+menue_food_or_drinks1 = menue_food_or_drinks(
+    menue_id = 1, 
+    food_or_drink_id = 1
+)
+menue_food_or_drinks2 = menue_food_or_drinks(
+    menue_id = 1, 
+    food_or_drink_id = 2
+)
+menue_food_or_drinks3 = menue_food_or_drinks(
+    menue_id = 1, 
+    food_or_drink_id = 3
+)
+menue_food_or_drinks4 = menue_food_or_drinks(
+    menue_id = 1, 
+    food_or_drink_id = 4
+)
     
 
 
@@ -137,42 +154,42 @@ def seed_all():
     )
     
 
-
+#join
 #ingredient_food_or_drinks
-    ingredient_food_or_drinks1 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks1 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 1
     )
-    ingredient_food_or_drinks2 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks2 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 2
     )
 
-    ingredient_food_or_drinks3 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks3 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 3
     )
-    ingredient_food_or_drinks4 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks4 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 4
     )
-    ingredient_food_or_drinks5 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks5 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 5
     )
-    ingredient_food_or_drinks5 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks5 = ingredient_food_or_drinks(
         food_or_drink_id = 1,
         ingredient_id = 6
     )
-    ingredient_food_or_drinks6 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks6 = ingredient_food_or_drinks(
         food_or_drink_id = 3,
         ingredient_id = 1
     )
-    ingredient_food_or_drinks7 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks7 = ingredient_food_or_drinks(
         food_or_drink_id = 3,
         ingredient_id = 5
     )
-    ingredient_food_or_drinks8 = Ingredient_food_or_drink(
+    ingredient_food_or_drinks8 = ingredient_food_or_drinks(
         food_or_drink_id = 3,
         ingredient_id = 6
     )
@@ -319,44 +336,44 @@ def seed_all():
 
 
 #REVIEWS
-    reviews1 = Review(
-        customer_id = 1,
-        employee_id = 1,
-        review = "She was very nice but spilled my husbands drink all over us. At least she got me a towel, and offered to clean it up.",
-        rating = 3.5
-    )
+    # reviews1 = Review(
+    #     customer_id = 1,
+    #     employee_id = 1,
+    #     review = "She was very nice but spilled my husbands drink all over us. At least she got me a towel, and offered to clean it up.",
+    #     rating = 3.5
+    # )
 
-    reviews2 = Review(
-        customer_id = 2,
-        employee_id = 2,
-        review = "Kind of looked like a famous dj I used to listen too, he even gave me extra bacon for free. What a man!",
-        rating = 5
-    )
+    # reviews2 = Review(
+    #     customer_id = 2,
+    #     employee_id = 2,
+    #     review = "Kind of looked like a famous dj I used to listen too, he even gave me extra bacon for free. What a man!",
+    #     rating = 5
+    # )
 
-    reviews3 = Review(
-        customer_id = 3,
-        employee_id = 3,
-        review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
-        rating = 1
-    )
+    # reviews3 = Review(
+    #     customer_id = 3,
+    #     employee_id = 3,
+    #     review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
+    #     rating = 1
+    # )
     
 
 #tips
-    tips1 = Tip(
-        customer_id = 1,
-        employee_id = 1,
-        tipp = 2.00
-    )
-    tips2 = Tip(
-        customer_id = 2,
-        employee_id = 2,
-        tipp = 8.00
-    )
-    tips3 = Tip(
-        customer_id = 3,
-        employee_id = 3,
-        tipp = 1.00
-    )
+    # tips1 = Tip(
+    #     customer_id = 1,
+    #     employee_id = 1,
+    #     tipp = 2.00
+    # )
+    # tips2 = Tip(
+    #     customer_id = 2,
+    #     employee_id = 2,
+    #     tipp = 8.00
+    # )
+    # tips3 = Tip(
+    #     customer_id = 3,
+    #     employee_id = 3,
+    #     tipp = 1.00
+    # )
 
 
     
@@ -391,43 +408,43 @@ def seed_all():
     )
 
     
-
-    food_or_drink_customer1 = Food_or_drink_customer(
+# join table for foods and customers
+    food_or_drink_customer1 = food_or_drink_customers(
         customer_id = 1,
         food_or_drink_id = 1
     )
-    food_or_drink_customer2 = Food_or_drink_customer(
+    food_or_drink_customer2 = food_or_drink_customers(
         customer_id = 1,
         food_or_drink_id = 2
     )
-    food_or_drink_customer3 = Food_or_drink_customer(
+    food_or_drink_customer3 = food_or_drink_customers(
         customer_id = 2,
         food_or_drink_id = 2
     )
-    food_or_drink_customer4 = Food_or_drink_customer(
+    food_or_drink_customer4 = food_or_drink_customers(
         customer_id = 2,
         food_or_drink_id = 4
     )
-    food_or_drink_customer5 = Food_or_drink_customer(
+    food_or_drink_customer5 = food_or_drink_customers(
         customer_id = 2,
         food_or_drink_id = 3
     )
-    food_or_drink_customer6 = Food_or_drink_customer(
+    food_or_drink_customer6 = food_or_drink_customers(
         customer_id = 2,
         food_or_drink_id = 1
     )
-    food_or_drink_customer7 = Food_or_drink_customer(
+    food_or_drink_customer7 = food_or_drink_customers(
         customer_id = 3,
         food_or_drink_id = 1
     )
-    food_or_drink_customer8 = Food_or_drink_customer(
+    food_or_drink_customer8 = food_or_drink_customers(
         customer_id = 3,
         food_or_drink_id = 4
     )
 
     
 
-
+#join table for foods and tables
     table_food_or_drink1 = Table_food_or_drink(
         table_id = 1,
         food_or_drink_id = 1
@@ -498,12 +515,12 @@ def seed_all():
     db.session.add(inventories7)
     db.session.add(inventories8)
     db.session.add(inventories9)
-    db.session.add(reviews1)
-    db.session.add(reviews2)
-    db.session.add(reviews3)
-    db.session.add(tips1)
-    db.session.add(tips2)
-    db.session.add(tips3)
+    # db.session.add(reviews1)
+    # db.session.add(reviews2)
+    # db.session.add(reviews3)
+    # db.session.add(tips1)
+    # db.session.add(tips2)
+    # db.session.add(tips3)
     db.session.add(employees1)
     db.session.add(employees2)
     db.session.add(employees3)
@@ -529,12 +546,17 @@ def seed_all():
     db.session.add(table_food_or_drink6)
     db.session.add(table_food_or_drink7)
     db.session.add(table_food_or_drink8)
+    db.sesstion.add(menue_food_or_drinks1)
+    db.sesstion.add(menue_food_or_drinks2)
+    db.sesstion.add(menue_food_or_drinks3)
+    db.sesstion.add(menue_food_or_drinks4)
 
     db.session.commit()
 
 
 
-
+db.session.add(demo)
+db.session.commit()
 def undo_all():
     db.session.execute('TRUNCATE menues restart identity cascade;')
     db.session.commit()

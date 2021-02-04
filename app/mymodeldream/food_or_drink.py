@@ -57,3 +57,33 @@ db.Column(
   primary_key = True
 )
 
+ingredient_food_or_drinks = db.Table(
+  "ingredient_food_or_drinks",
+  db.Column(
+    "ingredient_id",
+    db.Integer,
+    db.ForeignKey("ingredients.id"),
+    primary_key=True
+  ),
+  db.Column(
+    "food_or_drink_id",
+    db.Integer,
+    db.ForeignKey("food_or_drinks.id"),
+    primary_key=True
+  )
+)
+
+table_food_or_drinks=db.Table(
+        "table_food_or_drinks",
+        db.Column(
+            "food_or_drink_id",
+            db.Integer,
+            db.ForeignKey("food_or_drinks.id"),
+            primary_key=True
+        ),
+        db.Column(
+            "table_id",
+            db.Integer,
+            db.ForeignKey("tables.id")
+        )
+)

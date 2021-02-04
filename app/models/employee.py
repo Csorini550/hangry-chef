@@ -12,7 +12,7 @@ class Employee(db.Model):
     table_number = db.Column(db.Integer)
     picture = db.Column(db.String)
 
-    reviews = db.relationship("Review", back_populates="employees")
+    # reviews = db.relationship("Review", back_populates="employees")
     user = db.relationship('User', back_populates='employees')
     tables = db.relationship("Table", back_populates="employees")
 
