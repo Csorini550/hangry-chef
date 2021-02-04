@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship, backref
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
-  __table_args__ = {'extend_existing': True}
+  # __table_args__ = {'extend_existing': True}
 
   id = db.Column(db.Integer, primary_key = True)
   name = db.Column(db.String, nullable = False)
@@ -13,7 +13,8 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
-  menue = db.relationship("Menue", backref="users")
+  menues = db.relationship("Menue", back_populates="users")
+  employees = db.relationship("Employees", back_populates="users")
 
 
   @property
@@ -33,7 +34,7 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "restaurant_name": self.restaurant_name,
       "name": self.name,
-      "email": self.email
+      "email": self.email,
+      "restaurant_name": self.restaurant_name
     }

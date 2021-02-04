@@ -1,7 +1,15 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Review, Tip, Customer, Food_or_drink_customer
+from app.models import db, User, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Review, Tip, Customer, Food_or_drink_customer
 
 def seed_all():
+    #user
+    demo = User( 
+    email='demo@aa.io',
+    password='password',
+    name='demo',
+    restaurant_name="Demo restaurant"
+    )
+
 #menue
     menue1 = Menue(
         user_id = 1,
@@ -12,7 +20,8 @@ def seed_all():
         picture = None
     )
 
-    db.session.add(menue1)
+    
+    
     
 
 #qr_code
@@ -21,7 +30,7 @@ def seed_all():
         qr_code = None
     )
 
-    db.session.add(qr_code1)
+    
     
 
 
@@ -52,11 +61,7 @@ def seed_all():
     )
     
 
-
-    db.session.add(food_or_drink1)
-    db.session.add(food_or_drink2)
-    db.session.add(food_or_drink3)
-    db.session.add(food_or_drink4)
+    
     
 
 
@@ -130,16 +135,7 @@ def seed_all():
         # food_or_drink_id = 4,
         picture = None
     )
-
-    db.session.add(ingredients1)
-    db.session.add(ingredients2)
-    db.session.add(ingredients3)
-    db.session.add(ingredients4)
-    db.session.add(ingredients5)
-    db.session.add(ingredients6)
-    db.session.add(ingredients7)
-    db.session.add(ingredients8)
-    db.session.add(ingredients9)
+    
 
 
 #ingredient_food_or_drinks
@@ -192,16 +188,8 @@ def seed_all():
         food_or_drink_id = 4,
         ingredient_id = 9
     )
-    db.session.add(ingredient_food_or_drinks1)
-    db.session.add(ingredient_food_or_drinks2)
-    db.session.add(ingredient_food_or_drinks3)
-    db.session.add(ingredient_food_or_drinks4)
-    db.session.add(ingredient_food_or_drinks5)
-    db.session.add(ingredient_food_or_drinks6)
-    db.session.add(ingredient_food_or_drinks7)
-    db.session.add(ingredient_food_or_drinks8)
-    db.session.add(ingredient_food_or_drinks9)
-    db.session.add(ingredient_food_or_drinks10)
+
+    
     
     
 
@@ -232,9 +220,7 @@ def seed_all():
         table_number = 3,
         picture = None
     )
-    db.session.add(employees1)
-    db.session.add(employees2)
-    db.session.add(employees3)
+    
 
 
 #Tables
@@ -255,13 +241,13 @@ def seed_all():
         customer_id = 3,
         employee_id =3
     )
-    db.session.add(tables1)
-    db.session.add(tables2)
-    db.session.add(tables3)
+
+    
 
 
 #Inventory
     inventories1 = Inventory(
+        user_id = 1,
         ingredient_id = 1,
         food_item = "Lettuce",
         quantity = 250,
@@ -269,6 +255,7 @@ def seed_all():
     )
 
     inventories2 = Inventory(
+        user_id = 1,
         ingredient_id = 2,
         food_item = "Bun",
         quantity = 183,
@@ -276,6 +263,7 @@ def seed_all():
     )
 
     inventories3 = Inventory(
+        user_id = 1,
         ingredient_id = 3,
         food_item = "Patty",
         quantity = 181,
@@ -283,6 +271,7 @@ def seed_all():
     )
 
     inventories4 = Inventory(
+        user_id = 1,
         ingredient_id = 4,
         food_item = 'Pickle',
         quantity = 270,
@@ -290,6 +279,7 @@ def seed_all():
     )
 
     inventories5 = Inventory(
+        user_id = 1,
         ingredient_id = 5,
         food_item = "Tomato",
         quantity = 52,
@@ -297,40 +287,35 @@ def seed_all():
     )
 
     inventories6 = Inventory(
+        user_id = 1,
         ingredient_id = 6,
         food_item = "Bacon",
         quantity = 28,
         market_price = 00.99
     )
     inventories7 = Inventory(
+        user_id = 1,
         ingredient_id = 7,
         food_item = "Beer",
         quantity = 280,
         market_price = 01.00
     )
     inventories8 = Inventory(
+        user_id = 1,
         ingredient_id = 8,
         food_item = "Chicken",
         quantity = 43,
         market_price = 01.50
     )
     inventories9 = Inventory(
+        user_id = 1,
         ingredient_id = 9,
         food_item = "Coke",
         quantity = 412,
         market_price = 00.15
     )
 
-
-    db.session.add(inventories1)
-    db.session.add(inventories2)
-    db.session.add(inventories3)
-    db.session.add(inventories4)
-    db.session.add(inventories5)
-    db.session.add(inventories6)
-    db.session.add(inventories7)
-    db.session.add(inventories8)
-    db.session.add(inventories9)
+    
 
 
 #REVIEWS
@@ -354,35 +339,32 @@ def seed_all():
         review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
         rating = 1
     )
-    db.session.add(reviews1)
-    db.session.add(reviews2)
-    db.session.add(reviews3)
+    
 
 #tips
     tips1 = Tip(
         customer_id = 1,
         employee_id = 1,
-        tip = 2.00
+        tipp = 2.00
     )
     tips2 = Tip(
         customer_id = 2,
         employee_id = 2,
-        tip = 8.00
+        tipp = 8.00
     )
     tips3 = Tip(
         customer_id = 3,
         employee_id = 3,
-        tip = 1.00
+        tipp = 1.00
     )
 
-    db.session.add(tips1)
-    db.session.add(tips2)
-    db.session.add(tips3)
+
+    
 
 #Customer
     customer1 = Customer(
         table_number = 1,
-        tip = 2.00,
+        tipp = 2.00,
         total_price = None,
         server_review = "She was very nice but spilled my husbands drink all over us. At least she got me a towel, and offered to clean it up.",
         server_rating = 3.5,
@@ -391,7 +373,7 @@ def seed_all():
     )
     customer2 = Customer(
         table_number = 2,
-        tip = 2.00,
+        tipp = 2.00,
         total_price = None,
         server_review = "Kind of looked like a famous dj I used to listen too, he even gave me extra bacon for free. What a man!",
         server_rating = 5,
@@ -400,16 +382,15 @@ def seed_all():
     )
     customer3 = Customer(
         table_number = 3,
-        tip = 2.00,
+        tipp = 2.00,
         total_price = None,
         server_review = "This guy was horrible, we asked about the special and he just started muttering about 'he who shall not be named'. It was annoying and very unprofessional",
         server_rating = 1,
         order_issue = None,
         instagram = None
     )
-    db.session.add(customer1)
-    db.session.add(customer2)
-    db.session.add(customer3)
+
+    
 
     food_or_drink_customer1 = Food_or_drink_customer(
         customer_id = 1,
@@ -443,14 +424,8 @@ def seed_all():
         customer_id = 3,
         food_or_drink_id = 4
     )
-    db.session.add(food_or_drink_customer1)
-    db.session.add(food_or_drink_customer2)
-    db.session.add(food_or_drink_customer3)
-    db.session.add(food_or_drink_customer4)
-    db.session.add(food_or_drink_customer5)
-    db.session.add(food_or_drink_customer6)
-    db.session.add(food_or_drink_customer7)
-    db.session.add(food_or_drink_customer8)
+
+    
 
 
     table_food_or_drink1 = Table_food_or_drink(
@@ -485,6 +460,67 @@ def seed_all():
         table_id = 3,
         food_or_drink_id = 4
     )
+
+
+
+    db.session.add(demo)
+    db.session.add(menue1)
+    db.session.add(qr_code1)
+    db.session.add(food_or_drink1)
+    db.session.add(food_or_drink2)
+    db.session.add(food_or_drink3)
+    db.session.add(food_or_drink4)
+    db.session.add(ingredients1)
+    db.session.add(ingredients2)
+    db.session.add(ingredients3)
+    db.session.add(ingredients4)
+    db.session.add(ingredients5)
+    db.session.add(ingredients6)
+    db.session.add(ingredients7)
+    db.session.add(ingredients8)
+    db.session.add(ingredients9)
+    db.session.add(ingredient_food_or_drinks1)
+    db.session.add(ingredient_food_or_drinks2)
+    db.session.add(ingredient_food_or_drinks3)
+    db.session.add(ingredient_food_or_drinks4)
+    db.session.add(ingredient_food_or_drinks5)
+    db.session.add(ingredient_food_or_drinks6)
+    db.session.add(ingredient_food_or_drinks7)
+    db.session.add(ingredient_food_or_drinks8)
+    db.session.add(ingredient_food_or_drinks9)
+    db.session.add(ingredient_food_or_drinks10)
+    db.session.add(inventories1)
+    db.session.add(inventories2)
+    db.session.add(inventories3)
+    db.session.add(inventories4)
+    db.session.add(inventories5)
+    db.session.add(inventories6)
+    db.session.add(inventories7)
+    db.session.add(inventories8)
+    db.session.add(inventories9)
+    db.session.add(reviews1)
+    db.session.add(reviews2)
+    db.session.add(reviews3)
+    db.session.add(tips1)
+    db.session.add(tips2)
+    db.session.add(tips3)
+    db.session.add(employees1)
+    db.session.add(employees2)
+    db.session.add(employees3)
+    db.session.add(tables1)
+    db.session.add(tables2)
+    db.session.add(tables3)
+    db.session.add(customer1)
+    db.session.add(customer2)
+    db.session.add(customer3)
+    db.session.add(food_or_drink_customer1)
+    db.session.add(food_or_drink_customer2)
+    db.session.add(food_or_drink_customer3)
+    db.session.add(food_or_drink_customer4)
+    db.session.add(food_or_drink_customer5)
+    db.session.add(food_or_drink_customer6)
+    db.session.add(food_or_drink_customer7)
+    db.session.add(food_or_drink_customer8)
     db.session.add(table_food_or_drink1)
     db.session.add(table_food_or_drink2)
     db.session.add(table_food_or_drink3)
@@ -494,9 +530,14 @@ def seed_all():
     db.session.add(table_food_or_drink7)
     db.session.add(table_food_or_drink8)
 
+    db.session.commit()
+
+
+
 
 def undo_all():
     db.session.execute('TRUNCATE menues restart identity cascade;')
+    db.session.commit()
     # db.session.execute('TRUNCATE employees restart identity cascade;')
     # db.session.execute('TRUNCATE tables restart identity cascade;')
     # db.session.execute('TRUNCATE inventories restart identity cascade;')

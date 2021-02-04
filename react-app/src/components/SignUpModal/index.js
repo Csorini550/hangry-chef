@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
+import SignUpForm from "../../components/SignUpForm"
+
+// import SignupForm from "../SignUpForm"
 import {
     Modal,
     ModalOverlay,
@@ -11,7 +14,6 @@ import {
     Button,
     useDisclosure
 } from "@chakra-ui/react"
-import SignUpForm from "../../components/SignUpForm"
 
 
 function SignUpModal() {
