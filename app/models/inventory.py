@@ -8,12 +8,12 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     ingredient_id = db.Column(db.Integer, db.ForeignKey('ingredients.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    food_item = db.Column(db.String, nullable = False)
+    food_item = db.Column(db.String)
     quantity = db.Column(db.Float, nullable = False)
     market_price = db.Column(db.Float)
 
-    users = relationship('User', backref='inventories')
-    ingredient = relationship('Ingredient', backref='inventories')
+    user = relationship('User', back_populates='inventories')
+    ingredient = relationship('Ingredient', back_populates='inventories')
 
     def to_dict(self):
       return {

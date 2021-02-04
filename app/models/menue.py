@@ -12,10 +12,11 @@ class Menue(db.Model):
     qr_code = db.Column(db.String)
     picture = db.Column(db.String)
 
-    food_or_drinks = db.relationship("Food_or_drinks", secondary=menue_food_or_drinks, back_populates="menues")
-
+#many to many between foods and menues
+    food_or_drinks = db.relationship("Food_or_drink", secondary=menue_food_or_drinks, back_populates="menues")
 
     user = db.relationship('User', back_populates='menues')
+    qr_code = db.relationship('Qr_code', back_populates='menues')
 
     def to_dict(self):
       return {

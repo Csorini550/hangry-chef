@@ -13,7 +13,7 @@ class Review(db.Model):
     rating = db.Column(db.Float)
 
     employee = relationship('Employee', back_populates='reviews')
-    customer = relationship('Customer', back_populates='reviews')
+    customers = relationship('Customer', back_populates='reviews')
 
     def to_dict(self):
       return {

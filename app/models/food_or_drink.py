@@ -1,4 +1,4 @@
-from .db import db
+x from .db import db
 from sqlalchemy.orm import relationship, backref
 
 class Food_or_drink(db.Model):
@@ -11,10 +11,10 @@ class Food_or_drink(db.Model):
     picture = db.Column(db.String)
 
   #many to many 
-    tables = db.relationship('Table', secondary=table_food_or_drinks, back_populates="food_or_drinks")
+    customers = relationship('Customer', secondary=food_or_drink_customers, back_populates="food_or_drinks")
     menues = db.relationship("Menu", secondary=menue_food_or_drinks, back_populates="food_or_drinks")
-    ingredient = db.relationship('Ingredient', secondary=ingredient_food_or_drinks, back_populates="food_or_drinks")
-    customer = relationship('Customer', secondary=food_or_drink_customers, back_populates="food_or_drinks")
+    tables = db.relationship('Table', secondary=table_food_or_drinks, back_populates="food_or_drinks")
+    ingredients = db.relationship('Ingredient', secondary=ingredient_food_or_drinks, back_populates="food_or_drinks")
 
     def to_dict(self):
       return {

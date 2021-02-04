@@ -36,20 +36,20 @@ class Customer(db.Model):
         'instagram': self.instagram
       }
 
-class Food_or_drink_customer(db.Model):
-    __tablename__ = 'food_or_drink_customers'
-    # __table_args__ = {'extend_existing': True}
+# class Food_or_drink_customer(db.Model):
+#     __tablename__ = 'food_or_drink_customers'
+#     # __table_args__ = {'extend_existing': True}
 
-    id = db.Column(db.Integer, primary_key = True)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
-    food_or_drink_id = db.Column(db.Integer, db.ForeignKey('food_or_drinks.id'))
+#     id = db.Column(db.Integer, primary_key = True)
+#     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+#     food_or_drink_id = db.Column(db.Integer, db.ForeignKey('food_or_drinks.id'))
 
-    customer = relationship(Customer, backref=backref('food_or_drink_customers', cascade='all, delete-orphan'))
-    food_or_drink = relationship(Food_or_drink, backref=backref('food_or_drink_customers', cascade='all, delete-orphan'))
+#     customer = relationship(Customer, backref=backref('food_or_drink_customers', cascade='all, delete-orphan'))
+#     food_or_drink = relationship(Food_or_drink, backref=backref('food_or_drink_customers', cascade='all, delete-orphan'))
 
-    def to_dict(self):
-      return {
-        'id': self.id,
-        'customer_id': self.customer_id,
-        'food_or_drink_id': self.food_or_drink_id
-      }
+#     def to_dict(self):
+#       return {
+#         'id': self.id,
+#         'customer_id': self.customer_id,
+#         'food_or_drink_id': self.food_or_drink_id
+#       }

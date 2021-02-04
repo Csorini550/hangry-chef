@@ -8,7 +8,7 @@ class Qr_code(db.Model):
     menue_id = db.Column(db.Integer, db.ForeignKey('menues.id'))
     qr_code = db.Column(db.String, nullable=True)
 
-    menue = db.relationship('Menue', backref='qr_codes')
+    menues = db.relationship('Menue', back_populates='qr_codes')
 
 
     def to_dict(self):
@@ -17,3 +17,4 @@ class Qr_code(db.Model):
             'menue_id': self.menue_id,
             'qr_code': self.qr_code
         }
+

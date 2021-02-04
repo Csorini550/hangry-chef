@@ -15,6 +15,9 @@ class User(db.Model, UserMixin):
 
   menues = db.relationship("Menue", back_populates="users")
   employees = db.relationship("Employees", back_populates="users")
+  ingredients = db.relationship("Ingredient", back_populates="users")
+  inventories = db.relationship("Inventory", back_populates="users")
+  food_or_drinks = db.relationship("Food_or_drink", back_populates="users")
 
 
   @property

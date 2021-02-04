@@ -11,12 +11,13 @@ class Table(db.Model):
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
+    #many to many between foods and tables
+    food_or_drink = db.relationship("Food_or_drink", secondary=table_food_or_drinks, back_populates="tables")
+
+
     employee = db.relationship('Employee', back_populates='tables')
     customer = db.relationship('Customer', back_populates='tables')
-
-    food_or_drink = db.relationship("food_or_drink", secondary=table_food_or_drinks, back_populates="tables")
-    customers = db.relationship("Customer", back_populates="tables")
-    employee = db.relationship("Employee", back_populates="tables")
+    
 
     def to_dict(self):
       return {
@@ -26,25 +27,25 @@ class Table(db.Model):
         'employee_id': self.employee_id
       }
 
-
+#todo Seeder
 table_food_or_drinks=db.Table(
         "table_food_or_drinks",
         db.Column(
-            "customer_id",
+            "food_or_drink_id",
             db.Integer,
-            db.ForeignKey("customers.id"),
+            db.ForeignKey("food_or_drinks.id"),
             primary_key=True
         ),
         db.Column(
-            "employee_id",
+            "table_id",
             db.Integer,
-            db.ForeignKey("employees_id")
+            db.ForeignKey("tables.id")
         )
 )
       
-      def to_dict(self):
-        return {
-          'id': self.id,
-          'table_id': self.table_id,
-          'food_or_drink_id': self.food_or_drink_id
-        }
+      # def to_dict(self):
+      #   return {
+      #     'id': self.id,
+      #     'table_id': self.table_id,
+      #     'food_or_drink_id': self.food_or_drink_id
+      #   }
