@@ -43,7 +43,7 @@ menue_food_or_drinks = db.Table(
 
 #many to many between customer and foods
 food_or_drink_customers = db.Table(
-  "customer_food_or_drinks", 
+  "food_or_drink_customers", 
   db.Column(
     "customer_id",
     db.Integer,
