@@ -33,8 +33,8 @@ db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"), prim
   
 
 #many to many between customer and foods
-Food_or_drink_customers = db.Table("food_or_drink_customers", db.Column("customer_id",db.Integer,db.ForeignKey("customers.id"),primary_key = True),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = True))
+Food_or_drink_customers = db.Table("food_or_drink_customers", db.Column("customer_id",db.Integer,db.ForeignKey("customers.id"),primary_key = False),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False))
 
-Ingredient_food_or_drinks = db.Table("ingredient_food_or_drinks",db.Column("ingredient_id",db.Integer,db.ForeignKey("ingredients.id"),primary_key=True),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = True))
+Ingredient_food_or_drinks = db.Table("ingredient_food_or_drinks",db.Column("ingredient_id",db.Integer,db.ForeignKey("ingredients.id"),primary_key= False),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False))
 
-Table_food_or_drinks= db.Table("table_food_or_drinks",db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key=True),db.Column("table_id",db.Integer,db.ForeignKey("tables.id"), primary_key = True))
+Table_food_or_drinks= db.Table("table_food_or_drinks",db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key=False),db.Column("table_id",db.Integer,db.ForeignKey("tables.id"), primary_key = False))
