@@ -4,10 +4,10 @@ from .user import User
 # from .customer import Customer
 from .employee import Employee
 # from .food_or_drink import Food_or_drink, menue_food_or_drinks, customer_food_or_drinks
-# from .ingredient import Ingredient, ingredient_food_or_drinks
-# from .inventory import Inventory
-# from .menue import Menue
-# from .qr_code import Qr_code
+from .ingredient import Ingredient
+from .inventory import Inventory
+from .menue import Menue
+from .qr_code import Qr_code
 # from .table import Table, table_food_or_drinks
 
 

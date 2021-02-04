@@ -11,7 +11,7 @@ class Food_or_drink(db.Model):
     picture = db.Column(db.String)
 
   #many to many 
-    customers = relationship('Customer', secondary=food_or_drink_customers, back_populates="food_or_drinks")
+    customers = relationship('Customer', secondary=food_or_drink_customers, backref="food_or_drinks")
     menues = db.relationship("Menu", secondary=menue_food_or_drinks, back_populates="food_or_drinks")
     tables = db.relationship('Table', secondary=table_food_or_drinks, back_populates="food_or_drinks")
     ingredients = db.relationship('Ingredient', secondary=ingredient_food_or_drinks, back_populates="food_or_drinks")
@@ -26,7 +26,7 @@ class Food_or_drink(db.Model):
       }
 
 #many to many between foods and menues
-menue_food_or_drinks = db.Table(
+Menue_food_or_drinks = db.Table(
   "menue_food_or_drinks", 
   db.Column(
     "menue_id",
@@ -42,7 +42,7 @@ menue_food_or_drinks = db.Table(
   
 
 #many to many between customer and foods
-food_or_drink_customers = db.Table(
+Food_or_drink_customers = db.Table(
   "food_or_drink_customers", 
   db.Column(
     "customer_id",
@@ -57,7 +57,7 @@ db.Column(
   primary_key = True
 )
 
-ingredient_food_or_drinks = db.Table(
+Ingredient_food_or_drinks = db.Table(
   "ingredient_food_or_drinks",
   db.Column(
     "ingredient_id",
@@ -73,7 +73,7 @@ ingredient_food_or_drinks = db.Table(
   )
 )
 
-table_food_or_drinks=db.Table(
+Table_food_or_drinks=db.Table(
         "table_food_or_drinks",
         db.Column(
             "food_or_drink_id",

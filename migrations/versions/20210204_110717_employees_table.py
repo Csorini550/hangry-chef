@@ -31,11 +31,11 @@ def upgrade():
     )
     # ### end Alembic commands ###
     op.bulk_insert(employee_table,
-    [{"user_id":1, "first_name": "Karen", "last_name":"Heffer", "salary":15.00, "table_number":1, "picture":None},
+    [
+    {"user_id":1, "first_name": "Karen", "last_name":"Heffer", "salary":15.00, "table_number":1, "picture":None},
     {"user_id":1, "first_name": "Steve", "last_name":"Aioli", "salary":11.00, "table_number":2, "picture":None},
     {"user_id":1, "first_name": "Harry", "last_name":"Proper", "salary":8.00, "table_number":3, "picture":None}
-    ]
-    )
+    ])
 
     # employees1 = Employee(
     #     user_id = 1,

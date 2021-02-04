@@ -6,14 +6,14 @@ class Menue(db.Model):
     # __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    menue_name = db.Column(db.String, nullable = False)
-    food_item = db.Column(db.String, nullable = False)
-    menue_array = db.Column(db.Array)
+    menue_name = db.Column(db.String)
+    food_item = db.Column(db.String)
+    menue_array = db.Column(db.String)
     qr_code = db.Column(db.String)
     picture = db.Column(db.String)
 
 #many to many between foods and menues
-    food_or_drinks = db.relationship("Food_or_drink", secondary=menue_food_or_drinks, back_populates="menues")
+    food_or_drinks = db.relationship("Food_or_drink", secondary="Menue_food_or_drinks", backref="menues")
 
     user = db.relationship('User', back_populates='menues')
     qr_code = db.relationship('Qr_code', back_populates='menues')
