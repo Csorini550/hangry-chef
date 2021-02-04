@@ -39,8 +39,10 @@ menue_food_or_drinks = db.Table(
       db.ForeignKey("food_or_drinks.id"), 
       primary_key = True) 
 
+  
+
 #many to many between customer and foods
-customer_food_or_drinks = db.Table(
+food_or_drink_customers = db.Table(
   "customer_food_or_drinks", 
   db.Column(
     "customer_id",

@@ -12,7 +12,7 @@ class Ingredient(db.Model):
     picture = db.Column(db.String)
 
 #many to many for foods and ingredients
-    food_or_drink = db.relationship('Food_or_drink', secondary=Ingredient_food_or_drinks, back_populates="ingredients")
+    food_or_drink = db.relationship('Food_or_drink', secondary=ingredient_food_or_drinks, back_populates="ingredients")
 
     user = db.relationship('User', back_populates='ingredients')
     inventory = db.relationship('Inventory', back_populates='ingredients')
@@ -27,7 +27,7 @@ class Ingredient(db.Model):
       }
 
 #todo
-Ingredient_food_or_drinks = db.Table(
+ingredient_food_or_drinks = db.Table(
   "ingredient_food_or_drinks",
   db.Column(
     "ingredient_id",
@@ -38,7 +38,7 @@ Ingredient_food_or_drinks = db.Table(
   db.Column(
     "food_or_drink_id",
     db.Integer,
-    db.ForeignKey("food_or_drinkd.id"),
+    db.ForeignKey("food_or_drinks.id"),
     primary_key=True
   )
 )
