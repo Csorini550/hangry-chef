@@ -18,7 +18,9 @@ class Customer(db.Model):
     order_issue = db.Column(db.String)
     instagram = db.Column(db.Boolean)
 
-    food_or_drink = relationship("Food_or_drink", secondary=food_or_drink_customers, back_populates='customers')
+    
+
+    food_or_drink = relationship("Food_or_drink", secondary="Food_or_drink_customers", back_populates='customers')
     
     # tip = relationship('Tip', backref='customers')
     table = db.relationship("Table", back_populates="customers")

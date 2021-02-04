@@ -1,14 +1,13 @@
 from .db import db
 from .user import User
-# RIP the dream big big_daddy_model from .big_daddy_model import User, Menue, Qr_code, Food_or_drink, Ingredient, Ingredient_food_or_drink, Employee, Table, Table_food_or_drink, Inventory, Review, Tip, Customer, Food_or_drink_customer
-# from .customer import Customer
 from .employee import Employee
-# from .food_or_drink import Food_or_drink, menue_food_or_drinks, customer_food_or_drinks
+from .food_or_drink import Food_or_drink, Menue_food_or_drinks, Food_or_drink_customers, Ingredient_food_or_drinks, Table_food_or_drinks
 from .ingredient import Ingredient
 from .inventory import Inventory
 from .menue import Menue
 from .qr_code import Qr_code
-# from .table import Table, table_food_or_drinks
+from .customer import Customer
+from .table import Table
 
 
 # from .tip import Tip
