@@ -5,8 +5,6 @@ import React, { useState } from "react";
 
 const Home = () => {
 
-
-
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })

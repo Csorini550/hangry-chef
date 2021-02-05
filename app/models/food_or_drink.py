@@ -9,12 +9,13 @@ class Food_or_drink(db.Model):
     name = db.Column(db.String, nullable = False)
     price = db.Column(db.Float, nullable = False)
     picture = db.Column(db.String)
+    description = db.Column(db.String)
 
     menues = db.relationship("Menue", secondary="menue_food_or_drinks", back_populates="food_or_drinks")
     customers = db.relationship('Customer', secondary="food_or_drink_customers", back_populates="food_or_drinks")
     tables = db.relationship('Table', secondary="table_food_or_drinks", back_populates="food_or_drinks")
     ingredients = db.relationship('Ingredient', secondary="ingredient_food_or_drinks", back_populates="food_or_drinks")
-
+    
     def to_dict(self):
       return {
         'id': self.id,
@@ -22,6 +23,7 @@ class Food_or_drink(db.Model):
         'name': self.name,
         'price': self.price,
         'picture': self.picture,
+        'description': self.description
       }
   #many to many 
 

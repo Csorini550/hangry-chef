@@ -6,9 +6,20 @@ import React, { useState } from "react";
 const CreateMenue = () => {
 
     return (
-        <div>
-            <h1>Create a menue</h1>
-        </div>
+        <>
+            <div>
+                <h1>Create a menue</h1>
+            </div>
+
+
+
+            <div>
+                <form>
+
+                </form>
+            </div>
+
+        </>
     )
 
 }

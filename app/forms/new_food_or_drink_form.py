@@ -9,3 +9,4 @@ class NewFoodOrDrinkForm(FlaskForm):
     name = StringField("name", validators=[DataRequired()])
     price = FloatField("price", validators=[DataRequired()])
     picture = StringField("picture")
+    description = StringField("description")

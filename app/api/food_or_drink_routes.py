@@ -21,6 +21,7 @@ def new_food_or_drink():
       name=form.data["name"],
       price=form.data["price"],
       picture=form.data["picture"]
+      description=form.data["description"]
     )
 
     db.session.add(newFoodOrDrink)

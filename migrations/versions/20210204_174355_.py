@@ -24,16 +24,17 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('picture', sa.String(), nullable=True),
+    sa.Column('description', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['menue_id'], ['menues.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
     op.bulk_insert(food_or_drink_tables,[
-        {"menue_id":1, "name":"Cheeseburger", "price":12.00, "picture":None},
-        {"menue_id":1, "name":"Beer", "price":4.00, "picture":None},
-        {"menue_id":1, "name":"Salad", "price":9.00, "picture":None},
-        {"menue_id":1, "name":"Coke", "price":2.00, "picture":None},
+        {"menue_id":1, "name":"Cheeseburger", "price":12.00, "picture":None, "description": "A great cheese burger crafted with the finest ingredients"},
+        {"menue_id":1, "name":"Beer", "price":4.00, "picture":None, "description": "An oaky stout"},
+        {"menue_id":1, "name":"Salad", "price":9.00, "picture":None, "description": "A salad with fresh greens"},
+        {"menue_id":1, "name":"Coke", "price":2.00, "picture":None, "description": "Fountain drink"},
         ])
 
 

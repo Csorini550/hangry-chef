@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import SignUpForm from "./components/SignUpForm";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import NavBar from "./components/NavBar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -12,6 +12,7 @@ import CreateMenue from "./components/CreateMenue";
 import ManageStaff from "./components/ManageStaff"
 import ManageTables from "./components/ManageTables"
 import Inventory from "./components/Inventory"
+import Home from "./components/Home"
 
 
 function App() {
@@ -37,13 +38,13 @@ function App() {
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/login" exact={true}>
-          <LoginForm
+          <Login
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          <SignUp authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
@@ -52,7 +53,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <Home />
         </ProtectedRoute>
         <ProtectedRoute path="/create-menue" exact={true} authenticated={authenticated}>
           <CreateMenue />
