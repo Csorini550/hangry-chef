@@ -9,6 +9,10 @@ import User from "./components/User";
 // import SignUpModal from "./components/SignUpModal"
 import { authenticate } from "./services/auth";
 import CreateMenue from "./components/CreateMenue";
+import ManageStaff from "./components/ManageStaff"
+import ManageTables from "./components/ManageTables"
+import Inventory from "./components/Inventory"
+
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -51,7 +55,16 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
         <ProtectedRoute path="/create-menue" exact={true} authenticated={authenticated}>
-          {/* <CreateMenue /> */}
+          <CreateMenue />
+        </ProtectedRoute>
+        <ProtectedRoute path="/manage-staff" exact={true} authenticated={authenticated}>
+          <ManageStaff />
+        </ProtectedRoute>
+        <ProtectedRoute path="/manage-tables" exact={true} authenticated={authenticated}>
+          <ManageTables />
+        </ProtectedRoute>
+        <ProtectedRoute path="/inventory" exact={true} authenticated={authenticated}>
+          <Inventory />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

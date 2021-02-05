@@ -12,8 +12,8 @@ class Inventory(db.Model):
     quantity = db.Column(db.Float, nullable = False)
     market_price = db.Column(db.Float)
 
-    user = relationship('User', back_populates='inventories')
-    ingredient = relationship('Ingredient', backref='inventories')
+    users = relationship('User', back_populates='inventories')
+    ingredients = relationship('Ingredient', back_populates='inventories')
 
     def to_dict(self):
       return {

@@ -12,10 +12,10 @@ class Ingredient(db.Model):
     picture = db.Column(db.String)
 
 #many to many for foods and ingredients
-    food_or_drink = db.relationship('Food_or_drink', secondary="Ingredient_food_or_drinks", back_populates="ingredients")
+    food_or_drinks = db.relationship('Food_or_drink', secondary="ingredient_food_or_drinks", back_populates="ingredients")
 
-    user = db.relationship('User', back_populates='ingredients')
-    # inventory = db.relationship('Inventory', back_populates='ingredients')
+    users = db.relationship('User', back_populates='ingredients')
+    inventories = db.relationship('Inventory', back_populates='ingredients')
 
     def to_dict(self):
       return {

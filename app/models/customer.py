@@ -20,10 +20,10 @@ class Customer(db.Model):
 
     
 
-    food_or_drink = relationship("Food_or_drink", secondary="Food_or_drink_customers", back_populates='customers')
+    food_or_drinks = relationship("Food_or_drink", secondary="food_or_drink_customers", back_populates='customers')
     
     # tip = relationship('Tip', backref='customers')
-    table = db.relationship("Table", back_populates="customers")
+    tables = db.relationship("Table", back_populates="customers")
     # review = relationship('Review', back_populates='customers')
 
     def to_dict(self):

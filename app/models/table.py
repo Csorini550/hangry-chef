@@ -12,11 +12,11 @@ class Table(db.Model):
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
     #many to many between foods and tables
-    food_or_drink = db.relationship("Food_or_drink", secondary="Table_food_or_drinks", back_populates="tables")
+    food_or_drinks = db.relationship("Food_or_drink", secondary="table_food_or_drinks", back_populates="tables")
 
 
-    employee = db.relationship('Employee', back_populates='tables')
-    customer = db.relationship('Customer', back_populates='tables')
+    employees = db.relationship('Employee', back_populates='tables')
+    customers = db.relationship('Customer', back_populates='tables')
     
 
     def to_dict(self):

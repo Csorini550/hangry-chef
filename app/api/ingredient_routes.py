@@ -4,11 +4,13 @@ from app.forms import NewIngredientForm
 from app.models import Ingredient
 from app.models import db
 
+ingredient_routes = Blueprint("ingredient", __name__)
+
 #GET ingredient by food_or_drink_id
 @ingredient_routes.route("<int:food_or_drinkId>")
 @login_required
 def ingredient_by_food_or_drink(food_or_drinkId):
-    ingredient = ingredient.query.filter_by(food_or_drink_id=food_or_drinkId).all()
+    ingredient = Ingredient.query.filter_by(food_or_drink_id=food_or_drinkId).all()
     return {ingredient.id: ingredient.to_dict() for ingredient in ingredients}
 
 

@@ -10,11 +10,10 @@ class Food_or_drink(db.Model):
     price = db.Column(db.Float, nullable = False)
     picture = db.Column(db.String)
 
-  #many to many 
-    customers = relationship('Customer', secondary="Food_or_drink_customers", backref="food_or_drinks")
-    menues = db.relationship("Menu", secondary="Menue_food_or_drinks", back_populates="food_or_drinks")
-    tables = db.relationship('Table', secondary="Table_food_or_drinks", back_populates="food_or_drinks")
-    ingredients = db.relationship('Ingredient', secondary="Ingredient_food_or_drinks", back_populates="food_or_drinks")
+    menues = db.relationship("Menue", secondary="menue_food_or_drinks", back_populates="food_or_drinks")
+    customers = db.relationship('Customer', secondary="food_or_drink_customers", back_populates="food_or_drinks")
+    tables = db.relationship('Table', secondary="table_food_or_drinks", back_populates="food_or_drinks")
+    ingredients = db.relationship('Ingredient', secondary="ingredient_food_or_drinks", back_populates="food_or_drinks")
 
     def to_dict(self):
       return {
@@ -24,17 +23,38 @@ class Food_or_drink(db.Model):
         'price': self.price,
         'picture': self.picture,
       }
+  #many to many 
 
-#many to many between foods and menues
-Menue_food_or_drinks = db.Table("menue_food_or_drinks", 
-db.Column("menue_id",db.Integer,db.ForeignKey("menues.id"),primary_key = True),
-db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"), primary_key = True))
+    
 
-  
 
-#many to many between customer and foods
-Food_or_drink_customers = db.Table("food_or_drink_customers", db.Column("customer_id",db.Integer,db.ForeignKey("customers.id"),primary_key = False),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False))
+# Menue_food_or_drinks = db.Table("menue_food_or_drinks", 
+# db.Column("menue_id",db.Integer,db.ForeignKey("menues.id"),primary_key = False),
+# db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"), primary_key = False))
 
-Ingredient_food_or_drinks = db.Table("ingredient_food_or_drinks",db.Column("ingredient_id",db.Integer,db.ForeignKey("ingredients.id"),primary_key= False),db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False))
 
-Table_food_or_drinks= db.Table("table_food_or_drinks",db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key=False),db.Column("table_id",db.Integer,db.ForeignKey("tables.id"), primary_key = False))
+# Food_or_drink_customers = db.Table("food_or_drink_customers",
+# db.Column("customer_id",db.Integer,db.ForeignKey("customers.id"),primary_key = False),
+# db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False))
+
+
+# Table_food_or_drinks= db.Table("table_food_or_drinks",
+# db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key=False),
+# db.Column("table_id",db.Integer,db.ForeignKey("tables.id"), primary_key = False))
+
+
+
+# Ingredient_food_or_drinks = db.Table("ingredient_food_or_drinks",
+# db.Column("ingredient_id",db.Integer,db.ForeignKey("ingredients.id"),primary_key= False),
+# db.Column("food_or_drink_id",db.Integer,db.ForeignKey("food_or_drinks.id"),primary_key = False)) 
+
+    #many to many between foods and menues
+
+
+    #many to many between customer and foods
+
+
+
+
+
+    

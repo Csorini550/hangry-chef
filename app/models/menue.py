@@ -13,10 +13,10 @@ class Menue(db.Model):
     picture = db.Column(db.String)
 
 #many to many between foods and menues
-    food_or_drinks = db.relationship("Food_or_drink", secondary="Menue_food_or_drinks", backref="menues")
+    food_or_drinks = db.relationship("Food_or_drink", secondary="menue_food_or_drinks", back_populates="menues")
 
-    user = db.relationship('User', back_populates='menues')
-    qr_code = db.relationship('Qr_code', back_populates='menues')
+    users = db.relationship('User', back_populates='menues')
+    qr_codes = db.relationship('Qr_code', back_populates='menues')
 
     def to_dict(self):
       return {

@@ -13,7 +13,7 @@ class Employee(db.Model):
     picture = db.Column(db.String)
 
     # reviews = db.relationship("Review", back_populates="employees")
-    user = db.relationship('User', back_populates='employees')
+    users = db.relationship('User', back_populates='employees')
     tables = db.relationship("Table", back_populates="employees")
 
     def to_dict(self):

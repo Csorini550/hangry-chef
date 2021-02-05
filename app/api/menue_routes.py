@@ -11,7 +11,7 @@ menue_routes = Blueprint("menue", __name__)
 @menue_routes.route("")
 def all_menues():
     menues = Menue.query.all()
-    return {menue.id: menue.to_dict for menue in menues}
+    return {menue.id: menue.to_dict() for menue in menues}
 
 
 #GET ONE MENUE BY ID
@@ -33,7 +33,7 @@ def new_menue():
         user_id=form.data["user_id"],
         menue_name=form.data["menue_name"],
         food_item=form.data["food_item"],
-        menue_data=form.data["qr_code"],
+        menue_data=form.data["menue_data"],
         qr_code=form.data["qr_code"],
         picture=form.data["picture"]
     )
