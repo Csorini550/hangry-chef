@@ -2,13 +2,20 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import session from "./session";
-
+import foodOrDrink from "./foodOrDrink"
+import employee from "./employee"
+import ingredient from "./ingredient"
+import inventory from "./inventory"
+import menue from "./menue"
 
 // Reducer
 const rootReducer = combineReducers({
     session,
-    food_or_drink,
-
+    foodOrDrink,
+    employee,
+    ingredient,
+    inventory,
+    menue
 })
 
 // Store Enhancer

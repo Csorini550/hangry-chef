@@ -13,6 +13,7 @@ import ManageStaff from "./components/ManageStaff"
 import ManageTables from "./components/ManageTables"
 import Inventory from "./components/Inventory"
 import Home from "./components/Home"
+import StaffInfo from "./components/StaffInfo"
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/inventory" exact={true} authenticated={authenticated}>
           <Inventory />
+        </ProtectedRoute>
+        <ProtectedRoute path="/:userId/staff/info/:employeeId" exact={true} authenticated={authenticated}>
+          <StaffInfo />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -31,7 +31,15 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-#TODO add all blueprints
+app.register_blueprint(customer_routes, url_prefix='/api/customer')
+app.register_blueprint(employee_routes, url_prefix='/api/employee')
+app.register_blueprint(food_or_drink_routes, url_prefix='/api/food_or_drink')
+app.register_blueprint(ingredient_routes, url_prefix='/api/ingredient')
+app.register_blueprint(inventory_routes, url_prefix='/api/auth/inventory')
+app.register_blueprint(menue_routes, url_prefix='/api/auth/menue')
+app.register_blueprint(qr_code_routes, url_prefix='/api/auth/qr_code')
+app.register_blueprint(table_routes, url_prefix='/api/auth/table')
+
 db.init_app(app)
 Migrate(app, db)
 

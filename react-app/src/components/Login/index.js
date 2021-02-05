@@ -23,7 +23,7 @@ function LoginForm() {
             .then((res) => {
                 console.log(res)
                 if (authentication) {
-                    return history.push(`/closet/${res}`);
+                    return history.push(`/`);
                 }
             })
             .catch((res) => {
