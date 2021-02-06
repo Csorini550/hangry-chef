@@ -20,7 +20,7 @@ class Ingredient(db.Model):
     def to_dict(self):
       return {
         'id': self.id,
-        'user_id': self.user,
+        'user_id': self.user_id,
         'name': self.name,
         'price': self.price,
         'picture': self.picture

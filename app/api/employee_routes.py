@@ -7,10 +7,10 @@ from app.models import db
 employee_routes = Blueprint("employee", __name__)
 
 # GET  EMPLOYEES BY USERID
-@employee_routes.route("<int:userId>")
+@employee_routes.route("/<int:userId>")
 # @login_required
 def employee_by_user(userId):
-    employee = Employee.query.filter_by(user_id=userId).all()
+    employees = Employee.query.filter_by(user_id=userId).all()
     return {employee.id: employee.to_dict() for employee in employees}
 
 

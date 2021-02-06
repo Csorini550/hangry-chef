@@ -11,7 +11,7 @@ qr_code_routes = Blueprint("qr_code", __name__)
 #GET QRCODE BY MENUE_ID
 @qr_code_routes.route("<int:menueId>")
 def qr_code_by_menue(menueId):
-    qr_code = Qr_code.query.filter_by(menue_id=menueId).all()
+    qr_codes = Qr_code.query.filter_by(menue_id=menueId).all()
     return {qr_code.id: qr_code.to_dict() for qr_code in qr_codes}
 
 

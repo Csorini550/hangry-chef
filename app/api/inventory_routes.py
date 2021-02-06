@@ -11,7 +11,7 @@ inventory_routes = Blueprint("inventory", __name__)
 @inventory_routes.route("/<int:userId>")
 # @login_required
 def inventory_by_user(userId):
-    inventory = Inventory.query.filter_by(user_id=userId).all()
+    inventories = Inventory.query.filter_by(user_id=userId).all()
     return {inventory.id: inventory.to_dict() for inventory in inventories}
 
 @inventory_routes.route("/create", methods=["POST"])

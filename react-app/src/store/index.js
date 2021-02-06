@@ -7,6 +7,7 @@ import employee from "./employee"
 import ingredient from "./ingredient"
 import inventory from "./inventory"
 import menue from "./menue"
+import table from "./table"
 
 
 // Reducer
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     ingredient,
     inventory,
     menue,
+    table
 })
 
 // Store Enhancer

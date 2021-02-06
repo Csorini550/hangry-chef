@@ -16,7 +16,7 @@ const createInventoryAction = (body) => ({
 
 export const createInventory = (body) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/ingredient/create`, {
+        const res = await fetch(`/api/inventory/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -33,6 +33,7 @@ export const getInventoryByUser = (userId) => {
         const data = await res.json();
         dispatch(getInventoryByUserAction(data))
         return data
+
     }
 }
 

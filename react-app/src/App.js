@@ -68,7 +68,7 @@ function App() {
         <ProtectedRoute path="/manage-tables" exact={true} authenticated={authenticated}>
           <ManageTables />
         </ProtectedRoute>
-        <ProtectedRoute path="/inventory" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/inventory/:userId" authenticated={authenticated}>
           <Inventory />
         </ProtectedRoute>
         <ProtectedRoute path="/:userId/staff/info/:employeeId" exact={true} authenticated={authenticated}>

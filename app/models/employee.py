@@ -10,7 +10,7 @@ class Employee(db.Model):
     last_name = db.Column(db.String, nullable = False)
     salary = db.Column(db.Float, nullable = False)
     table_number = db.Column(db.Integer)
-    picture = db.Column(db.String)
+    # picture = db.Column(db.String)
 
     # reviews = db.relationship("Review", back_populates="employees")
     users = db.relationship('User', back_populates='employees')
@@ -23,6 +23,6 @@ class Employee(db.Model):
         'first_name': self.first_name,
         'last_name': self.last_name,
         'salary': self.salary,
-        'table_number': self.tables,
-        'picture': self.picture
+        'table_number': self.tables
+        # 'picture': self.picture
       }

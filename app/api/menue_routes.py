@@ -48,5 +48,5 @@ def new_menue():
     @menue_routes.route("/<int:userId>")
     @login_required
     def menue_by_user(userId):
-        menue = Menue.query.filter_by(user_id=menueId).all()
+        menues = Menue.query.filter_by(user_id=menueId).all()
         return {menue.id: menue.to_dict() for menue in menues}

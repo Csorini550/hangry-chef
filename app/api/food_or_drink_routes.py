@@ -8,7 +8,7 @@ food_or_drink_routes = Blueprint("food_or_drink", __name__)
 #GET FOOD_OR_DRINK BY MENUE_ID
 @food_or_drink_routes.route("<int:menueId>")
 def food_or_drink_by_menue(menueId):
-    food_or_drink = food_or_drink.query.filter_by(menue_id=menueId).all()
+    food_or_drinks = food_or_drink.query.filter_by(menue_id=menueId).all()
     return {food_or_drink.id: food_or_drink.to_dict() for food_or_drink in food_or_drinks}
 
 #CREATE FOOD_OR_DRINK

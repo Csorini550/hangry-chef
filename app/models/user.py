@@ -39,7 +39,8 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "name": self.name,
       "email": self.email,
-      "restaurant_name": self.restaurant_name
+      "restaurant_name": self.restaurant_name,
+      "inventory": [item.to_dict() for item in self.inventories]
     }
 
 def seed_users():

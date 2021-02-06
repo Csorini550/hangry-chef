@@ -20,7 +20,6 @@ class Inventory(db.Model):
         'id': self.id,
         'ingredient_id': self.ingredient_id,
         'user_id': self.user_id,
-        'food_or_drink': self.food_or_drink_id,
         'food_item': self.food_item,
         'quantity': self.quantity,
         'market_price': self.market_price
