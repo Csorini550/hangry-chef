@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux"
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import NavBar from "./components/NavBar/NavBar";
+import NavBarHome from "./components/NavBarHome";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -14,21 +15,23 @@ import ManageTables from "./components/ManageTables"
 import Inventory from "./components/Inventory"
 import Home from "./components/Home"
 import StaffInfo from "./components/StaffInfo"
-
+import { restoreUser } from "./store/session"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     (async () => {
-      const user = await authenticate();
+      const user = await dispatch(restoreUser())
       if (!user.errors) {
         setAuthenticated(true);
+
       }
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -36,7 +39,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBarHome setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/login" exact={true}>
           <Login

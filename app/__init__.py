@@ -8,6 +8,14 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.customer_routes import customer_routes
+from .api.employee_routes import employee_routes
+from .api.food_or_drink_routes import food_or_drink_routes
+from .api.ingredient_routes import ingredient_routes
+from .api.inventory_routes import inventory_routes
+from .api.menue_routes import menue_routes
+from .api.qr_code_route import qr_code_routes
+from .api.table_routes import table_routes
 
 from .seeds import seed_commands
 
@@ -35,10 +43,10 @@ app.register_blueprint(customer_routes, url_prefix='/api/customer')
 app.register_blueprint(employee_routes, url_prefix='/api/employee')
 app.register_blueprint(food_or_drink_routes, url_prefix='/api/food_or_drink')
 app.register_blueprint(ingredient_routes, url_prefix='/api/ingredient')
-app.register_blueprint(inventory_routes, url_prefix='/api/auth/inventory')
-app.register_blueprint(menue_routes, url_prefix='/api/auth/menue')
-app.register_blueprint(qr_code_routes, url_prefix='/api/auth/qr_code')
-app.register_blueprint(table_routes, url_prefix='/api/auth/table')
+app.register_blueprint(inventory_routes, url_prefix='/api/inventory')
+app.register_blueprint(menue_routes, url_prefix='/api/menue')
+app.register_blueprint(qr_code_routes, url_prefix='/api/qr_code')
+app.register_blueprint(table_routes, url_prefix='/api/table')
 
 db.init_app(app)
 Migrate(app, db)

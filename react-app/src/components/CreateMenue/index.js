@@ -11,8 +11,6 @@ const CreateMenue = () => {
                 <h1>Create a menue</h1>
             </div>
 
-
-
             <div>
                 <form>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/sessionbroken";
+import * as sessionActions from "../../store/session";
 // import './SignupForm.css';
 
 function SignUp() {
@@ -13,8 +13,8 @@ function SignUp() {
     const [restaurant_name, setRestaurant_name] = useState("");
     const [errors, setErrors] = useState([]);
 
-    // const sessionUser = useSelector((state) => state.session.user);
-    // if (sessionUser) return <Redirect to="/" />;
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -27,6 +27,9 @@ function SignUp() {
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
+    const sessionUser = useSelector((state) => state.session.user);
+
+    if (sessionUser) return <Redirect to="/" />;
     return (
         <>
             <h1>Sign Up</h1>

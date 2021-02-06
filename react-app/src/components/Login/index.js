@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { login, setUser } from "../../store/sessionbroken";
+import { login, setUser } from "../../store/session";
 import { useDispatch } from 'react-redux'
 // import "./LoginForm.css";
 
@@ -14,11 +14,12 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
     const onLogin = async (e) => {
         e.preventDefault();
-        const user = await login(email, password);
+        const user = dispatch(login(email, password));
         // console.log("USER", user)
         if (!user.errors) {
             setAuthenticated(true);
             dispatch(setUser(user.data));
+            // return <Redirect to="/" />;
         } else {
             setErrors(user.errors);
         }
@@ -33,12 +34,9 @@ const Login = ({ authenticated, setAuthenticated }) => {
     };
 
     const demoLogin = async (e) => {
-        setEmail('demo_user@aa.io');
-        setPassword('password')
-        const user = await login(email, password);
-        console.log("USER", user)
+        const user = dispatch(login('demo@aa.io', 'password'));
         setAuthenticated(true);
-        dispatch(setUser(user.data));
+        // dispatch(setUser(user.data));
 
     }
 
@@ -81,7 +79,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
                     </div>
                     <div className="login-btn">
                         <button type="submit" id="login-btn">Login</button>
-                        <button onClick={demoLogin}>Demo Login</button>
+                        <button type='submit' onClick={demoLogin}>Demo Login</button>
                     </div>
                 </div>
             </form>

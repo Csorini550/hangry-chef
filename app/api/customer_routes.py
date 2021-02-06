@@ -17,12 +17,12 @@ def all_customer():
 def new_customer():
     form = NewCustomerForm()
     newCustomer = Customer(
-        table_number=form.data["table_number"]
-        tipp=form.data["tipp"]
-        total_price=form.data["total_price"]
-        server_review=form.data["server_review"]
-        server_rating=form.data["server_rating"]
-        order_issue=form.data["order_issue"]
+        table_number=form.data["table_number"],
+        tipp=form.data["tipp"],
+        total_price=form.data["total_price"],
+        server_review=form.data["server_review"],
+        server_rating=form.data["server_rating"],
+        order_issue=form.data["order_issue"],
         instagram=form.data["instagram"]
     )
 

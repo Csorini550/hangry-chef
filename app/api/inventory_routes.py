@@ -1,29 +1,28 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.forms import NewInventoryForm
-from app.models import Inventory
-from app.models import db
+from app.models import db, Inventory
 
 
 inventory_routes = Blueprint("inventory", __name__)
 
 
 #get inventory by userId
-@inventory_routes.route("<int:userId>")
-@login_required
+@inventory_routes.route("/<int:userId>")
+# @login_required
 def inventory_by_user(userId):
     inventory = Inventory.query.filter_by(user_id=userId).all()
     return {inventory.id: inventory.to_dict() for inventory in inventories}
 
-@inventory_routes.routes("/create", method=["POST"])
-@login_required
+@inventory_routes.route("/create", methods=["POST"])
+# @login_required
 def new_inventory():
-    from = NewInventoryForm()
+    form = NewInventoryForm()
     newInventory = Inventory(
-        ingredient_id=form.data["ingredient_id"]
-        user_id=form.data["user_id"]
-        food_item=form.data["food_item"]
-        quantity=form.data["quantity"]
+        ingredient_id=form.data["ingredient_id"],
+        user_id=form.data["user_id"],
+        food_item=form.data["food_item"],
+        quantity=form.data["quantity"],
         market_price=form.data["market_price"]
     )
     db.session.add(NewInventory)

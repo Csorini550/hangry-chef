@@ -1,4 +1,4 @@
-import { fetch } from './csrf.js';
+// import { fetch } from './csrf.js';
 // import { login, signup, logout } from "../services/auth.js"
 
 const SET_USER = 'session/setUser';
@@ -22,20 +22,24 @@ export const authenticate = async () => {
     return await response.json();
 }
 
-export const login = async (email, password) => {
+export const login = (email, password) => async (dispatch) => {
     const res = await fetch('/api/auth/login', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     });
-    console.log(res.data, "USER RES DATA")
-    // dispatch(setUser(res.data.user));
-    return res;
+    let data = await res.json()
+
+    dispatch(setUser(data));
+    console.log(data, "Hello are we getting this data")
+    return data;
 };
 
 export const restoreUser = () => async (dispatch) => {
     const res = await fetch('/api/auth/');
-    dispatch(setUser(res.data.user));
-    return res;
+    const data = await res.json()
+    dispatch(setUser(data));
+    return data;
 };
 
 export const signup = (user) => async (dispatch) => {
@@ -50,9 +54,9 @@ export const signup = (user) => async (dispatch) => {
 
         })
     });
-
-    dispatch(setUser(response.data.user));
-    return response;
+    const data = await response.json()
+    dispatch(setUser(data));
+    return data;
 };
 
 export const logout = () => async (dispatch) => {

@@ -8,7 +8,7 @@ employee_routes = Blueprint("employee", __name__)
 
 # GET  EMPLOYEES BY USERID
 @employee_routes.route("<int:userId>")
-@login_required
+# @login_required
 def employee_by_user(userId):
     employee = Employee.query.filter_by(user_id=userId).all()
     return {employee.id: employee.to_dict() for employee in employees}
@@ -22,8 +22,8 @@ def all_employees():
 
 
 # CREATE AN EMPLOYEE
-@employee_routes.routes("/create", methods=["POST"])
-@login_required
+@employee_routes.route("/create", methods=["POST"])
+# @login_required
 def new_employee():
     form = NewEmployeeForm()
     newEmployee = Employee(

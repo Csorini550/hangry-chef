@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 
 
-const NavBar = ({ setAuthenticated }) => {
+const Dropdown = ({ setAuthenticated }) => {
   return (
     <nav>
       <ul>
@@ -35,4 +35,4 @@ const NavBar = ({ setAuthenticated }) => {
   );
 }
 
-export default NavBar;
+export default Dropdown;

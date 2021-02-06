@@ -34,7 +34,7 @@ export const createIngredient = (body) => {
 export const getIngredientsByUser = (userId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/ingredient/${userId}`)
-        const data = res.json();
+        const data = await res.json();
         dispatch(getIngredientsByUserAction(data))
         return data
     };

@@ -15,18 +15,19 @@ def all_menues():
 
 
 #GET ONE MENUE BY ID
-@menue_routes.routes("/<int:menueId")
+@menue_routes.route("/<int:menueId>")
 def menue(menueId):
     menue = Menue.query.get(menueId)
     if menue:
         return {
             menue.id: menue.to_dict()
         }
-    return <h1> Menue not found!</h1>
+    return
+    # return <h1> Menue not found!</h1>
 
 # POST A MNEUE
-@menue_routes.routes("/create", methods=["POST"])
-@login_required
+@menue_routes.route("/create", methods=["POST"])
+# @login_required
 def new_menue():
     form = NewMenueForm()
     newMenue = Menue(
@@ -44,7 +45,7 @@ def new_menue():
 
 
     #GET MENUE BY USERID
-    @menue_routes.route("/<int:userId")
+    @menue_routes.route("/<int:userId>")
     @login_required
     def menue_by_user(userId):
         menue = Menue.query.filter_by(user_id=menueId).all()

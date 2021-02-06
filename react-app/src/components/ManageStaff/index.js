@@ -27,10 +27,10 @@ const ManageStaff = () => {
             <h1>Manage Staff</h1>
             <div>
                 {employees.map((employee) => {
+
                     return (
-                        // Why wont this work with string interpulation
-                        // /:userId/staff/info/:employeeId
-                        <Link to={`/employee.id`} >
+
+                        <Link to={`/staff/${employee.id}`} >
                             <h3>{employee.frist_name} {employee.last_name}</h3>
                         </Link>
                     )

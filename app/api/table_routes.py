@@ -19,12 +19,12 @@ def all_tables():
 # @table_routes.route("")
 
 @table_routes.route("/create", methods=["POST"])
-@login_required
+# @login_required
 def new_table():
     form = NewTableForm()
     newTable = Table(
-        table_number=form.data["table_number"]
-        customer_id=form.data["customer_id"]
+        table_number=form.data["table_number"],
+        customer_id=form.data["customer_id"],
         employee_id=form.data["employee_id"]
     )
     db.session.add(newTable)
