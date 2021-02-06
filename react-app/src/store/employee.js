@@ -32,7 +32,7 @@ export const getEmployeeByUser = (userId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/employees/${userId}`);
         const data = res.json();
-        disppatch(getEmployeeByUserAction(data));
+        dispatch(getEmployeeByUserAction(data));
         return data;
     };
 }
@@ -53,3 +53,5 @@ function reducer(state = initialState, action) {
             return state;
     }
 }
+
+export default reducer;

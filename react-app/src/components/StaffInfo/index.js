@@ -35,3 +35,5 @@ const StaffInfo = () => {
         </div>
     )
 }
+
+export default StaffInfo

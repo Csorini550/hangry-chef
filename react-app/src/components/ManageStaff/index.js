@@ -21,7 +21,7 @@ const ManageStaff = () => {
     }, [])
 
 
-    if (Object.keys(staff).length === 0) return null;
+    if (Object.keys(employees).length === 0) return null;
     return (
         <div>
             <h1>Manage Staff</h1>
@@ -30,7 +30,7 @@ const ManageStaff = () => {
                     return (
                         // Why wont this work with string interpulation
                         // /:userId/staff/info/:employeeId
-                        <Link to="/{employee.id}" >
+                        <Link to={`/employee.id`} >
                             <h3>{employee.frist_name} {employee.last_name}</h3>
                         </Link>
                     )

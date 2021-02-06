@@ -1,22 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
 import './index.css';
 import App from './App';
-import rootReducer from "./store/index";
-// import reducer from './store/sessio';
+import configureStore from './store';
+import { Provider } from 'react-redux';
+import { restoreCSRF } from './store/csrf';
+import * as sessionActions from './store/session';
+// import store from './src/store.js'
 
+// import { PersistGate } from 'redux-persist/integration/react'
+// import store from './js/store/store';
 
-// if (process.env.NODE_ENV !== "production") {
-//   restoreCSRF();
+const store = configureStore();
 
-//   // window.csrfFetch = fetch;
-//   window.store = store;
-//   window.sessionActions = sessionActions;
+if (process.env.NODE_ENV !== "production") {
+  restoreCSRF();
+
+  // window.csrfFetch = fetch;
+  window.store = store;
+  window.sessionActions = sessionActions;
+}
+
+// function Root() {
+//   return (
+//     <ModalProvider>
+//       <Provider store={store}>
+//         <BrowserRouter>
+//           <App />
+//         </BrowserRouter>
+//       </Provider> 
+//     </ModalProvider>
+//   );
 // }
-
-const store = createStore(rootReducer);
+// persistor = { persistor }
 
 ReactDOM.render(
   <React.StrictMode>

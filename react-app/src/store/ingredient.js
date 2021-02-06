@@ -1,4 +1,4 @@
-initialState = {};
+const initialState = {};
 
 
 const GET_INGREDIENTS_BY_USER = 'ingredients/getIngredientsByUser'
@@ -55,3 +55,5 @@ function reducer(state = initialState, action) {
             return state;
     }
 }
+
+export default reducer;

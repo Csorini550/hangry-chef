@@ -1,102 +1,90 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom"
-import { signUp } from "../../store/session";
+import { Redirect } from "react-router-dom";
+import * as sessionActions from "../../store/sessionbroken";
+// import './SignupForm.css';
 
-
-function SignUpForm({ authenticated, setAuthenticated }) {
+function SignUp() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
-    const [restaurant_name, setRestaurant_name] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [name, setName] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [restaurant_name, setRestaurant_name] = useState("");
     const [errors, setErrors] = useState([]);
 
-
-
-    const updateRestaurant = (e) => {
-        setRestaurant_name(e.target.value);
-    };
-
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
-    };
-    const updateName = (e) => {
-        setName(e.target.value)
-    }
-
-    const updatePassword = (e) => {
-        setPassword(e.target.value);
-    };
+    // const sessionUser = useSelector((state) => state.session.user);
+    // if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(signUp({ email, password, restaurant_name, name }))
-                // .then((res) => { history.push(`/closet/${res}`) })     // need to make sure redirect works properly
+            return dispatch(sessionActions.signup({ restaurant_name, email, password, name }))
                 .catch(res => {
                     if (res.data && res.data.errors) setErrors(res.data.errors);
                 });
         }
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
-
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <div>
-                <label>Restaurant Name</label>
-                <input
-                    type="text"
-                    name="restaurant_name"
-                    onChange={updateRestaurant}
-                    value={restaurant_name}
-                ></input>
-            </div>
-            <div>
-                <label>Name</label>
-                <input
-                    type="text"
-                    name="name"
-                    onChange={updateName}
-                    value={name}
-                ></input>
-            </div>
-            <div>
-                <label>Email</label>
-                <input
-                    type="text"
-                    name="email"
-                    onChange={updateEmail}
-                    value={email}
-                ></input>
-            </div>
-            <div>
-                <label>Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    onChange={updatePassword}
-                    value={password}
-                ></input>
-            </div>
-            <label>
-                Confirm Password
+        <>
+            <h1>Sign Up</h1>
+            <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    Name
           <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Sign Up</button>
-        </form>
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Email
+          <input
+                        type="text"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </label>
+
+                <label>
+                    Restaurant Name
+          <input
+                        type="text"
+                        value={restaurant_name}
+                        onChange={(e) => setRestaurant_name(e.target.value)}
+                        required
+                    />
+                </label>
+
+                <label>
+                    Password
+          <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Confirm Password
+          <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Sign Up</button>
+            </form>
+        </>
     );
 }
 
-export default SignUpForm;
+export default SignUp;

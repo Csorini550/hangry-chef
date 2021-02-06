@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-import session from "./session";
+import session from "./sessionbroken";
 import foodOrDrink from "./foodOrDrink"
 import employee from "./employee"
 import ingredient from "./ingredient"

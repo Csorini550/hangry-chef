@@ -1,61 +1,92 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { login, notAuthenticated } from "../../store/session";
+import { Redirect } from "react-router-dom";
+import { login, setUser } from "../../store/sessionbroken";
+import { useDispatch } from 'react-redux'
+// import "./LoginForm.css";
 
 
-function LoginForm() {
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const authenticated = useSelector((state) => state.user.authenticated)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const Login = ({ authenticated, setAuthenticated }) => {
     const [errors, setErrors] = useState([]);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const authentication = (res) => {
-        return authenticated
-    }
+    const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
+    const onLogin = async (e) => {
         e.preventDefault();
-        setErrors([]);
-        return dispatch(login(email, password))
-            .then((res) => {
-                console.log(res)
-                if (authentication) {
-                    return history.push(`/`);
-                }
-            })
-            .catch((res) => {
-                if (res.data && res.data.errors) setErrors(res.data.errors);
-            });
+        const user = await login(email, password);
+        // console.log("USER", user)
+        if (!user.errors) {
+            setAuthenticated(true);
+            dispatch(setUser(user.data));
+        } else {
+            setErrors(user.errors);
+        }
+    };
+
+    const updateEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const demoLogin = async (e) => {
+        setEmail('demo_user@aa.io');
+        setPassword('password')
+        const user = await login(email, password);
+        console.log("USER", user)
+        setAuthenticated(true);
+        dispatch(setUser(user.data));
+
     }
 
+    if (authenticated) {
+        return <Redirect to="/" />;
+    }
 
     return (
-        <form onSubmit={handleSubmit} >
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <h1>Log In</h1>
-            <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit" className="loginbutton buttonstyle">You May Enter</button>
-            <Link to="/sign-up" className="">Create Your Closet</Link>
-        </form>
+        <div className="login-container">
+            <form id="login-form" onSubmit={onLogin}>
+                <div className="login-inputs">
+                    <div id="errors">
+                        {errors.map((error) => (
+                            <div>{error}</div>
+                        ))}
+                    </div>
+                    <div id="email">
+                        <label htmlFor="email">
+                            <input
+                                id="email-field"
+                                name="email"
+                                type="text"
+                                placeholder="Email"
+                                value={email}
+                                onChange={updateEmail}
+                            />
+                        </label>
+                    </div>
+                    <div id="password">
+                        <label htmlFor="password">
+                            <input
+                                id="password-field"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={updatePassword}
+                            />
+                        </label>
+                    </div>
+                    <div className="login-btn">
+                        <button type="submit" id="login-btn">Login</button>
+                        <button onClick={demoLogin}>Demo Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     );
-}
+};
 
-export default LoginForm;
+export default Login;

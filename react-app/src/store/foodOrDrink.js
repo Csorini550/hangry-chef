@@ -46,9 +46,12 @@ function reducer(state = initialState, action) {
         case CREATE_FOOD_OR_DRINK:
             return { ...action.payload }
         case GET_FOOD_OR_DRINK:
+            const newObject = {};
             Object.values(action.payload).forEach(function (foodOrDrink) {
                 newObject[foodOrDrink.id] = foodOrDrink;
             })
+        default:
+            return state;
     }
 }
 

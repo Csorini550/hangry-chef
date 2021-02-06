@@ -1,4 +1,4 @@
-initialState = {};
+const initialState = {};
 
 const CREATE_MENUE = 'menueId/createMenue'
 const GET_MENUE_BY_USER = 'menue/getMenueByUser'
