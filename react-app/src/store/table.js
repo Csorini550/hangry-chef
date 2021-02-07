@@ -17,7 +17,7 @@ const createTableAction = (body) => ({
 
 export const createTable = (body) => {
     return async (dispatch) => {
-        const res = await fetch(`api/table/create`, {
+        const res = await fetch(`/api/table/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -30,7 +30,7 @@ export const createTable = (body) => {
 
 export const getTableByUser = (userId) => {
     return async (dispatch) => {
-        const res = await fetch(`api/table/${userId}`);
+        const res = await fetch(`/api/table/${userId}`);
         const data = await res.json();
         dispatch(getTableAction(data));
         return data;

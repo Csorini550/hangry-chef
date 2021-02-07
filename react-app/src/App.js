@@ -16,6 +16,7 @@ import Inventory from "./components/Inventory"
 import Home from "./components/Home"
 import StaffInfo from "./components/StaffInfo"
 import { restoreUser } from "./store/session"
+// import ManageTables from "./components/ManageTables"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -53,6 +54,9 @@ function App() {
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
         </ProtectedRoute>
+        <ProtectedRoute path="/manage-tables/:userId" exact={true} authenticated={authenticated}>
+          <ManageTables />
+        </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
@@ -62,11 +66,8 @@ function App() {
         <ProtectedRoute path="/create-menue" exact={true} authenticated={authenticated}>
           <CreateMenue />
         </ProtectedRoute>
-        <ProtectedRoute path="/manage-staff" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/manage-staff/:userId" exact={true} authenticated={authenticated}>
           <ManageStaff />
-        </ProtectedRoute>
-        <ProtectedRoute path="/manage-tables" exact={true} authenticated={authenticated}>
-          <ManageTables />
         </ProtectedRoute>
         <ProtectedRoute path="/inventory/:userId" authenticated={authenticated}>
           <Inventory />

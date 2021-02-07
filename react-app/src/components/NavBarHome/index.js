@@ -10,6 +10,7 @@ const NavBarHome = ({ setAuthenticated }) => {
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })
+    const userId = loggedInUser.id
     const dispatch = useDispatch();
 
     return (
@@ -29,13 +30,13 @@ const NavBarHome = ({ setAuthenticated }) => {
                         <Link to="/create-menue">
                             <h3>Create a menue</h3>
                         </Link>
-                        <Link to="/manage-staff">
+                        <Link to={`/manage-staff/${userId}`}>
                             <h3>Manage Staff</h3>
                         </Link>
-                        <Link to="/manage-tables">
+                        <Link to={`/manage-tables/${userId}`}>
                             <h3>Manage Tables</h3>
                         </Link>
-                        <Link to={`/inventory/${loggedInUser.id}`}>
+                        <Link to={`/inventory/${userId}`}>
                             <h3>Inventory</h3>
                         </Link>
                     </div>

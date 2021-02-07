@@ -21,17 +21,19 @@ def upgrade():
     tables_table = op.create_table('tables',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('table_number', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('customer_id', sa.Integer(), nullable=True),
     sa.Column('employee_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], ),
     sa.ForeignKeyConstraint(['employee_id'], ['employees.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    # ### end Alembic commands ###
+    #### end Alembic commands ###
     op.bulk_insert(tables_table, [
-        {"table_number":1, "customer_id":1, "employee_id":1},
-        {"table_number":2, "customer_id":2, "employee_id":2},
-        {"table_number":3, "customer_id":3, "employee_id":3},
+        {"table_number":1, "user_id":1, "customer_id":1, "employee_id":1},
+        {"table_number":2, "user_id":1, "customer_id":2, "employee_id":2},
+        {"table_number":3, "user_id":1, "customer_id":3, "employee_id":3},
     ])
 
 

@@ -11,6 +11,14 @@ const ManageTables = () => {
         return state.session.user;
     })
 
+    const { userId } = useParams();
+
+    useEffect(() => {
+        dispatch(getTableByUser(userId))
+    }, [])
+
+
+
 
     return (
         <div>

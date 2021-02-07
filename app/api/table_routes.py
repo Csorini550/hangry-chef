@@ -9,9 +9,9 @@ table_routes = Blueprint("table", __name__)
 
 
 #GET ALL TABLES 
-@table_routes.route("")
-def all_tables():
-    tables = Table.query.all()
+@table_routes.route("/<int:userId>")
+def table_by_user(userId):
+    tables = Table.query.filter_by(user_id=userId).all()
     return {table.id: table.to_dict() for table in tables}
 
 
@@ -25,7 +25,8 @@ def new_table():
     newTable = Table(
         table_number=form.data["table_number"],
         customer_id=form.data["customer_id"],
-        employee_id=form.data["employee_id"]
+        employee_id=form.data["employee_id"],
+        user_id=form.data["user_id"],
     )
     db.session.add(newTable)
     db.session.commit()

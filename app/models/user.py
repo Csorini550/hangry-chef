@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
 
+  tables = db.relationship("Table", back_populates="users")
   menues = db.relationship("Menue", back_populates="users")
   employees = db.relationship("Employee", back_populates="users")
   ingredients = db.relationship("Ingredient", back_populates="users")

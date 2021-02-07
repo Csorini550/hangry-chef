@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { getInventoryByUser, createInventory } from '../../store/inventory'
-import { newIngredient } from '../../store/ingredient'
+import { newIngredient, createIngredient } from '../../store/ingredient'
 
 const Inventory = () => {
     const [food_item, setFood_item] = useState("")
@@ -14,49 +14,49 @@ const Inventory = () => {
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })
-    const { userId } = useParams()
-    const history = useHistory()
+    const { userId } = useParams();
+    const history = useHistory();
 
-    const
+    const redirectToIngredients = () => {
+        history.append("/")
+    }
 
     const handleDoubleSubmit = async (e) => {
         e.preventDefault();
-        newInventory = {
+        const newInventory = {
             user_id: userId,
             // ingredient_id,
             food_item,
             quantity,
             market_price
         }
-        newIngredient = {
+        const newIngredient = {
             user_id: userId,
             name,
             price
         }
-        dispatch(createInventory(newInventory))
-        dispatch(createIngredient(newIngredient))
+        dispatch(createInventory(newInventory));
+        dispatch(createIngredient(newIngredient));
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        newInventory = {
+        const newInventory = {
             user_id: userId,
             // ingredient_id,
             food_item,
             quantity,
             market_price
         }
-        dispatch(createInventory(newInventory))
+        dispatch(createInventory(newInventory));
     }
     const inventories = useSelector(state => {
         return state.inventory
     })
     useEffect(() => {
         console.log(userId)
-        dispatch(getInventoryByUser(userId))
+        dispatch(getInventoryByUser(userId));
     }, [])
-
-    console.log(inventories)
 
 
     // if (Object.keys(inventories).length === 0) return null;
@@ -99,7 +99,7 @@ const Inventory = () => {
                             value={food_item}
                             type="text"
                             multiple
-                            onChange={(e) => setfood_item(e.target.value)} />
+                            onChange={(e) => setFood_item(e.target.value)} />
                     </label>
                     <label className="create-venue">
                         If a customer wants to add this item do a dish how much will you charge them?
