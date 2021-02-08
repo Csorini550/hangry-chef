@@ -32,8 +32,9 @@ export const createMenue = (body) => {
 export const getMenueByUser = (userId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/menue/${userId}`)
-        const data = res.json();
+        const data = await res.json();
         dispatch(getMenueByUserAction(data));
+        console.log("THIS IS MENUE DATA!!!", data)
         return data;
     };
 }
@@ -49,6 +50,7 @@ function reducer(state = initialState, action) {
             Object.values(action.payload).forEach(function (menue) {
                 newObject[menue.id] = menue;
             })
+            return { ...newObject };
         default:
             return state;
     }

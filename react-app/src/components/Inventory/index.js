@@ -54,7 +54,6 @@ const Inventory = () => {
         return state.inventory
     })
     useEffect(() => {
-        console.log(userId)
         dispatch(getInventoryByUser(userId));
     }, [])
 

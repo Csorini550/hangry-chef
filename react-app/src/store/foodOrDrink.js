@@ -13,7 +13,7 @@ const createFoodOrDrinkAction = (body) => ({
 });
 
 const getFoodOrDrinkAction = (body) => ({
-    type: CREATE_FOOD_OR_DRINK,
+    type: GET_FOOD_OR_DRINK,
     payload: body
 })
 
@@ -34,8 +34,9 @@ export const CreateFoodOrDrink = (body) => {
 export const getFoodOrDrink = (menueId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/food_or_drink/${menueId}`);
-        const data = res.json();
-        dispatch(getFoodOrDrink(data));
+        const data = await res.json();
+        dispatch(getFoodOrDrinkAction(data));
+        console.log("THIS IS FOOD DATA!!!!!!", data)
         return data;
     }
 }
@@ -50,6 +51,7 @@ function reducer(state = initialState, action) {
             Object.values(action.payload).forEach(function (foodOrDrink) {
                 newObject[foodOrDrink.id] = foodOrDrink;
             })
+            return { ...newObject };
         default:
             return state;
     }

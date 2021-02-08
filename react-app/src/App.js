@@ -63,7 +63,7 @@ function App() {
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <Home />
         </ProtectedRoute>
-        <ProtectedRoute path="/create-menue" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/create-menue/:userId" exact={true} authenticated={authenticated}>
           <CreateMenue />
         </ProtectedRoute>
         <ProtectedRoute path="/manage-staff/:userId" exact={true} authenticated={authenticated}>

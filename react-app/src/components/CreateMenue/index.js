@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, draggable } from 'react-beautiful-dnd'
 import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
-
+import './CreateMenue.css'
 const CreateMenue = () => {
 
     const dispatch = useDispatch()
@@ -15,36 +15,29 @@ const CreateMenue = () => {
     });
     const userId = loggedInUser.id
 
-    const menueItem = useSelector((state) => {
+    const menueItems = useSelector((state) => {
         return state.foodOrDrink;
+    })
+    const menue = useSelector((state) => {
+        return state.menue
+    })
+
+    item = Object.keys(menueItems).map((menueItem, i) => {
+        return menueItem
     })
 
 
-
     useEffect(() => {
-        dispatch(getFoodOrDrink(menueId))
+        dispatch(getFoodOrDrink(userId));
         dispatch(getIngredientsByUser(userId))
-        dispatch(getMenueByUser(userId))
+        dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))
         // dispatch(createMenue(menueArray))
     }, [])
 
-    // state = { menue: menue }
-    // const onDragEnd = (res) => {
-    //     const { destination, source, reason } = result;
+    const dragEnd = (res) => {
 
-    //     if (!destination || reason === "CANCEL") {
-    //         return
-    //     }
-    //     if (destination.droppableId === source.droppableId && destination.index === source.index) {
-    //         return
-    //     }
-    //     const menue = Object.assign([], this.state.menue)
-    //     const droppedMenueItem = this.state.menue[source.index]
-    //     menue.splice(source.index, 1)
-    //     menue.splice(destination.index, 0, droppedMenueItem)
-    //     this.setState({ menue })
-    // }
+    }
 
     return (
         <>
@@ -53,15 +46,16 @@ const CreateMenue = () => {
             </div>
 
             <div>
-                <DragDropContext >
-
-                    <div>
+                <DragDropContext onDragEnd={dragEnd}>
+                    <div className="whole-menue">
 
                     </div>
                 </DragDropContext>
-                <form>
+                <draggable >
+                    <form className="food-item">
 
-                </form>
+                    </form>
+                </draggable>
             </div>
 
         </>

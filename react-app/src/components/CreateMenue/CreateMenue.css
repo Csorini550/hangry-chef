@@ -1,0 +1,11 @@
+.whole-menue {
+    height: 1000px;
+    width: 1000px;
+    background-color: blue;
+}
+
+.food-item {
+    height: 100px;
+    width: 400px;
+    background-color: green;
+}

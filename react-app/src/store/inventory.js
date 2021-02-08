@@ -32,7 +32,7 @@ export const getInventoryByUser = (userId) => {
         const res = await fetch(`/api/inventory/${userId}`)
         const data = await res.json();
         dispatch(getInventoryByUserAction(data))
-        return data
+        return data;
 
     }
 }
