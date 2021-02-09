@@ -7,9 +7,11 @@ import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
 import './CreateMenue.css'
 const CreateMenue = () => {
+    const [menuTitle, setMenuTitle] = useState("");
+    const [header, setHeader] = useState("");
 
-    const dispatch = useDispatch()
-    const { menueId } = useParams()
+    const dispatch = useDispatch();
+    const { menueId } = useParams();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
     });
@@ -19,11 +21,14 @@ const CreateMenue = () => {
         return state.foodOrDrink;
     })
     const menue = useSelector((state) => {
-        return state.menue
+        return state.menue;
+    })
+    const ingredients = useSelector((state) => {
+        return state.ingredients;
     })
 
-    item = Object.keys(menueItems).map((menueItem, i) => {
-        return menueItem
+    const item = Object.keys(menueItems).map((menueItem, i) => {
+        return menueItem;
     })
 
 
@@ -40,25 +45,50 @@ const CreateMenue = () => {
     }
 
     return (
-        <>
-            <div>
-                <h1>Create a menue</h1>
-            </div>
+        // <>
+        <div>
+            <h1>Create a menue</h1>
+        </div>
 
-            <div>
-                <DragDropContext onDragEnd={dragEnd}>
-                    <div className="whole-menue">
+        //     <div>
+        //         <DragDropContext onDragEnd={dragEnd}>
+        //             <dropable onDrag={ }>
+        //                 <div className="whole-menue">
+        //                     <form>
+        //                         <label className="create-venue">
+        //                             Menu Title
+        //            <input
+        //                                 value={menuTitle}
+        //                                 type="text"
+        //                                 multiple
+        //                                 onChange={(e) => setMenuTitle(e.target.value)} />
+        //                         </label>
+        //                     </form>
+        //                 </div>
+        //             </dropable>
+        //             <droppable onDragEnd={ }>
+        //                 <draggable >
+        //                     <form className="food-item header">
+        //                         <label className="create-venue">
+        //                             Header
+        //            <input
+        //                                 value={header}
+        //                                 type="text"
+        //                                 multiple
+        //                                 onChange={(e) => setHeader(e.target.value)} />
+        //                         </label>
+        //                     </form>
+        //                 </draggable>
+        //             </droppable>
+        //             <draggable >
+        //                 <form className="food-item">
 
-                    </div>
-                </DragDropContext>
-                <draggable >
-                    <form className="food-item">
+        //                 </form>
+        //             </draggable>
+        //         </DragDropContext>
+        //     </div>
 
-                    </form>
-                </draggable>
-            </div>
-
-        </>
+        // </>
     )
 
 }

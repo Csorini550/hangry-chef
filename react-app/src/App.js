@@ -16,6 +16,8 @@ import Inventory from "./components/Inventory"
 import Home from "./components/Home"
 import StaffInfo from "./components/StaffInfo"
 import { restoreUser } from "./store/session"
+import MenuList from "./components/MenuList"
+import MenuCards from "./components/MenuCards"
 // import ManageTables from "./components/ManageTables"
 
 function App() {
@@ -51,6 +53,12 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUp authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
+        <ProtectedRoute path="/menu-list" authenticated={authenticated}>
+          <MenuList />
+        </ProtectedRoute>
+        <ProtectedRoute path="/menu-cards" authenticated={authenticated}>
+          <MenuCards />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
         </ProtectedRoute>

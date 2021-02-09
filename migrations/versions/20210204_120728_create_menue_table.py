@@ -25,13 +25,14 @@ def upgrade():
     sa.Column('food_item', sa.String(), nullable=True),
     sa.Column('menue_array', sa.String(), nullable=True),
     sa.Column('picture', sa.String(), nullable=True),
+    sa.Column('qr_code', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
     op.bulk_insert(menue_table, [
-        {"user_id": 1, "menue_name": "Example Menue", "food_item":"Entree", "menue_array":None, "picture":None },
+        {"user_id": 1, "menue_name": "Example Menue", "food_item":"Entree", "menue_array":None, "picture":None, "qr_code": None },
     ])
 
 # menue1 = Menue(
