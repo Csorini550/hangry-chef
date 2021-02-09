@@ -23,6 +23,6 @@ class Employee(db.Model):
         'first_name': self.first_name,
         'last_name': self.last_name,
         'salary': self.salary,
-        'table_number': self.tables
+        'table_number': self.table_number
         # 'picture': self.picture
       }

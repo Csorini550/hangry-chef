@@ -11,6 +11,7 @@ employee_routes = Blueprint("employee", __name__)
 # @login_required
 def employee_by_user(userId):
     employees = Employee.query.filter_by(user_id=userId).all()
+    # print ({employee.id: employee.to_dict() for employee in employees})
     return {employee.id: employee.to_dict() for employee in employees}
 
 
