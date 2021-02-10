@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
+import MenuCards from '../../components/MenuCards'
 import './MenuList.css'
 const MenuList = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const MenuList = () => {
                 return (
                     <div className="menu-container">
                         <h3>{menu.menue_name}</h3>
+                        <MenuCards />
                     </div>
                 )
 
