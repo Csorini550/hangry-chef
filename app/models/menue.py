@@ -24,7 +24,7 @@ class Menue(db.Model):
         'user_id': self.user_id,
         'menue_name': self.menue_name,
         'food_item': self.food_item,
-        'qr_code': self.qr_code,
         'menue_array': self.menue_array,
+        'qr_code': self.qr_code,
         'picture': self.picture
       }

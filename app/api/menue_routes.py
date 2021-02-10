@@ -15,15 +15,11 @@ def all_menues():
 
 
 #GET ONE MENUE BY ID
-@menue_routes.route("/<int:menueId>")
-def menue(menueId):
-    menue = Menue.query.get(menueId)
-    if menue:
-        return {
-            menue.id: menue.to_dict()
-        }
-    return
-    # return <h1> Menue not found!</h1>
+@menue_routes.route("/<int:userId>")
+def menue(userId):
+    menues = Menue.query.filter_by(user_id=userId).all()
+    print(menues, "THIS IS MENUE!!!!!")
+    return { menue.id: menue.to_dict() for menue in menues}
 
 # POST A MNEUE
 @menue_routes.route("/create", methods=["POST"])
@@ -45,8 +41,8 @@ def new_menue():
 
 
     #GET MENUE BY USERID
-    @menue_routes.route("/<int:userId>")
-    @login_required
-    def menue_by_user(userId):
-        menues = Menue.query.filter_by(user_id=menueId).all()
-        return {menue.id: menue.to_dict() for menue in menues}
+    # @menue_routes.route("/<int:userId>")
+    # # @login_required
+    # def menue_by_user(userId):
+    #     menues = Menue.query.filter_by(user_id=menueId).all()
+    #     return {menue.id: menue.to_dict() for menue in menues}

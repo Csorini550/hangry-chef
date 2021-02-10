@@ -34,7 +34,6 @@ export const getMenueByUser = (userId) => {
         const res = await fetch(`/api/menue/${userId}`)
         const data = await res.json();
         dispatch(getMenueByUserAction(data));
-        console.log("THIS IS MENUE DATA!!!", data)
         return data;
     };
 }

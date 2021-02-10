@@ -28,7 +28,7 @@ const NavBarHome = ({ setAuthenticated }) => {
                 {loggedInUser !== null &&
                     <div className="nav-body">
                         <Link to={`/create-menue/${userId}`}>
-                            <h3>Create a menue</h3>
+                            <h3>Create a Menu</h3>
                         </Link>
                         <Link to={`/manage-staff/${userId}`}>
                             <h3>Manage Staff</h3>

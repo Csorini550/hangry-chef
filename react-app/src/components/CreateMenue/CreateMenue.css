@@ -9,3 +9,15 @@
     width: 400px;
     background-color: green;
 } */
+
+.full-menu {
+    background-color: black;
+    border-radius: 3px;
+    width: 1000px;
+    height: 100%;
+    padding-bottom: 15px;
+}
+
+.full-menu-text {
+    color: white;
+}
