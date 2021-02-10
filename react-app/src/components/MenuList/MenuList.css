@@ -1,7 +1,22 @@
-.menu-container {
-    background-color: gray;
+#menu-item {
+    /* background-color: gray; */
     border-radius: 3px;
-    width:1000;
+    width:400;
     /* display: flex; */
+    /* text-align: center; */
+    margin: 8px;
+    padding: 8px;
+}
+
+.menu-container { 
+    background-color: gray;
+    padding: 8px;
+    border-radius: 3px;
+    width: 600px;
+    height: auto;
+
+}
+
+.menu-container h2, h1 { 
     text-align: center;
 }

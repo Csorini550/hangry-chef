@@ -32,7 +32,10 @@ def upgrade():
     # ### end Alembic commands ###
 
     op.bulk_insert(menue_table, [
-        {"user_id": 1, "menue_name": "Example Menue", "food_item":"Entree", "menue_array":None, "picture":None, "qr_code": None },
+        {"user_id": 1, "menue_name": "Example Menu", "food_item":"Entree", "menue_array":None, "picture":None, "qr_code": None },
+        {"user_id": 1, "menue_name": "Example Menu", "food_item":"Apetizers", "menue_array":None, "picture":None, "qr_code": None },
+        {"user_id": 1, "menue_name": "Example Menu", "food_item":"Sides", "menue_array":None, "picture":None, "qr_code": None },
+        {"user_id": 1, "menue_name": "Example Menu", "food_item":"Beverages", "menue_array":None, "picture":None, "qr_code": None },
     ])
 
 # menue1 = Menue(

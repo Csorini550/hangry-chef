@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 import './MenuCards.css'
 
-const MenuCards = () => {
+const MenuCards = ({ text, price, name }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -40,14 +40,16 @@ const MenuCards = () => {
 
     return (
         <Card className="food-card">
-            <CardContent>
+            <CardContent className="menu-card">
                 <Typography gutterBottom>
-                    Word of the Day
-        </Typography>
+                    <h3>{name}</h3>
+                    <h4>{text}</h4>
+                    <h4>${price}</h4>
+                </Typography>
 
             </CardContent>
             <CardActions>
-                <Button size="small">Add Ingredients</Button>
+                <Button size="small">Customize</Button>
             </CardActions>
         </Card>
     )

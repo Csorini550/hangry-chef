@@ -22,16 +22,16 @@ const CreateMenue = () => {
     const menuItems = useSelector((state) => {
         return state.foodOrDrink;
     })
-    const menue = useSelector((state) => {
+    const menus = useSelector((state) => {
         return state.menue;
     })
     const ingredients = useSelector((state) => {
         return state.ingredients;
     })
 
-    const item = Object.keys(menueItems).map((menueItem, i) => {
-        return menueItem;
-    })
+    // const item = Object.keys(menueItems).map((menueItem, i) => {
+    //     return menueItem;
+    // })
 
 
     useEffect(() => {
@@ -51,12 +51,18 @@ const CreateMenue = () => {
             <div>
                 <h1>Create a menue</h1>
             </div>
-            {menuItems && Object.values(menuItems).map((menuItem) => {
-                <MenuList title={menuItem.
-            })}
             <div>
-                { }
+                {menus && Object.values(menus).map((menu) => {
+                    return (
+                        <>
+                            <h1>{menu.menue_name}</h1>
+                            <h2>{menu.food_item}</h2>
+                            <MenuList />
+                        </>
+                    )
+                })}
             </div>
+
             {/* <DragDropContext onDragEnd={dragEnd}>
                     <dropable>
                         <div className="whole-menue">

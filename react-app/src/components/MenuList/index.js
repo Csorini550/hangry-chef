@@ -15,6 +15,9 @@ const MenuList = () => {
     const menus = useSelector((state) => {
         return state.menue;
     })
+    const menuItems = useSelector((state) => {
+        return state.foodOrDrink;
+    })
 
     useEffect(() => {
         dispatch(getFoodOrDrink(userId));
@@ -24,16 +27,14 @@ const MenuList = () => {
         // dispatch(createMenue(menueArray))
     }, [])
     return (
-        <div >
-            <h1>Why doesnt this show???</h1>
-            {menus && Object.values(menus).map((menu) => {
+        <div className="menu-container" >
+
+            {menuItems && Object.values(menuItems).map((menuItem) => {
                 return (
-                    <div className="menu-container">
-                        <h3>{menu.menue_name}</h3>
-                        <MenuCards />
+                    <div id="menu-item">
+                        <MenuCards name={menuItem.name} text={menuItem.description} price={menuItem.price} />
                     </div>
                 )
-
             })}
 
         </div>
