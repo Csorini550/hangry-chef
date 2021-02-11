@@ -5,6 +5,7 @@ import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
+import MenuActionButton from '../../components/MenuActionButton'
 import './MenuList.css'
 const MenuList = () => {
     const dispatch = useDispatch();
@@ -32,11 +33,11 @@ const MenuList = () => {
             {menuItems && Object.values(menuItems).map((menuItem) => {
                 return (
                     <div id="menu-item">
-                        <MenuCards name={menuItem.name} text={menuItem.description} price={menuItem.price} />
+                        <MenuCards key={menuItem.id} name={menuItem.name} text={menuItem.description} price={menuItem.price} />
                     </div>
                 )
             })}
-
+            <MenuActionButton />
         </div>
     )
 }

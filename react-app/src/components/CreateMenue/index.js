@@ -47,7 +47,6 @@ const CreateMenue = () => {
     }
 
     const menuName = menus[1] ? menus[1].menue_name : ""
-    console.log("WHY DO I Not show up !!!!!!!!!!!!!!", menuName)
     return (
 
         <>
@@ -56,7 +55,7 @@ const CreateMenue = () => {
 
                 {menus && Object.values(menus).map((menu) => {
                     return (
-                        <div className="full-menu-text">
+                        <div menue_id={menu.id} className="full-menu-text">
                             <h2>{menu.food_item}</h2>
                             <MenuList />
                         </div>
@@ -64,43 +63,7 @@ const CreateMenue = () => {
                 })}
             </div>
 
-            {/* <DragDropContext onDragEnd={dragEnd}>
-                    <dropable>
-                        <div className="whole-menue">
-                            <form>
-                                <label className="create-venue">
-                                    Menu Title
-                   <input
-                                        value={menuTitle}
-                                        type="text"
-                                        multiple
-                                        onChange={(e) => setMenuTitle(e.target.value)} />
-                                </label>
-                            </form>
-                            
-                        </div>
-                    </dropable>
-                    <droppable>
-                        <draggable >
-                            <form className="food-item header">
-                                <label className="create-venue">
-                                    Header
-                   <input
-                                        value={header}
-                                        type="text"
-                                        multiple
-                                        onChange={(e) => setHeader(e.target.value)} />
-                                </label>
-                            </form>
-                        </draggable>
-                    </droppable>
-                    <draggable >
-                        <form className="food-item">
 
-                        </form>
-                    </draggable>
-                </DragDropContext>
-            </div> */}
 
         </>
     )
