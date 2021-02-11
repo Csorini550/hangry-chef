@@ -11,13 +11,27 @@
 } */
 
 .full-menu {
-    background-color: black;
+    background-color: rgb(209, 201, 201);
     border-radius: 3px;
-    width: 1000px;
+    width: 1300px;
     height: 100%;
     padding-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    text-align: center
 }
 
 .full-menu-text {
-    color: white;
+    color: black;
+}
+
+#menu-name { 
+    overflow: hidden;
+    white-space: nowrap;
+    color:black;
+    text-align:center;
+    position: absolute;
+    top: 20%;
+    left: 650px;
 }

@@ -45,19 +45,14 @@ const CreateMenue = () => {
     const dragEnd = (res) => {
 
     }
-    const finder = () => {
 
-    }
-    const menuName = Object.values(menus)[0]
+    const menuName = menus[1] ? menus[1].menue_name : ""
     console.log("WHY DO I Not show up !!!!!!!!!!!!!!", menuName)
     return (
 
         <>
-            <div>
-                <h1>Create a menu</h1>
-            </div>
             <div className="full-menu">
-                {/* <h1>{Object.values(menus)[0].menue_name}</h1> */}
+                <h1 id="menu-name">{menuName}</h1>
 
                 {menus && Object.values(menus).map((menu) => {
                     return (
