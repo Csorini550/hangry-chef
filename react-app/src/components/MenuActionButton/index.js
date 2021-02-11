@@ -42,7 +42,6 @@ const MenuActionButton = ({ menue_id }) => {
     const buttonTextOpacity = menuItems ? 1 : .5;
     const buttonTextColor = menuItems ? "white" : "inherit"
     const buttonTextBackground = menuItems ? "rgba(0,0,0,.15" : "inherit"
-    console.log("!!!!!!!MENU ID HERE???", menue_id)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newItem = {
@@ -51,6 +50,7 @@ const MenuActionButton = ({ menue_id }) => {
             price,
             menue_id: menue_id
         }
+        dispatch(createFoodOrDrink(newItem))
 
     };
     const formButton = styled.div`

@@ -7,7 +7,7 @@ import { createMenue, getMenueByUser } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
 import MenuActionButton from '../../components/MenuActionButton'
 import './MenuList.css'
-const MenuList = () => {
+const MenuList = ({ menue_id }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -37,7 +37,7 @@ const MenuList = () => {
                     </div>
                 )
             })}
-            <MenuActionButton />
+            <MenuActionButton menue_id={menue_id} />
         </div>
     )
 }

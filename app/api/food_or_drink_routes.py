@@ -16,7 +16,7 @@ def food_or_drink_by_menue(menueId):
 # @login_required
 def new_food_or_drink():
     form = NewFoodOrDrinkForm()
-    newFoodOrDrink = food_or_drink(
+    newFoodOrDrink = Food_or_drink(
       menue_id=form.data["menue_id"],
       name=form.data["name"],
       price=form.data["price"],

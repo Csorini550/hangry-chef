@@ -57,7 +57,7 @@ const CreateMenue = () => {
                     return (
                         <div menue_id={menu.id} className="full-menu-text">
                             <h2>{menu.food_item}</h2>
-                            <MenuList />
+                            <MenuList menue_id={menu.id} />
                         </div>
                     )
                 })}

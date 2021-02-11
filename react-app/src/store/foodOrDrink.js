@@ -18,7 +18,7 @@ const getFoodOrDrinkAction = (body) => ({
 })
 
 
-export const CreateFoodOrDrink = (body) => {
+export const createFoodOrDrink = (body) => {
     return async (dispatch) => {
         const res = await fetch(`/api/food_or_drink/create`, {
             method: 'POST',
