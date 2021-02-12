@@ -3,8 +3,9 @@ from wtforms import StringField, TextField, SubmitField, IntegerField, Form, Flo
 from app.models import Inventory
 from wtforms.validators import DataRequired
 
+
 class NewInventoryForm(FlaskForm):
-    ingredient_id=IntegerField("ingredient_id")
+    ingredient_id = IntegerField("ingredient_id")
     user_id = IntegerField("user_id")
     food_item = TextField("food_item", validators=[DataRequired()])
     quantity = FloatField("quantity", validators=[DataRequired()])

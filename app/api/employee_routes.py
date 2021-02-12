@@ -16,10 +16,10 @@ def employee_by_user(userId):
     return {employee.id: employee.to_dict() for employee in employees}
 
 
-@employee_routes.route("/<int:employeeId")
-def employee_by_id(employeeId):
-    employees = Employee.query.filter_by(employee_id=employeeId).all()
-    return {employee.id: employee.to_dict() for employee in employees}
+@employee_routes.route("/staff/<int:id>")
+def employee_by_id(id):
+    employee = Employee.query.get(id)
+    return employee.to_dict()
 # GET ALL EMPLOYEES
 
 

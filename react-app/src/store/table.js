@@ -1,18 +1,23 @@
 const initialState = {};
 
-const CREATE_TABLE = 'table/createTable'
-const GET_TABLE = 'table/getTable'
+const CREATE_TABLE = 'table/createTable';
+const GET_TABLE = 'table/getTable';
+const GET_TABLE_BY_EMPLOYEE = 'table/getTableByEmployee';
 
+const getTableByEmployeeAction = (body) => ({
+    type: GET_TABLE_BY_EMPLOYEE,
+    payload: body
+});
 
 const getTableAction = (body) => ({
     type: GET_TABLE,
     payload: body
-})
+});
 
 const createTableAction = (body) => ({
     type: CREATE_TABLE,
     payload: body
-})
+});
 
 
 export const createTable = (body) => {
@@ -38,6 +43,15 @@ export const getTableByUser = (userId) => {
     }
 }
 
+export const getTableByEmployee = (employeeId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/table/staff/${employeeId}`);
+        const data = await res.json();
+        dispatch(getTableAction(data));
+        return data;
+    }
+}
+
 function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_TABLE:
@@ -45,6 +59,17 @@ function reducer(state = initialState, action) {
             Object.values(action.payload).forEach(function (table) {
                 newObject[table.id] = table;
             })
+            return { ...newObject, state }
+        case GET_TABLE_BY_EMPLOYEE:
+            const newObject2 = {};
+            Object.values(action.payload).forEach(function (table) {
+                if (newObject2[table.employee_id]) {
+                    newObject2[table.employee_id].push(table);
+                } else {
+                    newObject2[table.employee_id] = table;
+                }
+            })
+            return { ...newObject2, ...state }
         case CREATE_TABLE:
             return { ...state, [action.payload.id]: action.payload };
         default:

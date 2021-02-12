@@ -8,4 +8,3 @@ from .new_qr_code import NewQrCodeForm
 from .new_inventory_form import NewInventoryForm
 from .new_table_form import NewTableForm
 from .new_customer_form import NewCustomerForm
-

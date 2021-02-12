@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextField, SubmitField, IntegerField, Form, FloatField, RadioField,BooleanField, SelectField
+from wtforms import StringField, TextField, SubmitField, IntegerField, Form, FloatField, RadioField, BooleanField, SelectField
 from app.models import Customer
 from wtforms.validators import DataRequired
 
@@ -12,6 +12,3 @@ class NewCustomerForm(FlaskForm):
     server_rating = FloatField("server_rating")
     order_issue = StringField("order_issue")
     instagram = BooleanField("instagram")
-
-
-    
