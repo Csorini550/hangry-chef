@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 import './MenuCards.css'
 
-const MenuCards = ({ text, price, name }) => {
+const MenuCards = ({ text, price, name, menue_id }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -24,13 +24,17 @@ const MenuCards = ({ text, price, name }) => {
     const menus = useSelector((state) => {
         return state.menue;
     })
+    const menueIds = Object.values(menus).map((id) => {
+        return id.id
+    })
+    console.log("menue ids!!!!!!!!!!!", menueIds)
 
     const ingredients = useSelector((state) => {
         return state.intgredient
     })
     useEffect(() => {
-        dispatch(getFoodOrDrink(userId));
-        dispatch(getIngredientsByUser(userId));
+        dispatch(getFoodOrDrink(menueIds));
+        // dispatch(getIngredientsByUser(userId));
         dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))
         // dispatch(createMenue(menueArray))

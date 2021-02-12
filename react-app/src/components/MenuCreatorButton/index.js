@@ -1,7 +1,7 @@
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import { getFoodOrDrink, createFoodOrDrink } from "../../store/foodOrDrink"
+import { getFoodOrDrink, createMenu } from "../../store/menue"
 import Icon from "@material-ui/core/Icon";
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
@@ -20,7 +20,6 @@ const MenuCreatorButton = () => {
     //     // dispatch(getFoodOrDrink(userId));
     // }, []);
 
-    const [open, setOpen] = useState(false);
     const loggedInUser = useSelector(state => {
         return state.session.user;
     });
@@ -34,9 +33,12 @@ const MenuCreatorButton = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newMenu = {
-            //TODO!!!!!!!!
+            menue_name,
+            food_item,
+            user_id: userId
+
         }
-        dispatch(createFoodOrDrink(newItem))
+        dispatch(createMenu(newMenu))
         closeForm()
     };
 
@@ -63,10 +65,14 @@ const MenuCreatorButton = () => {
                             type="text"
                             placeholder="ex. Entrees"
                             value={food_item}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setFoodItem(e.target.value)}
                         />
                     </div>
                 </form>
+                <div id="food-form-button">
+                    <Button type="submit" className="food-add-button" onClick={handleSubmit}>Add</Button>
+                    <Button onClick={closeForm}>Cancel</Button>
+                </div>
             </Card>
         )
     } else {

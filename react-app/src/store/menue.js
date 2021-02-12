@@ -16,7 +16,7 @@ const getMenueByUserAction = (body) => ({
 
 
 
-export const createMenue = (body) => {
+export const createMenu = (body) => {
     return async (dispatch) => {
         const res = await fetch(`/api/menue/create`, {
             method: 'POST',

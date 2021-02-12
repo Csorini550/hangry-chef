@@ -21,7 +21,7 @@ const MenuList = ({ menue_id }) => {
     })
 
     useEffect(() => {
-        dispatch(getFoodOrDrink(userId));
+        dispatch(getFoodOrDrink(menue_id));
         dispatch(getIngredientsByUser(userId));
         dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))

@@ -79,7 +79,7 @@ const MenuActionButton = ({ menue_id }) => {
                         </div>
                     </form>
                     <div id="food-form-button">
-                        <Button className="food-add-button" onClick={handleSubmit}>Add</Button>
+                        <Button type="submit" className="food-add-button" onClick={handleSubmit}>Add</Button>
                         <Button onClick={closeForm}>Cancel</Button>
                     </div>
                 </div >

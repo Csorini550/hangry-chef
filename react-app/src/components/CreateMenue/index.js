@@ -9,6 +9,7 @@ import MenuCards from '../../components/MenuCards'
 import MenuList from '../../components/MenuList'
 import MenuActionButton from '../../components/MenuActionButton'
 import Card from "@material-ui/core/Card"
+import MenuCreatorButton from '../../components/MenuCreatorButton'
 import './CreateMenue.css'
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
@@ -66,7 +67,7 @@ const CreateMenue = () => {
                     )
                 })}
             </div>
-            <MenuActionButton />
+            <MenuCreatorButton />
         </div>
     )
 
