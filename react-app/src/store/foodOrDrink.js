@@ -27,6 +27,7 @@ export const createFoodOrDrink = (body) => {
         })
         if (res.ok) {
             const data = await res.json();
+            dispatch(createFoodOrDrinkAction(data))
         }
     };
 }
@@ -39,18 +40,24 @@ export const getFoodOrDrink = (menueId) => {
         return data;
     }
 }
-
+//This slice of state: each key is the id of the menu the value is an array of each item for that menu
 function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case CREATE_FOOD_OR_DRINK:
-            return { ...action.payload }
+            const newItems = [...state[action.payload.menue_id], action.payload];
+            return { ...state, [action.payload.menue_id]: newItems };
         case GET_FOOD_OR_DRINK:
             const newObject = {};
             Object.values(action.payload).forEach(function (foodOrDrink) {
-                newObject[foodOrDrink.id] = foodOrDrink;
+                if (newObject[foodOrDrink.menue_id]) {
+                    newObject[foodOrDrink.menue_id].push(foodOrDrink)
+
+                } else {
+                    newObject[foodOrDrink.menue_id] = [foodOrDrink];
+                }
             })
-            return { ...newObject };
+            return { ...newObject, ...state };
         default:
             return state;
     }

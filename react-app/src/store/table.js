@@ -24,6 +24,7 @@ export const createTable = (body) => {
         })
         if (res.ok) {
             const data = await res.json();
+            dispatch(createTableAction(data))
         }
     };
 }
@@ -45,7 +46,7 @@ function reducer(state = initialState, action) {
                 newObject[table.id] = table;
             })
         case CREATE_TABLE:
-            return { ...action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

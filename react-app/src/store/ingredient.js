@@ -26,6 +26,7 @@ export const createIngredient = (body) => {
         })
         if (res.ok) {
             const data = await res.json()
+            dispatch(createIngredientAction(data))
             // Do i dispatch here or in a useEffect or w,e its called in my component
         }
     };
@@ -50,7 +51,7 @@ function reducer(state = initialState, action) {
             })
             return { ...newObject };
         case CREATE_INGREDIENT:
-            return { ...action.payload }
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

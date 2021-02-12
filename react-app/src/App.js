@@ -80,7 +80,7 @@ function App() {
         <ProtectedRoute path="/inventory/:userId" authenticated={authenticated}>
           <Inventory />
         </ProtectedRoute>
-        <ProtectedRoute path="/:userId/staff/info/:employeeId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/staff/:employeeId" exact={true} authenticated={authenticated}>
           <StaffInfo />
         </ProtectedRoute>
       </Switch>

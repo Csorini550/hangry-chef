@@ -5,7 +5,7 @@ from app.models import Food_or_drink
 from app.models import db
 
 food_or_drink_routes = Blueprint("food_or_drink", __name__)
-#GET FOOD_OR_DRINK BY MENUE_ID
+#GET FOOD_OR_DRINK BY menue_ID
 @food_or_drink_routes.route("<int:menueId>")
 def food_or_drink_by_menue(menueId):
     food_or_drinks = Food_or_drink.query.filter_by(menue_id=menueId).all()

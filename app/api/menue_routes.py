@@ -18,7 +18,6 @@ def all_menues():
 @menue_routes.route("/<int:userId>")
 def menue(userId):
     menues = Menue.query.filter_by(user_id=userId).all()
-    print(menues, "THIS IS MENUE!!!!!")
     return { menue.id: menue.to_dict() for menue in menues}
 
 # POST A MNEUE
@@ -30,14 +29,14 @@ def new_menue():
         user_id=form.data["user_id"],
         menue_name=form.data["menue_name"],
         food_item=form.data["food_item"],
-        menue_data=form.data["menue_data"],
+        menue_array=form.data["menue_array"],
         qr_code=form.data["qr_code"],
         picture=form.data["picture"]
     )
 
     db.session.add(newMenue)
     db.session.commit()
-    return newMennue.to_dict()
+    return newMenue.to_dict()
 
 
     #GET MENUE BY USERID

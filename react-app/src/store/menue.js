@@ -25,6 +25,7 @@ export const createMenu = (body) => {
         })
         if (res.ok) {
             const data = await res.json()
+            dispatch(createMenueAction(data))
         }
     };
 }
@@ -38,18 +39,18 @@ export const getMenueByUser = (userId) => {
     };
 }
 
-
+// the id of the menu object
 function reducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case CREATE_MENUE:
-            return { ...action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         case GET_MENUE_BY_USER:
             const newObject = {};
             Object.values(action.payload).forEach(function (menue) {
                 newObject[menue.id] = menue;
             })
-            return { ...newObject };
+            return { ...newObject, ...state };
         default:
             return state;
     }

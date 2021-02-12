@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeeByUser } from '../../store/employee'
 
 const StaffInfo = () => {
-    const { employeeId, userId } = useParams()
+    const { employeeId } = useParams()
     const dispatch = useDispatch();
 
     const loggedInUser = useSelector(state => {
@@ -14,9 +14,10 @@ const StaffInfo = () => {
     const employee = useSelector((state) => {
         return state.employee;
     });
+    const userId = loggedInUser.id
 
     useEffect(() => {
-        dispatch(getEmployeeByUser(loggedInUser.id))
+        dispatch(getEmployeeByUser(employeeId))
     }, [])
 
     // need to get all customer reviews for this staff member
@@ -25,13 +26,14 @@ const StaffInfo = () => {
     // need to get all customer order issues for this staff member
     return (
         <div>
-            <div>
+            <h1>Employee Info</h1>
+            {/* <div>
                 <h2>{employee.last_name}, {employee.first_name}</h2>
             </div>
             <div>
                 <h3>Salary: {employee.salary}</h3>
 
-            </div>
+            </div> */}
         </div>
     )
 }

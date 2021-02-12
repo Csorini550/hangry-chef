@@ -38,37 +38,38 @@ const CreateMenue = () => {
 
 
     useEffect(() => {
-        dispatch(getFoodOrDrink(userId));
-        dispatch(getIngredientsByUser(userId))
+        // dispatch(getFoodOrDrink(userId));
+        // dispatch(getIngredientsByUser(userId))
         dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))
         // dispatch(createMenue(menueArray))
     }, [])
 
     const dragEnd = (res) => {
-
+        //TODO reorder logic
     }
 
     const menuName = menus[1] ? menus[1].menue_name : ""
     return (
+        <dragDropContext onDragEnd={dragEnd}>
+            <div>
+                <div className="full-menu">
+                    <h1 id="menu-name">{menuName}</h1>
 
-        <div>
-            <div className="full-menu">
-                <h1 id="menu-name">{menuName}</h1>
-
-                {menus && Object.values(menus).map((menu) => {
-                    return (
-                        <div menue_id={menu.id} className="full-menu-text">
-                            <Card>
-                                <h2>{menu.food_item}</h2>
-                                <MenuList menue_id={menu.id} />
-                            </Card>
-                        </div>
-                    )
-                })}
+                    {menus && Object.values(menus).map((menu) => {
+                        return (
+                            <div menue_id={menu.id} className="full-menu-text">
+                                <Card>
+                                    <h2>{menu.food_item}</h2>
+                                    <MenuList menue_id={menu.id} />
+                                </Card>
+                            </div>
+                        )
+                    })}
+                </div>
+                <MenuCreatorButton />
             </div>
-            <MenuCreatorButton />
-        </div>
+        </dragDropContext>
     )
 
 }

@@ -23,6 +23,7 @@ export const createInventory = (body) => {
         })
         if (res.ok) {
             const data = await res.json()
+            dispatch(createInventoryAction(data))
         }
     };
 }
@@ -48,7 +49,7 @@ function reducer(state = initialState, action) {
             })
             return { ...newObject };
         case CREATE_INVENTORY:
-            return { ...action.payload }
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

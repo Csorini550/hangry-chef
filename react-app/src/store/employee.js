@@ -16,13 +16,14 @@ const createEmployeyeAction = (body) => ({
 
 export const createEmployee = (body) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/employees/create`, {
+        const res = await fetch(`/api/employee/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
         if (res.ok) {
             const data = await res.json()
+            dispatch(createEmployeyeAction(data))
         }
     };
 }
@@ -30,8 +31,8 @@ export const createEmployee = (body) => {
 
 export const getEmployeeByUser = (userId) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/employees/${userId}`);
-        const data = res.json();
+        const res = await fetch(`/api/employee/${userId}`);
+        const data = await res.json();
         dispatch(getEmployeeByUserAction(data));
         return data;
     };
@@ -46,9 +47,8 @@ function reducer(state = initialState, action) {
                 newObj[employee.id] = employee;
             })
             return { ...newObj };
-
         case CREATE_EMPLOYEE:
-            return { ...action.payload };
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

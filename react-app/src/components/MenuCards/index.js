@@ -31,7 +31,7 @@ const MenuCards = ({ text, price, name, menue_id }) => {
         return state.intgredient
     })
     useEffect(() => {
-        dispatch(getFoodOrDrink(userId));
+        // dispatch(getFoodOrDrink(userId));
         // dispatch(getIngredientsByUser(userId));
         dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))

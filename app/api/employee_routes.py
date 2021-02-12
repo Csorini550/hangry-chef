@@ -7,15 +7,22 @@ from app.models import db
 employee_routes = Blueprint("employee", __name__)
 
 # GET  EMPLOYEES BY USERID
+
+
 @employee_routes.route("/<int:userId>")
 # @login_required
 def employee_by_user(userId):
     employees = Employee.query.filter_by(user_id=userId).all()
-    # print ({employee.id: employee.to_dict() for employee in employees})
     return {employee.id: employee.to_dict() for employee in employees}
 
 
-#GET ALL EMPLOYEES
+@employee_routes.route("/<int:employeeId")
+def employee_by_id(employeeId):
+    employees = Employee.query.filter_by(employee_id=employeeId).all()
+    return {employee.id: employee.to_dict() for employee in employees}
+# GET ALL EMPLOYEES
+
+
 @employee_routes.route("")
 def all_employees():
     employees = Employee.query.all()
@@ -40,8 +47,10 @@ def new_employee():
     db.session.commit()
     return newEmployee.to_dict()
 
-#help - first ever delete route, will it work??
+# help - first ever delete route, will it work??
 # DELETE AN EMPLOYEE
+
+
 @employee_routes.route("/delete", methods=["POST"])
 def delete():
     employee = request.form.get("employee_id")
