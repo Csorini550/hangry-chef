@@ -33,14 +33,10 @@ export const createFoodOrDrink = (body) => {
 
 export const getFoodOrDrink = (menueId) => {
     return async (dispatch) => {
-        console.log('I AM Menu IDs!!!!!!!!', menueId);
-        // menueId.forEach(async (id) => {
         const res = await fetch(`/api/food_or_drink/${menueId}`);
         const data = await res.json();
         dispatch(getFoodOrDrinkAction(data));
-        // console.log("THIS IS FOOD DATA!!!!!!", data)
         return data;
-        // })
     }
 }
 

@@ -24,16 +24,14 @@ const MenuCards = ({ text, price, name, menue_id }) => {
     const menus = useSelector((state) => {
         return state.menue;
     })
-    const menueIds = Object.values(menus).map((id) => {
-        return id.id
-    })
-    console.log("menue ids!!!!!!!!!!!", menueIds)
+
+
 
     const ingredients = useSelector((state) => {
         return state.intgredient
     })
     useEffect(() => {
-        dispatch(getFoodOrDrink(menueIds));
+        dispatch(getFoodOrDrink(userId));
         // dispatch(getIngredientsByUser(userId));
         dispatch(getMenueByUser(userId));
         // dispatch(createFoodOrDrink(foodOrDrink))
