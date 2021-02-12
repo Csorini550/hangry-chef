@@ -7,6 +7,8 @@ import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
 import MenuList from '../../components/MenuList'
+import MenuActionButton from '../../components/MenuActionButton'
+import Card from "@material-ui/core/Card"
 import './CreateMenue.css'
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
@@ -49,23 +51,23 @@ const CreateMenue = () => {
     const menuName = menus[1] ? menus[1].menue_name : ""
     return (
 
-        <>
+        <div>
             <div className="full-menu">
                 <h1 id="menu-name">{menuName}</h1>
 
                 {menus && Object.values(menus).map((menu) => {
                     return (
                         <div menue_id={menu.id} className="full-menu-text">
-                            <h2>{menu.food_item}</h2>
-                            <MenuList menue_id={menu.id} />
+                            <Card>
+                                <h2>{menu.food_item}</h2>
+                                <MenuList menue_id={menu.id} />
+                            </Card>
                         </div>
                     )
                 })}
             </div>
-
-
-
-        </>
+            <MenuActionButton />
+        </div>
     )
 
 }
