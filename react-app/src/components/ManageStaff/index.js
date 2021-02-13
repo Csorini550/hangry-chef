@@ -10,12 +10,13 @@ const ManageStaff = () => {
     const [last_name, setLastName] = useState("");
     const [salary, setSalary] = useState("");
     const [table_number, setTableNumber] = useState("");
-    const { userId } = useParams()
+    // const { userId } = useParams()
     const dispatch = useDispatch();
 
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })
+    const userId = loggedInUser.id
     const openForm = () => {
         setOpen(!open);
     };
@@ -109,6 +110,7 @@ const ManageStaff = () => {
             </div >
         )
     } else {
+        if (Object.keys(employees).length === 0) return null;
         return (
             <div>
                 <h1>Manage Staff</h1>

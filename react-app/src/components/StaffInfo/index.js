@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getEmployeeById } from '../../store/employee'
+import { getEmployeeById } from '../../store/employee2'
 import { getTableByEmployee } from '../../store/table'
+import { getCustomerByTableId } from '../../store/customer'
 
 const StaffInfo = () => {
     const { employeeId } = useParams()
@@ -11,17 +12,25 @@ const StaffInfo = () => {
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })
-    console.log(employeeId)
+    const tables = useSelector(state => {
+        return state.table
+    })
+
     const employee = useSelector((state) => {
-        return state.employee;
+        return state.employee2;
     });
     const userId = loggedInUser.id
+    const table_number = employee.table_number
+    console.log("TABLE NUMBER!!!", table_number)
+
 
     useEffect(() => {
         dispatch(getEmployeeById(employeeId))
         dispatch(getTableByEmployee(employeeId))
-        dispatch()
+        dispatch(getCustomerByTableId(table_number))
     }, [])
+
+
 
     // need to get all customer reviews for this staff member
     // need to get all customer tips for this staff member

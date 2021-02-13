@@ -28,9 +28,9 @@ export const createCustomer = (body) => {
     }
 };
 
-export const getCustomerByTableId = (tableId) => {
+export const getCustomerByTableId = (table_number) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/customer/${tableId}`);
+        const res = await fetch(`/api/customer/${table_number}`);
         const data = await res.json();
         dispatch(getCustomerByTableIdAction(data));
         return data;
@@ -42,16 +42,16 @@ function reducer(state = initialState, action) {
         case GET_CUSTOMER_BY_TABLE_ID:
             const newObj = {};
             Object.values(action.payload).forEach(function (customer) {
-                if (newObj[customer.table_id]) {
-                    newObj[customer.table_id].push(customer)
+                if (newObj[customer.table_number]) {
+                    newObj[customer.table_number].push(customer)
                 } else {
                     newObj[customer.table_id] = customer;
                 }
             })
-            return { ...newObject, ...state };
+            return { ...newObj, ...state };
         case CREATE_CUSTOMER:
-            const newItems = [...state[action.payload.table_id], action.payload];
-            return { ...state, [action.payload.table_id]: newItems };
+            const newItems = [...state[action.payload.table_number], action.payload];
+            return { ...state, [action.payload.table_number]: newItems };
         default:
             return state;
     }

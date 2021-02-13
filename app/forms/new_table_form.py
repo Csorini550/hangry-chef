@@ -6,6 +6,6 @@ from wtforms.validators import DataRequired
 
 class NewTableForm(FlaskForm):
     table_number = IntegerField("table_number")
-    customer_id = IntegerField("customer_id")
+    # customer_id = IntegerField("customer_id")
     employee_id = IntegerField("employee_id")
     user_id = IntegerField("user_id")

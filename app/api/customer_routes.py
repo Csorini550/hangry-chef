@@ -13,6 +13,13 @@ def all_customer():
     customers = Customer.query.all()
     return {customer.id: customer.to_dict for customer in customers}
 
+
+@customer_routes.route("/<int:table_number>")
+def customer_by_number(table_number):
+    customers = Customer.query.filter_by(table_number=table_number).all()
+    return {customer.id: customer.to_dict() for customer in customers}
+
+
 @customer_routes.route("/create", methods=["POST"])
 def new_customer():
     form = NewCustomerForm()

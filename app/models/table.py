@@ -8,7 +8,7 @@ class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     table_number = db.Column(db.Integer, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
+    # customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'))
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
     # many to many between foods and tables
@@ -17,13 +17,13 @@ class Table(db.Model):
 
     users = db.relationship("User", back_populates="tables")
     employees = db.relationship('Employee', back_populates='tables')
-    customers = db.relationship('Customer', back_populates='tables')
+    # customers = db.relationship('Customer', back_populates='tables')
 
     def to_dict(self):
         return {
             'id': self.id,
             'user_id': self.user_id,
             'table_number': self.table_number,
-            'customer_id': self.customer_id,
+            # 'customer_id': self.customer_id,
             'employee_id': self.employee_id
         }

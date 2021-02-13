@@ -8,7 +8,7 @@ import MenuCards from '../../components/MenuCards'
 import MenuActionButton from '../../components/MenuActionButton'
 import { Droppable } from "react-beautiful-dnd"
 import './MenuList.css'
-const MenuList = ({ menue_id }) => {
+const MenuList = ({ menue_id, index }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -25,18 +25,36 @@ const MenuList = ({ menue_id }) => {
         // dispatch(createFoodOrDrink(foodOrDrink))
         // dispatch(createMenue(menueArray))
     }, [])
-    // <Droppable droppableId={String(menue_id)}>
     return (
-        <div className="menu-container" >
-            {menuItems && (menuItems).map((menuItem) => {
-                return (
-                    <div id="menu-item">
-                        <MenuCards key={menuItem.id} id={menuItem.id} name={menuItem.name} text={menuItem.description} price={menuItem.price} />
+        <Draggable draggableId={String(menue_id)} index={index}>
+            {(provided) => (
+                <div
+                    {...provided.draggableProps} ref={provided.innerRef}
+                    {...provided.dragHandleProps}>
+                    <div>
+                        <Droppable direction="vertical" droppableId={String(menue_id)}>
+                            {(provided) => (
+                                <div className="menu-container"
+                                    {...provided.droppableProps}
+                                    ref={provided.innerRef}
+                                >
+                                    {menuItems && (menuItems).map((menuItem, index) => {
+                                        return (
+                                            <div id="menu-item">
+                                                <MenuCards index={index} key={menuItem.id} id={menuItem.id} name={menuItem.name} text={menuItem.description} price={menuItem.price} />
+                                            </div>
+                                        )
+                                    })}
+                                    <MenuActionButton menue_id={menue_id} />
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                        {provided.placeholder}
                     </div>
-                )
-            })}
-            <MenuActionButton menue_id={menue_id} />
-        </div>
+                </div>
+            )}
+        </Draggable>
     )
 }
 

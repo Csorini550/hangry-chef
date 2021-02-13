@@ -11,11 +11,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Droppable, Draggable } from "react-beautiful-dnd"
 
 
 import './MenuCards.css'
 
-const MenuCards = ({ text, price, name, menue_id }) => {
+const MenuCards = ({ text, price, name, menue_id, id, index }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -41,19 +42,27 @@ const MenuCards = ({ text, price, name, menue_id }) => {
 
 
     return (
-        <Card className="food-card">
-            <CardContent className="menu-card">
-                <Typography gutterBottom>
-                    <h3>{name}</h3>
-                    <h4>{text}</h4>
-                    <h4>${price}</h4>
-                </Typography>
+        <Draggable draggableId={String(id)} index={index}>
+            {(provided) => (
+                <div  {...provided.draggableProps} ref={provided.innerRef}
+                    {...provided.dragHandleProps}>
+                    <Card className="food-card">
+                        <CardContent className="menu-card">
+                            <Typography gutterBottom>
+                                <h3>{name}</h3>
+                                <h4>{text}</h4>
+                                <h4>${price}</h4>
+                            </Typography>
 
-            </CardContent>
-            <CardActions>
-                <Button size="small">Customize</Button>
-            </CardActions>
-        </Card>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small">Customize</Button>
+                        </CardActions>
+                    </Card>
+                    {provided.placeholder}
+                </div>
+            )}
+        </Draggable>
     )
 }
 

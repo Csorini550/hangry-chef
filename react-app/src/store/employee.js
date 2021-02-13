@@ -2,12 +2,8 @@ const initialState = {};
 
 const CREATE_EMPLOYEE = 'employee/createEmployee'
 const GET_EMPLOYEE_BY_USER = 'employee/getEmployeeByUser'
-const GET_EMPLOYEE_BY_ID = 'employee/getEmployeeById'
 
-const getEmployeeByIdAction = (body) => ({
-    type: GET_EMPLOYEE_BY_ID,
-    payload: body
-});
+
 
 const getEmployeeByUserAction = (body) => ({
     type: GET_EMPLOYEE_BY_USER,
@@ -43,14 +39,7 @@ export const getEmployeeByUser = (userId) => {
     };
 }
 
-export const getEmployeeById = (employeeId) => {
-    return async (dispatch) => {
-        const res = await fetch(`/api/employee/staff/${employeeId}`);
-        const data = await res.json();
-        dispatch(getEmployeeByIdAction(data));
-        return data;
-    };
-}
+
 
 function reducer(state = initialState, action) {
     let newState;
@@ -63,8 +52,6 @@ function reducer(state = initialState, action) {
             return { ...newObj, state };
         case CREATE_EMPLOYEE:
             return { ...state, [action.payload.id]: action.payload };
-        case GET_EMPLOYEE_BY_ID:
-            return { ...action.payload, state }
         default:
             return state;
     }
