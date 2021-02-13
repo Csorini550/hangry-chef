@@ -10,7 +10,7 @@ import menue from "./menue"
 import table from "./table"
 import customer from "./customer"
 import employee2 from "./employee2"
-
+import dragDrop from "./dragDrop"
 
 // Reducer
 const rootReducer = combineReducers({
@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
     table,
     customer,
     employee2,
+    dragDrop
 })
 
 // Store Enhancer

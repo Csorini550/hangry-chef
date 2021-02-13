@@ -11,6 +11,7 @@ import MenuActionButton from '../../components/MenuActionButton'
 import Card from "@material-ui/core/Card"
 import MenuCreatorButton from '../../components/MenuCreatorButton'
 import './CreateMenue.css'
+import { sort } from "../../store/dragDrop"
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
     const [header, setHeader] = useState("");
@@ -44,88 +45,91 @@ const CreateMenue = () => {
         // dispatch(createFoodOrDrink(foodOrDrink))
         // dispatch(createMenue(menueArray))
     }, [])
-    const dragEnd = ""
-    // const onDragEnd = (result) => {
-    //     //cancel drag item tilt here
-    //     const { destination, source, draggableId, type } = result;
-    //     //Chekcs to make sure something was actually moved to a new spot
-    //     if (!destination) {
-    //         return;
-    //     }; //Card wasn't placed on a droppable area
-    //     if (destination.droppableId === source.droppableId &&
-    //         destination.index === source.index) {
-    //         return;
-    //     }; //Card start and end was same location
 
-    //     //If list order changes the below code block runs
-    //     if (type === "list") {
-    //         const newListOrder = Array.from(boardOrg.listOrder);
-    //         newListOrder.splice(source.index, 1);
-    //         newListOrder.splice(destination.index, 0, draggableId);
-    //         const newContext = {
-    //             ...boardOrg,
-    //             listOrder: newListOrder,
-    //         };
-    //         setBoardOrg(newContext);
-    //         saveBoard(newContext);
-    //         return;
-    //     };
+    const onDragEnd = (result) => {
+        //     //cancel drag item tilt here
+        const { destination, source, draggableId, type } = result;
+        //     //Chekcs to make sure something was actually moved to a new spot
+        if (!destination) {
+            return;
+        }; //Card wasn't placed on a droppable area
+        if (destination.droppableId === source.droppableId &&
+            destination.index === source.index) {
+            return;
+        }; //Card start and end was same location
 
-    //     // Moving inside the same list:
-    //     const start = boardOrg.lists[source.droppableId];
-    //     const finish = boardOrg.lists[destination.droppableId]
+        dispatch(sort(source.droppableId, destination.droppableID, source.index, destination.index, draggableId))
 
-    //     if (start === finish) {
-    //         const newCardIds = Array.from(start.cardIds)
-    //         newCardIds.splice(source.index, 1);
-    //         newCardIds.splice(destination.index, 0, draggableId);
+        // //If list order changes the below code block runs
+        // if (type === "list") {
+        //     const newListOrder = Array.from(boardOrg.listOrder);
+        //     newListOrder.splice(source.index, 1);
+        //     newListOrder.splice(destination.index, 0, draggableId);
+        //     const newContext = {
+        //         ...boardOrg,
+        //         listOrder: newListOrder,
+        //     };
+        //     setBoardOrg(newContext);
+        //     saveBoard(newContext);
+        //     return;
+        // };
 
-    //         const newList = {
-    //             ...start,
-    //             cardIds: newCardIds,
-    //         };
+        // // Moving inside the same list:
+        // const start = boardOrg.lists[source.droppableId];
+        // const finish = boardOrg.lists[destination.droppableId]
 
-    //         const newContext = {
-    //             ...boardOrg,
-    //             lists: {
-    //                 ...boardOrg.lists,
-    //                 [newList.id]: newList,
-    //             },
-    //         };
-    //         setBoardOrg(newContext);
-    //         saveBoard(newContext);
-    //         return;
-    //     };
+        // if (start === finish) {
+        //     const newCardIds = Array.from(start.cardIds)
+        //     newCardIds.splice(source.index, 1);
+        //     newCardIds.splice(destination.index, 0, draggableId);
 
-    //     // Moving from list to list:
-    //     const startCardIds = Array.from(start.cardIds);
-    //     startCardIds.splice(source.index, 1);
-    //     const newStart = {
-    //         ...start,
-    //         cardIds: startCardIds,
-    //     };
+        //     const newList = {
+        //         ...start,
+        //         cardIds: newCardIds,
+        //     };
 
-    //     const finishCardIds = Array.from(finish.cardIds);
-    //     finishCardIds.splice(destination.index, 0, draggableId);
-    //     const newFinish = {
-    //         ...finish,
-    //         cardIds: finishCardIds,
-    //     };
-    //     const newContext = {
-    //         ...boardOrg,
-    //         lists: {
-    //             ...boardOrg.lists,
-    //             [newStart.id]: newStart,
-    //             [newFinish.id]: newFinish,
-    //         },
-    //     };
-    //     setBoardOrg(newContext);
-    //     saveBoard(newContext);
-    // };
+        //     const newContext = {
+        //         ...boardOrg,
+        //         lists: {
+        //             ...boardOrg.lists,
+        //             [newList.id]: newList,
+        //         },
+        //     };
+        //     setBoardOrg(newContext);
+        //     saveBoard(newContext);
+        //     return;
+        // };
+
+        // // Moving from list to list:
+        // const startCardIds = Array.from(start.cardIds);
+        // startCardIds.splice(source.index, 1);
+        // const newStart = {
+        //     ...start,
+        //     cardIds: startCardIds,
+        // };
+
+        // const finishCardIds = Array.from(finish.cardIds);
+        // finishCardIds.splice(destination.index, 0, draggableId);
+        // const newFinish = {
+        //     ...finish,
+        //     cardIds: finishCardIds,
+        // };
+        // const newContext = {
+        //     ...boardOrg,
+        //     lists: {
+        //         ...boardOrg.lists,
+        //         [newStart.id]: newStart,
+        //         [newFinish.id]: newFinish,
+        //     },
+        // };
+        // setBoardOrg(newContext);
+        // saveBoard(newContext);
+    };
 
     const menuName = menus[1] ? menus[1].menue_name : ""
+
     return (
-        <DragDropContext onDragEnd={dragEnd}>
+        <DragDropContext onDragEnd={onDragEnd}>
             <Droppable direction="horizontal" droppableId={String(userId)}>
                 {(provided) => (
                     <div {...provided.droppableProps}
@@ -138,7 +142,7 @@ const CreateMenue = () => {
                                     <div menue_id={menu.id} className="full-menu-text">
                                         <Card>
                                             <h2>{menu.food_item}</h2>
-                                            <MenuList index={index} menue_id={menu.id} />
+                                            <MenuList index={index} menue_id={menu.id} key={menu.id} />
                                         </Card>
                                     </div>
                                 )

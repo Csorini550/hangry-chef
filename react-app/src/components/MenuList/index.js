@@ -6,7 +6,7 @@ import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
 import MenuActionButton from '../../components/MenuActionButton'
-import { Droppable } from "react-beautiful-dnd"
+import { Droppable, Draggable } from "react-beautiful-dnd"
 import './MenuList.css'
 const MenuList = ({ menue_id, index }) => {
     const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const MenuList = ({ menue_id, index }) => {
     const menuItems = useSelector((state) => {
         return state.foodOrDrink[menue_id];
     })
-
     useEffect(() => {
         dispatch(getFoodOrDrink(menue_id));
         // dispatch(getIngredientsByUser(userId));
@@ -26,35 +25,35 @@ const MenuList = ({ menue_id, index }) => {
         // dispatch(createMenue(menueArray))
     }, [])
     return (
-        <Draggable draggableId={String(menue_id)} index={index}>
+        // <Draggable draggableId={String(menue_id)} index={index}>
+        //     {(provided) => (
+        //         <div
+        //             {...provided.draggableProps} ref={provided.innerRef}
+        //             {...provided.dragHandleProps}>
+
+        <Droppable direction="vertical" droppableId={String(menue_id)}>
             {(provided) => (
-                <div
-                    {...provided.draggableProps} ref={provided.innerRef}
-                    {...provided.dragHandleProps}>
-                    <div>
-                        <Droppable direction="vertical" droppableId={String(menue_id)}>
-                            {(provided) => (
-                                <div className="menu-container"
-                                    {...provided.droppableProps}
-                                    ref={provided.innerRef}
-                                >
-                                    {menuItems && (menuItems).map((menuItem, index) => {
-                                        return (
-                                            <div id="menu-item">
-                                                <MenuCards index={index} key={menuItem.id} id={menuItem.id} name={menuItem.name} text={menuItem.description} price={menuItem.price} />
-                                            </div>
-                                        )
-                                    })}
-                                    <MenuActionButton menue_id={menue_id} />
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                        {provided.placeholder}
-                    </div>
+                <div className="menu-container"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                >
+                    {menuItems && (menuItems).map((menuItem, index) => {
+                        return (
+                            <div id="menu-item">
+                                <MenuCards index={index} key={menuItem.id} id={menuItem.id} name={menuItem.name} text={menuItem.description} price={menuItem.price} />
+                            </div>
+                        )
+                    })}
+                    <MenuActionButton menue_id={menue_id} />
+                    {provided.placeholder}
                 </div>
             )}
-        </Draggable>
+        </Droppable>
+        // {provided.placeholder}
+
+        // </div>
+        // )}
+        // </Draggable>
     )
 }
 
