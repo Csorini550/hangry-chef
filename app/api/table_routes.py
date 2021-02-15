@@ -31,7 +31,7 @@ def new_table():
         table_number=form.data["table_number"],
         # customer_id=form.data["customer_id"],
         employee_id=form.data["employee_id"],
-        user_id=form.data["user_id"],
+        user_id=form.data["user_id"]
     )
     db.session.add(newTable)
     db.session.commit()

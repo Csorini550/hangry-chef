@@ -45,7 +45,7 @@ function reducer(state = initialState, action) {
                 if (newObj[customer.table_number]) {
                     newObj[customer.table_number].push(customer)
                 } else {
-                    newObj[customer.table_id] = customer;
+                    newObj[customer.id] = customer;
                 }
             })
             return { ...newObj, ...state };

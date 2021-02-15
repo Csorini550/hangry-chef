@@ -1,0 +1,8 @@
+.staff-link {
+    text-decoration: none;
+    color: #2A9D8F;
+}
+
+.staff-link:hover {
+    color: #F4A261;
+}

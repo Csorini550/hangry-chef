@@ -3,6 +3,7 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeeByUser, createEmployee } from '../../store/employee'
 import Button from "@material-ui/core/Button";
+import "./ManageStaff.css";
 
 const ManageStaff = () => {
     const [open, setOpen] = useState(false);
@@ -115,10 +116,10 @@ const ManageStaff = () => {
             <div>
                 <h1>Manage Staff</h1>
                 <div>
-                    <button onClick={openForm}>Add Employee</button>
+                    <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm}>Add Employee</Button>
                     {employees && Object.values(employees).map((employee) => {
                         return (
-                            <Link to={`/staff/${employee.id}`} >
+                            <Link className="staff-link" to={`/staff/${employee.id}`} >
                                 <h3>{employee.first_name} {employee.last_name}</h3>
                             </Link>
                         )

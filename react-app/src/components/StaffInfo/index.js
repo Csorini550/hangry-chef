@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeeById } from '../../store/employee2'
 import { getTableByEmployee } from '../../store/table'
 import { getCustomerByTableId } from '../../store/customer'
-
+import "./StaffInfo.css"
 const StaffInfo = () => {
     const { employeeId } = useParams()
     const dispatch = useDispatch();
@@ -15,20 +15,27 @@ const StaffInfo = () => {
     const tables = useSelector(state => {
         return state.table
     })
+    const customers = useSelector(state => {
+        return state.customer
+    })
 
     const employee = useSelector((state) => {
         return state.employee2;
     });
     const userId = loggedInUser.id
+
     const table_number = employee.table_number
     console.log("TABLE NUMBER!!!", table_number)
 
 
     useEffect(() => {
-        dispatch(getEmployeeById(employeeId))
         dispatch(getTableByEmployee(employeeId))
-        dispatch(getCustomerByTableId(table_number))
+        dispatch(getEmployeeById(employeeId))
     }, [])
+
+    useEffect(() => {
+        dispatch(getCustomerByTableId(table_number))
+    }, [tables, employee])
 
 
 
@@ -36,15 +43,36 @@ const StaffInfo = () => {
     // need to get all customer tips for this staff member
     // need to get all customer ratings for this staff member
     // need to get all customer order issues for this staff member
+    // Object.values(customers) === 0 ? table_number = 1 : ""
     return (
         <div>
             <h1>Employee Info</h1>
-            <div>
+            <div className="staff-salary">
                 <h2>{employee.last_name}, {employee.first_name}</h2>
-            </div>
-            <div>
                 <h3>Salary: ${employee.salary} an hour</h3>
-
+            </div>
+            <h3>Recent tables:</h3>
+            <ul className="table-number">
+                {Object.values(tables).map((table) => {
+                    return (
+                        <li>
+                            <h4>{table.table_number} </h4>
+                        </li>
+                    )
+                })}
+            </ul>
+            <div>
+                {customers && Object.values(customers).map((customer) => {
+                    return (
+                        <div>
+                            <h3>Customer rating: {customer.server_rating} </h3>
+                            <h3>Customer Review: </h3>
+                            <h4>{customer.server_review}</h4>
+                            <h3>Customer Tip: ${customer.tipp}</h3>
+                            {/* <h3>Total cost of meal: ${total_price}</h3> */}
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
