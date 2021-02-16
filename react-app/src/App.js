@@ -18,6 +18,7 @@ import StaffInfo from "./components/StaffInfo"
 import { restoreUser } from "./store/session"
 import MenuList from "./components/MenuList"
 import MenuCards from "./components/MenuCards"
+import CreateQrCode from "./components/CreateQrCode"
 // import ManageTables from "./components/ManageTables"
 
 function App() {
@@ -76,6 +77,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/manage-staff/:userId" exact={true} authenticated={authenticated}>
           <ManageStaff />
+        </ProtectedRoute>
+        <ProtectedRoute path="/create-qr-code" exact={true} authenticated={authenticated}>
+          <CreateQrCode />
         </ProtectedRoute>
         <ProtectedRoute path="/inventory/:userId" authenticated={authenticated}>
           <Inventory />
