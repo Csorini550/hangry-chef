@@ -36,3 +36,11 @@ def new_table():
     db.session.add(newTable)
     db.session.commit()
     return newTable.to_dict()
+
+
+@table_routes.route("/delete/<int:tableId>", methods=["DELETE"])
+def delete(tableId):
+    table = Table.query.filter(Table.id == tableId).first()
+    db.session.delete(table)
+    db.session.commit()
+    return table.to_dict()

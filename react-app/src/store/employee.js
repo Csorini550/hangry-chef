@@ -67,14 +67,9 @@ function reducer(state = initialState, action) {
         case CREATE_EMPLOYEE:
             return { ...state, [action.payload.id]: action.payload };
         case DELETE_EMPLOYEE:
-            // const newObj2 = {}
             newState = { ...state }
             delete newState[action.payload.id]
             return newState
-        // Object.values(action.payload).filter(function (employee) {
-        //     newObj2[employee.id] = employee.id !== action.payload.id
-        // });
-        // return newObj2;
         default:
             return state;
     }

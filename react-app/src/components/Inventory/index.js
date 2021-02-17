@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getInventoryByUser, createInventory } from '../../store/inventory'
+import { getInventoryByUser, createInventory, deleteInventory } from '../../store/inventory'
 import { newIngredient, createIngredient } from '../../store/ingredient'
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
@@ -11,11 +11,11 @@ import { FormLabel, ListItemText } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
 const Inventory = () => {
     const [open, setOpen] = useState(true);
-    const [food_item, setFood_item] = useState("")
-    const [quantity, setQuantity] = useState("")
-    const [market_price, setMarket_price] = useState("")
-    const [price, setPrice] = useState("")
-    const [name, setName] = useState(food_item)
+    const [food_item, setFoodItem] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [market_price, setMarket_price] = useState("");
+    const [price, setPrice] = useState("");
+    const [name, setName] = useState("");
     const dispatch = useDispatch();
     const loggedInUser = useSelector(state => {
         return state.session.user;
@@ -64,6 +64,11 @@ const Inventory = () => {
         dispatch(createInventory(newInventory));
         closeForm()
     }
+
+    const handleDelete = (inventoryId) => {
+        // e.preventDefault();
+        dispatch(deleteInventory(inventoryId))
+    }
     const inventories = useSelector(state => {
         return state.inventory
     })
@@ -88,6 +93,7 @@ const Inventory = () => {
                                     <ListItemText>Quantity: {inventory.quantity}</ListItemText>
                                     <ListItemText>Price: ${inventory.market_price}</ListItemText>
                                 </ul>
+                                <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
                             </Card>
                         )
                     })}
@@ -98,16 +104,16 @@ const Inventory = () => {
     } else {
         return (
             <Card>
-                <FormControl onSubmit={handleSubmit} style={{ backgroundColor: "#264653" }}>
+                <form onSubmit={handleSubmit} style={{ backgroundColor: "#264653" }}>
                     <Button onClick={closeForm} style={{ backgroundColor: "#2A9D8F" }}>Cancel</Button>
                     <FormLabel className="create-venue">
                         Name of new item
                    <Input
                             style={{ margin: "20px" }}
-                            value={name}
+                            value={food_item}
                             type="text"
                             multiple
-                            onChange={(e) => setName(e.target.value)} />
+                            onChange={(e) => setFoodItem(e.target.value)} />
                     </FormLabel>
                     <FormLabel className="create-venue">
                         Current quantity:
@@ -128,29 +134,31 @@ const Inventory = () => {
                             onChange={(e) => setMarket_price(e.target.value)} />
                     </FormLabel>
                     <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Add as a new inventory </Button>
-                    <FormControl onSubmit={handleDoubleSubmit}>
-                        <h3> Do you also want to add this item as an ingredient to be used in a meal?</h3>
-                        <FormLabel className="create-venue">
-                            Do you want to call this item something different on your menu?
+                </form>
+                <form onSubmit={handleDoubleSubmit}>
+                    <h3> Do you also want to add this item as an ingredient to be used in a meal?</h3>
+                    <FormLabel className="create-venue">
+                        Do you want to call this item something different on your menu?
                    <Input
-                                style={{ margin: "20px" }}
-                                value={food_item}
-                                type="text"
-                                multiple
-                                onChange={(e) => setFood_item(e.target.value)} />
-                        </FormLabel>
-                        <FormLabel className="create-venue">
-                            If a customer wants to add this item do a dish how much will you charge them?
+                            style={{ margin: "20px" }}
+                            value={name}
+                            type="text"
+                            placeholder={food_item}
+                            multiple
+                            onChange={(e) => setName(e.target.value)} />
+                    </FormLabel>
+                    <FormLabel className="create-venue">
+                        If a customer wants to add this item do a dish how much will you charge them?
                    <Input
-                                style={{ margin: "20px" }}
-                                value={price}
-                                type="number"
-                                multiple
-                                onChange={(e) => setPrice(e.target.value)} />
-                        </FormLabel>
-                        <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Submit as a new ingredient as well</Button>
-                    </FormControl>
-                </FormControl>
+                            style={{ margin: "20px" }}
+                            value={price}
+                            type="number"
+                            multiple
+                            onChange={(e) => setPrice(e.target.value)} />
+                    </FormLabel>
+                    <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Submit as a new ingredient as well</Button>
+
+                </form>
             </Card >
         )
     }

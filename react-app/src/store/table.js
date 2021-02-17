@@ -3,6 +3,12 @@ const initialState = {};
 const CREATE_TABLE = 'table/createTable';
 const GET_TABLE = 'table/getTable';
 const GET_TABLE_BY_EMPLOYEE = 'table/getTableByEmployee';
+const DELETE_TABLE = 'table/deleteTable';
+
+const deleteTableAction = (body) => ({
+    type: DELETE_TABLE,
+    payload: body
+});
 
 const getTableByEmployeeAction = (body) => ({
     type: GET_TABLE_BY_EMPLOYEE,
@@ -52,7 +58,19 @@ export const getTableByEmployee = (employeeId) => {
     }
 }
 
+export const deleteTable = (tableId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/table/delete/${tableId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+        const data = await res.json();
+        dispatch(deleteTableAction(data))
+    }
+}
+
 function reducer(state = initialState, action) {
+    let newState;
     switch (action.type) {
         case GET_TABLE:
             const newObject = {};
@@ -72,6 +90,10 @@ function reducer(state = initialState, action) {
             return { ...state, ...newObject2 }
         case CREATE_TABLE:
             return { ...state, [action.payload.id]: action.payload };
+        case DELETE_TABLE:
+            newState = { ...state };
+            delete newState[action.payload.id];
+            return newState;
         default:
             return state;
     }

@@ -2,17 +2,22 @@ const initialState = {};
 
 const GET_INVENTORY_BY_USER = 'inventory/getInventoryByUser'
 const CREATE_INVENTORY = 'inventory/createInventory'
+const DELETE_INVENTORY = 'inventory/deleteInventory'
 
+const deleteInventoryAction = (body) => ({
+    type: DELETE_INVENTORY,
+    payload: body
+});
 
 const getInventoryByUserAction = (body) => ({
     type: GET_INVENTORY_BY_USER,
     payload: body
-})
+});
 
 const createInventoryAction = (body) => ({
     type: CREATE_INVENTORY,
     payload: body
-})
+});
 
 export const createInventory = (body) => {
     return async (dispatch) => {
@@ -38,9 +43,21 @@ export const getInventoryByUser = (userId) => {
     }
 }
 
+export const deleteInventory = (inventoryId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/inventory/delete/${inventoryId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const data = await res.json();
+        dispatch(deleteInventoryAction(data));
+    }
+}
+
 
 
 function reducer(state = initialState, action) {
+    let newState
     switch (action.type) {
         case GET_INVENTORY_BY_USER:
             const newObject = {};
@@ -50,6 +67,10 @@ function reducer(state = initialState, action) {
             return { ...newObject };
         case CREATE_INVENTORY:
             return { ...state, [action.payload.id]: action.payload };
+        case DELETE_INVENTORY:
+            newState = { ...state }
+            delete newState[action.payload.id]
+            return newState;
         default:
             return state;
     }

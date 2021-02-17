@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getTableByUser, createTable } from '../../store/table'
+import { getTableByUser, createTable, deleteTable } from '../../store/table'
 import { getEmployeeByUser } from '../../store/employee'
 import { makeStyles } from '@material-ui/core/styles';
 import { Select, Button, FormLabel, InputLabel, FormControl, Input, MenuItem } from '@material-ui/core';
@@ -47,6 +47,10 @@ const ManageTables = () => {
             minWidth: 70,
         },
     }));
+    const handleDelete = (tableId) => {
+        // e.preventDefault();
+        dispatch(deleteTable(tableId))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -59,6 +63,26 @@ const ManageTables = () => {
         dispatch(createTable(newTable))
     }
 
+    const tablesArray = Object.values(tables)
+    console.log("THis IS TABleARRAY!!! ", tablesArray)
+    const tableNumberMatch = (employees, tables) => {
+        const tablesArray = tables && Object.values(tables)
+
+        const employeesArray = employees && Object.values(employees)
+
+        if (employeesArray.table_number === tablesArray.table_number) {
+            // return (
+            //     <div>
+            //         <div className="table">
+            //             <h2>{table.table_number}</h2>
+            //         </div>
+            //         <h3>{employee.first_name} {employee.last_name}</h3>
+            //     </div>
+            // )
+        }
+
+
+    }
 
 
     return (
@@ -96,10 +120,14 @@ const ManageTables = () => {
             <div className="table-main">
                 {tables && Object.values(tables).map((table) => {
                     return (
-                        <div className="table">
-                            <h2>{table.table_number}</h2>
+                        <div>
+                            <div className="table">
+                                <h2>{table.table_number}</h2>
+                            </div>
+                            <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(table.id)}> Delete Table</Button>
                         </div>
                     )
+
                 })}
             </div>
         </div >
