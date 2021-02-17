@@ -8,6 +8,8 @@ employee_routes = Blueprint("employee", __name__)
 
 # GET  EMPLOYEES BY USERID
 
+# TODO look at docs for filter_by
+
 
 @employee_routes.route("/<int:userId>")
 # @login_required
@@ -51,9 +53,10 @@ def new_employee():
 # DELETE AN EMPLOYEE
 
 
-@employee_routes.route("/delete", methods=["POST"])
-def delete():
-    employee = request.form.get("employee_id")
-    employee = Employee.query.filter_by(employee_id=employeeId).first()
+@employee_routes.route("/delete/<int:employeeId>", methods=["DELETE"])
+def delete(employeeId):
+    # employeeId = request.get("employee_id")
+    employee = Employee.query.filter(Employee.id == employeeId).first()
     db.session.delete(employee)
     db.session.commit()
+    return employee.to_dict()

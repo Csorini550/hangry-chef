@@ -2,9 +2,12 @@ const initialState = {};
 
 const CREATE_EMPLOYEE = 'employee/createEmployee'
 const GET_EMPLOYEE_BY_USER = 'employee/getEmployeeByUser'
+const DELETE_EMPLOYEE = 'employee/deleteEmployee'
 
-
-
+const deleteEmployeeAction = (body) => ({
+    type: DELETE_EMPLOYEE,
+    payload: body
+});
 const getEmployeeByUserAction = (body) => ({
     type: GET_EMPLOYEE_BY_USER,
     payload: body
@@ -39,6 +42,17 @@ export const getEmployeeByUser = (userId) => {
     };
 }
 
+export const deleteEmployee = (employeeId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/employee/delete/${employeeId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const data = await res.json();
+        dispatch(deleteEmployeeAction(data))
+    }
+}
+
 
 
 function reducer(state = initialState, action) {
@@ -49,9 +63,18 @@ function reducer(state = initialState, action) {
             Object.values(action.payload).forEach(function (employee) {
                 newObj[employee.id] = employee;
             })
-            return { ...newObj, state };
+            return { ...newObj, ...state };
         case CREATE_EMPLOYEE:
             return { ...state, [action.payload.id]: action.payload };
+        case DELETE_EMPLOYEE:
+            // const newObj2 = {}
+            newState = { ...state }
+            delete newState[action.payload.id]
+            return newState
+        // Object.values(action.payload).filter(function (employee) {
+        //     newObj2[employee.id] = employee.id !== action.payload.id
+        // });
+        // return newObj2;
         default:
             return state;
     }

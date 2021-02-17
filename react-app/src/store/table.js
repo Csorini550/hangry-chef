@@ -59,7 +59,7 @@ function reducer(state = initialState, action) {
             Object.values(action.payload).forEach(function (table) {
                 newObject[table.id] = table;
             })
-            return { ...newObject, state }
+            return { ...state, ...newObject }
         case GET_TABLE_BY_EMPLOYEE:
             const newObject2 = {};
             Object.values(action.payload).forEach(function (table) {
@@ -69,7 +69,7 @@ function reducer(state = initialState, action) {
                     newObject2[table.employee_id] = table;
                 }
             })
-            return { ...newObject2, ...state }
+            return { ...state, ...newObject2 }
         case CREATE_TABLE:
             return { ...state, [action.payload.id]: action.payload };
         default:
