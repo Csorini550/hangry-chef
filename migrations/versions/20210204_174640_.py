@@ -90,7 +90,7 @@ def upgrade():
         {"food_or_drink_id": 1, "table_id": 1},
         {"food_or_drink_id": 2, "table_id": 1},
         {"food_or_drink_id": 2, "table_id": 2},
-        {"food_or_drink_id": 1, "table_id": 2},
+        # {"food_or_drink_id": 1, "table_id": 2},
         {"food_or_drink_id": 3, "table_id": 2},
         {"food_or_drink_id": 1, "table_id": 2},
         {"food_or_drink_id": 1, "table_id": 3},

@@ -24,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const InventoryModal = ({ inventoryId, name, quant, price }) => {
+const InventoryModal = ({ inventory_Id, name, quant, price }) => {
     const dispatch = useDispatch();
+    const [inventoryId, setInventoryId] = useState(inventory_Id)
     const [food_item, setFoodItem] = useState(name);
     const [quantity, setQuantity] = useState(quant);
     const [market_price, setMarket_price] = useState(price);
@@ -40,6 +41,7 @@ const InventoryModal = ({ inventoryId, name, quant, price }) => {
         setOpen(false);
     };
     const handleEdit = (inventoryId, food_item, quantity, market_price) => {
+        // e.preventDefault();
         dispatch(editInventory(inventoryId, food_item, quantity, market_price))
     }
 

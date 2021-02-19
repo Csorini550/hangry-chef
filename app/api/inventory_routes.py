@@ -39,24 +39,6 @@ def delete(inventoryId):
     return inventory.to_dict()
 
 
-# @inventory_routes.route('/edit/<int:inventoryId>', methods=["PATCH"])
-# def edit(inventoryId):
-#     inventory = Inventory.query.filter(Inventory.id == inventoryId).first()
-#     db.session.edit(inventory)
-#     db.session.commit()
-#     return inventory.to_dict()
-
-
-# @bp.route('<id>', methods=['PUT'])
-# @require_auth
-# def update_roast(id, user):
-#     data = request.json
-#     roast = Roast.query.filter(Roast.id == id).first()
-#     roast.secondCrack = data["secondCrack"]
-#     roast.totalTime = data["totalTime"]
-#     db.session.commit()
-#     return roast.to_dict()
-
 @inventory_routes.route("/edit/<int:inventoryId>", methods=["PATCH"])
 def update_inventory(inventoryId):
     data = request.json

@@ -18,6 +18,7 @@ import './MenuCards.css'
 
 const MenuCards = ({ text, price, name, menue_id, id, index }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
     });
@@ -29,6 +30,8 @@ const MenuCards = ({ text, price, name, menue_id, id, index }) => {
 
     const handleDelete = (id) => {
         dispatch(deleteFoodOrDrink(id))
+        // history.push(`/create-menue/${userId}`)
+
     }
     const ingredients = useSelector((state) => {
         return state.intgredient

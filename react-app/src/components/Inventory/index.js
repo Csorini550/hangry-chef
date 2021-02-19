@@ -20,6 +20,7 @@ const Inventory = () => {
     const [price, setPrice] = useState("");
     const [name, setName] = useState("");
     const dispatch = useDispatch();
+
     const loggedInUser = useSelector(state => {
         return state.session.user;
     })
@@ -111,7 +112,7 @@ const Inventory = () => {
                                 </ul>
                                 <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
                                 {/* <Button type="edit" value="Edit" className='input' > </Button> */}
-                                <InventoryModal inventoryId={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
+                                <InventoryModal inventory_Id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
                             </Card>
                         )
                     })}
