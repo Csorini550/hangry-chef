@@ -40,9 +40,10 @@ def new_menue():
     db.session.commit()
     return newMenue.to_dict()
 
-    # GET MENUE BY USERID
-    # @menue_routes.route("/<int:userId>")
-    # # @login_required
-    # def menue_by_user(userId):
-    #     menues = Menue.query.filter_by(user_id=menueId).all()
-    #     return {menue.id: menue.to_dict() for menue in menues}
+
+@menue_routes.route("/delete/<int:menuId>", methods=["DELETE"])
+def delete(menuId):
+    menu = Menue.query.filter(Menue.id == menuId).first()
+    db.session.delete(menu)
+    db.session.commit()
+    return menu.to_dict()

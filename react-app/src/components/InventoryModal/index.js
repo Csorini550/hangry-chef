@@ -24,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const InventoryModal = ({ inventory_id, name, quant, price }) => {
+const InventoryModal = ({ inventoryId, name, quant, price }) => {
     const dispatch = useDispatch();
     const [food_item, setFoodItem] = useState(name);
     const [quantity, setQuantity] = useState(quant);
     const [market_price, setMarket_price] = useState(price);
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
+    // const inventoryId = inventory_Id;
     const handleOpen = () => {
         setOpen(true);
     };
@@ -40,7 +40,7 @@ const InventoryModal = ({ inventory_id, name, quant, price }) => {
         setOpen(false);
     };
     const handleEdit = (inventoryId, food_item, quantity, market_price) => {
-        dispatch(editInventory(inventory_id, food_item, quantity, market_price))
+        dispatch(editInventory(inventoryId, food_item, quantity, market_price))
     }
 
     return (

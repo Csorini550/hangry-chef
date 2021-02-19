@@ -111,7 +111,7 @@ const Inventory = () => {
                                 </ul>
                                 <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
                                 {/* <Button type="edit" value="Edit" className='input' > </Button> */}
-                                <InventoryModal inventory_id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
+                                <InventoryModal inventoryId={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
                             </Card>
                         )
                     })}

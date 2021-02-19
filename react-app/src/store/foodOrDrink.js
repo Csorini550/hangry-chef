@@ -16,7 +16,12 @@ const createFoodOrDrinkAction = (body) => ({
 const getFoodOrDrinkAction = (body) => ({
     type: GET_FOOD_OR_DRINK,
     payload: body
-})
+});
+
+const deleteFoodOrDrinkAction = (body) => ({
+    type: DELETE_FOOD_OR_DRINK,
+    payload: body
+});
 
 
 export const createFoodOrDrink = (body) => {
@@ -33,6 +38,17 @@ export const createFoodOrDrink = (body) => {
     };
 }
 
+export const deleteFoodOrDrink = (foodOrDrinkId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/food_or_drink/delete/${foodOrDrinkId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        const data = await res.json();
+        dispatch(deleteFoodOrDrinkAction(data));
+    }
+}
+
 export const getFoodOrDrink = (menueId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/food_or_drink/${menueId}`);
@@ -44,10 +60,12 @@ export const getFoodOrDrink = (menueId) => {
 //This slice of state: each key is the id of the menu the value is an array of each item for that menu
 function reducer(state = initialState, action) {
     let newState;
+    let anotherNewState;
     switch (action.type) {
         case CREATE_FOOD_OR_DRINK:
             const newItems = [...[action.payload.menue_id], action.payload];
             return { ...state, [action.payload.menue_id]: newItems };
+
         case GET_FOOD_OR_DRINK:
             const newObject = {};
             Object.values(action.payload).forEach(function (foodOrDrink) {
@@ -76,7 +94,10 @@ function reducer(state = initialState, action) {
                 // foodOrDrink.list.splice(droppableIndexEnd, 0, ...list);
                 return { ...state, [droppableIdStart]: list };
             }
-
+        case DELETE_FOOD_OR_DRINK:
+            anotherNewState = { ...state }
+            delete anotherNewState[action.payload.id]
+            return anotherNewState;
         default:
             return state;
     }

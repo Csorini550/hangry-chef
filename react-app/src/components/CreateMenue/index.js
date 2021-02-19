@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, draggable } from 'react-beautiful-dnd'
 import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
-import { createMenue, getMenueByUser, sort } from '../../store/menue'
+import { createMenue, getMenueByUser, sort, deleteMenu } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
 import MenuList from '../../components/MenuList'
 import MenuActionButton from '../../components/MenuActionButton'
-import Card from "@material-ui/core/Card"
+import { Card, Button } from "@material-ui/core"
 import MenuCreatorButton from '../../components/MenuCreatorButton'
 import './CreateMenue.css'
 // import { sort } from "../../store/dragDrop"
@@ -33,9 +33,9 @@ const CreateMenue = () => {
         return state.ingredients;
     })
 
-    // const item = Object.keys(menueItems).map((menueItem, i) => {
-    //     return menueItem;
-    // })
+    const handleDelete = (menuId) => {
+        dispatch(deleteMenu(menuId))
+    };
 
 
     useEffect(() => {
@@ -143,6 +143,7 @@ const CreateMenue = () => {
                                         <Card>
                                             <h2>{menu.food_item}</h2>
                                             <MenuList index={index} menue_id={menu.id} key={menu.id} />
+                                            <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(menu.id)}> Delete</Button>
                                         </Card>
                                     </div>
                                 )

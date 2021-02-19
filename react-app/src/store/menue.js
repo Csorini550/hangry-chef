@@ -3,18 +3,34 @@ const initialState = {};
 const CREATE_MENUE = 'menueId/createMenue'
 const GET_MENUE_BY_USER = 'menue/getMenueByUser'
 const DRAG_HAPPENED = "dragDrop/dragHappened"
+const DELETE_MENU = 'menu/deleteMenu'
+
+const deleteMenuAction = (body) => ({
+    type: DELETE_MENU,
+    payload: body
+});
 
 
 const createMenueAction = (body) => ({
     type: CREATE_MENUE,
     payload: body
-})
+});
 
 const getMenueByUserAction = (body) => ({
     type: GET_MENUE_BY_USER,
     payload: body
-})
+});
 
+export const deleteMenu = (menuId) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/menue/delete/${menuId}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }
+        })
+        const data = await res.json();
+        dispatch(deleteMenuAction(data))
+    }
+}
 
 
 export const createMenu = (body) => {
@@ -72,7 +88,10 @@ function reducer(state = initialState, action) {
                 newObject[menue.id] = menue;
             })
             return { ...newObject, ...state };
-
+        case DELETE_MENU:
+            newState = { ...state }
+            delete newState[action.payload.id]
+            return newState;
         default:
             return state;
     }

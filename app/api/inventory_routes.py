@@ -60,9 +60,7 @@ def delete(inventoryId):
 @inventory_routes.route("/edit/<int:inventoryId>", methods=["PATCH"])
 def update_inventory(inventoryId):
     data = request.json
-    print("!!!!!!DATA!!!!!!", data)
     inventory = Inventory.query.filter(Inventory.id == inventoryId).first()
-    print("!!!!!!!!!!!!!!!!!!!!!!!!", inventory.food_item)
     inventory.quantity = data["quantity"]
     inventory.market_price = data["market_price"]
     inventory.food_item = data["food_item"]

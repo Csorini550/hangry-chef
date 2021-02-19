@@ -19,10 +19,6 @@ const MenuList = ({ menue_id, index }) => {
     })
     useEffect(() => {
         dispatch(getFoodOrDrink(menue_id));
-        // dispatch(getIngredientsByUser(userId));
-        // dispatch(getMenueByUser(userId));
-        // dispatch(createFoodOrDrink(foodOrDrink))
-        // dispatch(createMenue(menueArray))
     }, [])
     return (
         // <Draggable draggableId={String(menue_id)} index={index}>

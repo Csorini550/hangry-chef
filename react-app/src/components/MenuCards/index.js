@@ -1,7 +1,7 @@
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
-import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
+import { getFoodOrDrink, createFoodOrDrink, deleteFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser } from '../../store/menue'
 
@@ -27,7 +27,9 @@ const MenuCards = ({ text, price, name, menue_id, id, index }) => {
     })
 
 
-
+    const handleDelete = (id) => {
+        dispatch(deleteFoodOrDrink(id))
+    }
     const ingredients = useSelector((state) => {
         return state.intgredient
     })
@@ -56,6 +58,7 @@ const MenuCards = ({ text, price, name, menue_id, id, index }) => {
 
                         </CardContent>
                         <CardActions>
+                            <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(id)}> Delete</Button>
                             <Button size="small">Customize</Button>
                         </CardActions>
                     </Card>
