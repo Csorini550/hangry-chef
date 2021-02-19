@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
     table,
     customer,
     employee2,
-    dragDrop
+    // dragDrop
 })
 
 // Store Enhancer

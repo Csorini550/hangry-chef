@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.forms import NewInventoryForm
 from app.models import db, Inventory
-
+from flask import request
 
 inventory_routes = Blueprint("inventory", __name__)
 
@@ -35,5 +35,36 @@ def new_inventory():
 def delete(inventoryId):
     inventory = Inventory.query.filter(Inventory.id == inventoryId).first()
     db.session.delete(inventory)
+    db.session.commit()
+    return inventory.to_dict()
+
+
+# @inventory_routes.route('/edit/<int:inventoryId>', methods=["PATCH"])
+# def edit(inventoryId):
+#     inventory = Inventory.query.filter(Inventory.id == inventoryId).first()
+#     db.session.edit(inventory)
+#     db.session.commit()
+#     return inventory.to_dict()
+
+
+# @bp.route('<id>', methods=['PUT'])
+# @require_auth
+# def update_roast(id, user):
+#     data = request.json
+#     roast = Roast.query.filter(Roast.id == id).first()
+#     roast.secondCrack = data["secondCrack"]
+#     roast.totalTime = data["totalTime"]
+#     db.session.commit()
+#     return roast.to_dict()
+
+@inventory_routes.route("/edit/<int:inventoryId>", methods=["PATCH"])
+def update_inventory(inventoryId):
+    data = request.json
+    print("!!!!!!DATA!!!!!!", data)
+    inventory = Inventory.query.filter(Inventory.id == inventoryId).first()
+    print("!!!!!!!!!!!!!!!!!!!!!!!!", inventory.food_item)
+    inventory.quantity = data["quantity"]
+    inventory.market_price = data["market_price"]
+    inventory.food_item = data["food_item"]
     db.session.commit()
     return inventory.to_dict()

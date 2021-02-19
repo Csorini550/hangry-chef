@@ -4,14 +4,14 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, draggable } from 'react-beautiful-dnd'
 import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
-import { createMenue, getMenueByUser } from '../../store/menue'
+import { createMenue, getMenueByUser, sort } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
 import MenuList from '../../components/MenuList'
 import MenuActionButton from '../../components/MenuActionButton'
 import Card from "@material-ui/core/Card"
 import MenuCreatorButton from '../../components/MenuCreatorButton'
 import './CreateMenue.css'
-import { sort } from "../../store/dragDrop"
+// import { sort } from "../../store/dragDrop"
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
     const [header, setHeader] = useState("");
@@ -58,7 +58,7 @@ const CreateMenue = () => {
             return;
         }; //Card start and end was same location
 
-        dispatch(sort(source.droppableId, destination.droppableID, source.index, destination.index, draggableId))
+        dispatch(sort(source.droppableId, destination.droppableId, source.index, destination.index, draggableId))
 
         // //If list order changes the below code block runs
         // if (type === "list") {

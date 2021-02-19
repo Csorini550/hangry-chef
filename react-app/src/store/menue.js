@@ -2,6 +2,7 @@ const initialState = {};
 
 const CREATE_MENUE = 'menueId/createMenue'
 const GET_MENUE_BY_USER = 'menue/getMenueByUser'
+const DRAG_HAPPENED = "dragDrop/dragHappened"
 
 
 const createMenueAction = (body) => ({
@@ -39,6 +40,26 @@ export const getMenueByUser = (userId) => {
     };
 }
 
+export const sort = (
+    droppableIdStart,
+    droppableIdEnd,
+    droppableIndexStart,
+    droppableIndexEnd,
+    draggableId
+) => {
+    return ({
+        type: DRAG_HAPPENED,
+        payload: {
+            droppableIdStart,
+            droppableIdEnd,
+            droppableIndexStart,
+            droppableIndexEnd,
+            draggableId
+        }
+    })
+}
+
+
 // the id of the menu object
 function reducer(state = initialState, action) {
     let newState;
@@ -51,6 +72,7 @@ function reducer(state = initialState, action) {
                 newObject[menue.id] = menue;
             })
             return { ...newObject, ...state };
+
         default:
             return state;
     }

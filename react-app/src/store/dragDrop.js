@@ -37,44 +37,44 @@ const createDragDropAction = (body) => ({
 //     }
 // }
 
-export const sort = (
-    droppableIdStart,
-    droppableIdEnd,
-    droppableIndexStart,
-    droppableIndexEnd,
-    draggableId
-) => {
-    return ({
-        type: DRAG_HAPPENED,
-        payload: {
-            droppableIdStart,
-            droppableIdEnd,
-            droppableIndexStart,
-            droppableIndexEnd,
-            draggableId
-        }
-    })
-}
+// export const sort = (
+//     droppableIdStart,
+//     droppableIdEnd,
+//     droppableIndexStart,
+//     droppableIndexEnd,
+//     draggableId
+// ) => {
+//     return ({
+//         type: DRAG_HAPPENED,
+//         payload: {
+//             droppableIdStart,
+//             droppableIdEnd,
+//             droppableIndexStart,
+//             droppableIndexEnd,
+//             draggableId
+//         }
+//     })
+// }
 
 function reducer(state = initialState, action) {
     switch (action.type) {
         // case CREATE_DRAG_DROP:
         // case GET_DRAG_DROP:
-        case DRAG_HAPPENED:
-            const { droppableIdStart,
-                droppableIdEnd,
-                droppableIndexStart,
-                droppableIndexEnd,
-                draggableId } = action.payload;
-            // const newState = { ...state };
-            //In the same list
-            if (droppableIdStart === droppableIdEnd) {
-                // const foodOrDrink = state.find(foodOrDrink => droppableIdStart = foodOrDrink.id);
-                const foodOrDrink = state[droppableIdStart]
-                const menue = foodOrDrink.menue.splice(droppableIndexStart, 1);
-                foodOrDrink.menue.splice(droppableIndexEnd, 0, ...menue);
-                return { ...state, [droppableIdStart]: foodOrDrink };
-            }
+        // case DRAG_HAPPENED:
+        //     const { droppableIdStart,
+        //         droppableIdEnd,
+        //         droppableIndexStart,
+        //         droppableIndexEnd,
+        //         draggableId } = action.payload;
+        //     // const newState = { ...state };
+        //     //In the same list
+        //     if (droppableIdStart === droppableIdEnd) {
+        //         // const foodOrDrink = state.find(foodOrDrink => droppableIdStart = foodOrDrink.id);
+        //         const foodOrDrink = state[droppableIdStart]
+        //         const menue = foodOrDrink.menue.splice(droppableIndexStart, 1);
+        //         foodOrDrink.menue.splice(droppableIndexEnd, 0, ...menue);
+        //         return { ...state, [droppableIdStart]: foodOrDrink };
+        //     }
         default:
             return state
 

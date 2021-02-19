@@ -5,6 +5,7 @@ const GET_FOOD_OR_DRINK = "foodOrDrink/getFoodOrDrink"
 const CREATE_FOOD_OR_DRINK = "foodOrDrink/createFoodOrDrink"
 const DELETE_FOOD_OR_DRINK = "foodOrDrink/deleteFoodOrDrink"
 const EDIT_FOOD_OR_DRINK = "foodOrDrink/editFoodOrDrink"
+const DRAG_HAPPENED = "dragDrop/dragHappened"
 
 
 const createFoodOrDrinkAction = (body) => ({
@@ -58,6 +59,24 @@ function reducer(state = initialState, action) {
                 }
             })
             return { ...newObject, ...state };
+        case DRAG_HAPPENED:
+            const { droppableIdStart,
+                droppableIdEnd,
+                droppableIndexStart,
+                droppableIndexEnd,
+                draggableId } = action.payload;
+            // const newState = { ...state };
+            //In the same list
+            if (droppableIdStart === droppableIdEnd) {
+                const newState = { ...state }
+                // const card = state.find(foodOrDrink => droppableIdStart = foodOrDrink.id);
+                const list = newState[droppableIdStart];
+                [list[droppableIndexStart], list[droppableIndexEnd]] = [list[droppableIndexEnd], list[droppableIndexStart]];
+                // const foodOrDrink = list.splice(droppableIndexStart, 1);
+                // foodOrDrink.list.splice(droppableIndexEnd, 0, ...list);
+                return { ...state, [droppableIdStart]: list };
+            }
+
         default:
             return state;
     }

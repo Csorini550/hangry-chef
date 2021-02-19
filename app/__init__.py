@@ -48,8 +48,8 @@ app.register_blueprint(inventory_routes, url_prefix='/api/inventory')
 app.register_blueprint(menue_routes, url_prefix='/api/menue')
 app.register_blueprint(qr_code_routes, url_prefix='/api/qr_code')
 app.register_blueprint(table_routes, url_prefix='/api/table')
-app.register_blueprint(menue_food_or_drink_routes,
-                       url_prefix='/api/menue_food_or_drink_routes')
+app.register_blueprint(menue_food_or_drinks_routes,
+                       url_prefix='/api/menue_food_or_drinks')
 
 db.init_app(app)
 Migrate(app, db)

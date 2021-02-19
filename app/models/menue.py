@@ -15,7 +15,7 @@ class Menue(db.Model):
 
 # many to many between foods and menues
     food_or_drinks = db.relationship(
-        "Food_or_drink", secondary="menue_food_or_drinks", back_populates="menues")
+        "Food_or_drink", back_populates="menues")
 
     users = db.relationship('User', back_populates='menues')
     qr_codes = db.relationship('Qr_code', back_populates='menues')

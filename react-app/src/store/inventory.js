@@ -3,6 +3,12 @@ const initialState = {};
 const GET_INVENTORY_BY_USER = 'inventory/getInventoryByUser'
 const CREATE_INVENTORY = 'inventory/createInventory'
 const DELETE_INVENTORY = 'inventory/deleteInventory'
+const EDIT_INVENTORY = 'inventory/editInventory'
+
+const editInventoryAction = (body) => ({
+    type: EDIT_INVENTORY,
+    payload: body
+});
 
 const deleteInventoryAction = (body) => ({
     type: DELETE_INVENTORY,
@@ -43,6 +49,7 @@ export const getInventoryByUser = (userId) => {
     }
 }
 
+
 export const deleteInventory = (inventoryId) => {
     return async (dispatch) => {
         const res = await fetch(`/api/inventory/delete/${inventoryId}`, {
@@ -51,6 +58,22 @@ export const deleteInventory = (inventoryId) => {
         })
         const data = await res.json();
         dispatch(deleteInventoryAction(data));
+    }
+}
+
+export const editInventory = ({ inventoryId, food_item, quantity, market_price }) => async (dispatch) => {
+    const res = await fetch(`/api/inventory/edit/${inventoryId}`, {
+        methd: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            food_item,
+            quantity,
+            market_price
+        })
+    })
+    if (res.ok) {
+        const data = await res.json();
+        return dispatch(editInventory(data));
     }
 }
 
@@ -76,4 +99,4 @@ function reducer(state = initialState, action) {
     }
 }
 
-export default reducer
+export default reducer;

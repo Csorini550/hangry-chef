@@ -6,20 +6,22 @@ class Food_or_drink(db.Model):
     __tablename__ = 'food_or_drinks'
     # __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    menue_id = db.Column(db.Integer, db.ForeignKey('menues.id'))
+    menue_id = db.Column(db.Integer, db.ForeignKey(
+        'menues.id'))
     name = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
     picture = db.Column(db.String)
     description = db.Column(db.String)
 
     menues = db.relationship(
-        "Menue", secondary="menue_food_or_drinks", back_populates="food_or_drinks")
+        "Menue", back_populates="food_or_drinks")
     customers = db.relationship(
         'Customer', secondary="food_or_drink_customers", back_populates="food_or_drinks")
-    tables = db.relationship(
-        'Table', secondary="table_food_or_drinks", back_populates="food_or_drinks")
     ingredients = db.relationship(
         'Ingredient', secondary="ingredient_food_or_drinks", back_populates="food_or_drinks")
+    tables = db.relationship(
+        'Table', secondary="table_food_or_drinks", back_populates="food_or_drinks")
+    # orders = db.relationship("Order", back_populates="orders")
 
     def to_dict(self):
         return {

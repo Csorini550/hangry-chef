@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getInventoryByUser, createInventory, deleteInventory } from '../../store/inventory'
+import { getInventoryByUser, createInventory, deleteInventory, editInventory } from '../../store/inventory'
 import { newIngredient, createIngredient } from '../../store/ingredient'
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
@@ -9,7 +9,10 @@ import "./Inventory.css"
 import Input from '@material-ui/core/Input';
 import { FormLabel, ListItemText } from '@material-ui/core/';
 import FormControl from '@material-ui/core/FormControl';
+import InventoryModal from "../../components/InventoryModal"
+
 const Inventory = () => {
+    const [edit, setEdit] = useState(false);
     const [open, setOpen] = useState(true);
     const [food_item, setFoodItem] = useState("");
     const [quantity, setQuantity] = useState("");
@@ -28,6 +31,14 @@ const Inventory = () => {
     const closeForm = (e) => {
         setOpen(!open);
     };
+
+    const openEdit = () => {
+        setEdit(!edit);
+    };
+
+    const closeEdit = () => {
+        setEdit(!edit)
+    }
 
     const redirectToIngredients = () => {
         history.append("/")
@@ -67,8 +78,13 @@ const Inventory = () => {
 
     const handleDelete = (inventoryId) => {
         // e.preventDefault();
-        dispatch(deleteInventory(inventoryId))
+        dispatch(deleteInventory(inventoryId));
+    };
+
+    const handleEdit = (inventoryId, food_item, quantity, market_price) => {
+        dispatch(editInventory(inventoryId, food_item, quantity, market_price))
     }
+
     const inventories = useSelector(state => {
         return state.inventory
     })
@@ -94,6 +110,8 @@ const Inventory = () => {
                                     <ListItemText>Price: ${inventory.market_price}</ListItemText>
                                 </ul>
                                 <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
+                                {/* <Button type="edit" value="Edit" className='input' > </Button> */}
+                                <InventoryModal inventory_id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
                             </Card>
                         )
                     })}
