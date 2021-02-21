@@ -10,7 +10,7 @@ import "./MenuCreatorButton.css"
 
 
 
-const MenuCreatorButton = () => {
+const MenuCreatorButton = (setFixState) => {
     const [open, setOpen] = useState(false);
     const [menue_name, setMenueName] = useState("");
     const [food_item, setFoodItem] = useState("");
@@ -39,6 +39,7 @@ const MenuCreatorButton = () => {
 
         }
         dispatch(createMenu(newMenu))
+
         closeForm()
     };
 

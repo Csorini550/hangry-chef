@@ -15,9 +15,10 @@ import './CreateMenue.css'
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
     const [header, setHeader] = useState("");
+    // const [] 
 
     const dispatch = useDispatch();
-    const { menueId } = useParams();
+    // const { menueId } = useParams();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
     });
@@ -25,26 +26,24 @@ const CreateMenue = () => {
 
     const menuItems = useSelector((state) => {
         return state.foodOrDrink;
-    })
+    });
     const menus = useSelector((state) => {
         return state.menue;
-    })
+    });
     const ingredients = useSelector((state) => {
         return state.ingredients;
-    })
+    });
 
     const handleDelete = (menuId) => {
+        // e.preventDefault();
         dispatch(deleteMenu(menuId))
     };
 
 
     useEffect(() => {
-        // dispatch(getFoodOrDrink(userId));
-        // dispatch(getIngredientsByUser(userId))
         dispatch(getMenueByUser(userId));
-        // dispatch(createFoodOrDrink(foodOrDrink))
-        // dispatch(createMenue(menueArray))
-    }, [])
+
+    }, []);
 
     const onDragEnd = (result) => {
         //     //cancel drag item tilt here
@@ -60,70 +59,6 @@ const CreateMenue = () => {
 
         dispatch(sort(source.droppableId, destination.droppableId, source.index, destination.index, draggableId))
 
-        // //If list order changes the below code block runs
-        // if (type === "list") {
-        //     const newListOrder = Array.from(boardOrg.listOrder);
-        //     newListOrder.splice(source.index, 1);
-        //     newListOrder.splice(destination.index, 0, draggableId);
-        //     const newContext = {
-        //         ...boardOrg,
-        //         listOrder: newListOrder,
-        //     };
-        //     setBoardOrg(newContext);
-        //     saveBoard(newContext);
-        //     return;
-        // };
-
-        // // Moving inside the same list:
-        // const start = boardOrg.lists[source.droppableId];
-        // const finish = boardOrg.lists[destination.droppableId]
-
-        // if (start === finish) {
-        //     const newCardIds = Array.from(start.cardIds)
-        //     newCardIds.splice(source.index, 1);
-        //     newCardIds.splice(destination.index, 0, draggableId);
-
-        //     const newList = {
-        //         ...start,
-        //         cardIds: newCardIds,
-        //     };
-
-        //     const newContext = {
-        //         ...boardOrg,
-        //         lists: {
-        //             ...boardOrg.lists,
-        //             [newList.id]: newList,
-        //         },
-        //     };
-        //     setBoardOrg(newContext);
-        //     saveBoard(newContext);
-        //     return;
-        // };
-
-        // // Moving from list to list:
-        // const startCardIds = Array.from(start.cardIds);
-        // startCardIds.splice(source.index, 1);
-        // const newStart = {
-        //     ...start,
-        //     cardIds: startCardIds,
-        // };
-
-        // const finishCardIds = Array.from(finish.cardIds);
-        // finishCardIds.splice(destination.index, 0, draggableId);
-        // const newFinish = {
-        //     ...finish,
-        //     cardIds: finishCardIds,
-        // };
-        // const newContext = {
-        //     ...boardOrg,
-        //     lists: {
-        //         ...boardOrg.lists,
-        //         [newStart.id]: newStart,
-        //         [newFinish.id]: newFinish,
-        //     },
-        // };
-        // setBoardOrg(newContext);
-        // saveBoard(newContext);
     };
 
     const menuName = menus[1] ? menus[1].menue_name : ""

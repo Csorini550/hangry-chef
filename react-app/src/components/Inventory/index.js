@@ -19,6 +19,7 @@ const Inventory = () => {
     const [market_price, setMarket_price] = useState("");
     const [price, setPrice] = useState("");
     const [name, setName] = useState("");
+    const [modal, setModal] = useState(false);
     const dispatch = useDispatch();
 
     const loggedInUser = useSelector(state => {
@@ -91,7 +92,7 @@ const Inventory = () => {
     })
     useEffect(() => {
         dispatch(getInventoryByUser(userId));
-    }, [])
+    }, [modal])
 
 
     if (open === true) {
@@ -112,7 +113,7 @@ const Inventory = () => {
                                 </ul>
                                 <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
                                 {/* <Button type="edit" value="Edit" className='input' > </Button> */}
-                                <InventoryModal inventory_Id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
+                                <InventoryModal setModal={setModal} inventory_Id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
                             </Card>
                         )
                     })}

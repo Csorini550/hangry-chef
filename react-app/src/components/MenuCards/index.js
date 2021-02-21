@@ -28,7 +28,8 @@ const MenuCards = ({ text, price, name, menue_id, id, index }) => {
     })
 
 
-    const handleDelete = (id) => {
+    const handleDelete = (e) => {
+        e.preventDefault();
         dispatch(deleteFoodOrDrink(id))
         // history.push(`/create-menue/${userId}`)
 
@@ -61,7 +62,7 @@ const MenuCards = ({ text, price, name, menue_id, id, index }) => {
 
                         </CardContent>
                         <CardActions>
-                            <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(id)}> Delete</Button>
+                            <Button type='delete' value='Delete' className='input' onClick={handleDelete}> Delete</Button>
                             <Button size="small">Customize</Button>
                         </CardActions>
                     </Card>

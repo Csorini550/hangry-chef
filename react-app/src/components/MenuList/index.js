@@ -9,6 +9,7 @@ import MenuActionButton from '../../components/MenuActionButton'
 import { Droppable, Draggable } from "react-beautiful-dnd"
 import './MenuList.css'
 const MenuList = ({ menue_id, index }) => {
+    const [fixState, setFixState] = useState(false);
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -19,7 +20,7 @@ const MenuList = ({ menue_id, index }) => {
     })
     useEffect(() => {
         dispatch(getFoodOrDrink(menue_id));
-    }, [])
+    }, [fixState])
     return (
         // <Draggable draggableId={String(menue_id)} index={index}>
         //     {(provided) => (
@@ -40,7 +41,7 @@ const MenuList = ({ menue_id, index }) => {
                             </div>
                         )
                     })}
-                    <MenuActionButton menue_id={menue_id} />
+                    <MenuActionButton setFixState={setFixState} menue_id={menue_id} />
                     {provided.placeholder}
                 </div>
             )}

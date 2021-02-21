@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const InventoryModal = ({ inventory_Id, name, quant, price }) => {
+const InventoryModal = ({ inventory_Id, name, quant, price, setModal }) => {
     const dispatch = useDispatch();
     const [inventoryId, setInventoryId] = useState(inventory_Id)
     const [food_item, setFoodItem] = useState(name);
@@ -37,12 +37,15 @@ const InventoryModal = ({ inventory_Id, name, quant, price }) => {
         setOpen(true);
     };
 
+
     const handleClose = () => {
         setOpen(false);
     };
-    const handleEdit = (inventoryId, food_item, quantity, market_price) => {
-        // e.preventDefault();
+    const handleEdit = (e) => {
+        e.preventDefault();
         dispatch(editInventory(inventoryId, food_item, quantity, market_price))
+        setModal(true);
+        handleClose();
     }
 
     return (
@@ -65,7 +68,7 @@ const InventoryModal = ({ inventory_Id, name, quant, price }) => {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <Card>
-                            <form onSubmit={handleEdit} style={{ backgroundColor: "#264653" }}>
+                            <form style={{ backgroundColor: "#264653" }}>
 
                                 <FormLabel className="create-venue">
                                     Name of new item
@@ -94,7 +97,7 @@ const InventoryModal = ({ inventory_Id, name, quant, price }) => {
                                         multiple
                                         onChange={(e) => setMarket_price(e.target.value)} />
                                 </FormLabel>
-                                <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Confirm </Button>
+                                <Button style={{ backgroundColor: "#2A9D8F" }} onClick={handleEdit} type="edit">Confirm </Button>
                             </form>
                         </Card >
                     </div>

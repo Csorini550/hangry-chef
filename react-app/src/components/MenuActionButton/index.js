@@ -7,7 +7,7 @@ import Textarea from "react-textarea-autosize"
 import Card from '@material-ui/core/Card';
 import Button from "@material-ui/core/Button";
 import "./MenuActionButton.css"
-const MenuActionButton = ({ menue_id }) => {
+const MenuActionButton = ({ menue_id, setFixState }) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -30,11 +30,12 @@ const MenuActionButton = ({ menue_id }) => {
             menue_id: menue_id
         }
         dispatch(createFoodOrDrink(newItem))
+        setFixState(true)
         closeForm()
     };
-    useEffect(() => {
-        dispatch(getFoodOrDrink(userId));
-    }, []);
+    // useEffect(() => {
+    //      dispatch(getFoodOrDrink(userId));
+    // }, []);
     const openForm = () => {
         setOpen(!open);
     };

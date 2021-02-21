@@ -63,9 +63,10 @@ function reducer(state = initialState, action) {
     let anotherNewState;
     switch (action.type) {
         case CREATE_FOOD_OR_DRINK:
+            // 
             const newItems = [...[action.payload.menue_id], action.payload];
-            return { ...state, [action.payload.menue_id]: newItems };
-
+            return { state, [action.payload.menue_id]: newItems };
+        // return { ...state, [action.payload.id]: action.payload };
         case GET_FOOD_OR_DRINK:
             const newObject = {};
             Object.values(action.payload).forEach(function (foodOrDrink) {
