@@ -14,6 +14,12 @@ const Home = () => {
     return (
         <div>
             <h1>Home Page</h1>
+            <div>
+                Checkout button goes here
+            </div>
+            <div>
+                The menu goes here
+            </div>
         </div>
     )
 

@@ -40,3 +40,13 @@ def delete(foodOrDrinkId):
     db.session.delete(food_or_drink)
     db.session.commit()
     return food_or_drink.to_dict()
+
+
+@food_or_drink_routes.route("/edit/<int:foodOrDrinkId>", methods=["PATCH"])
+def add_list(foodOrDrinkId):
+    data = request.json
+    food_or_drink = Food_or_drink.query.filter(
+        Food_or_drink.id == foodOrDrinkId).first()
+    food_or_drink.picture = data["picture"]
+    db.session.commit()
+    return food_or_drink.to_dict()

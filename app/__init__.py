@@ -17,6 +17,7 @@ from .api.menue_routes import menue_routes
 from .api.qr_code_route import qr_code_routes
 from .api.table_routes import table_routes
 from .api.menue_food_or_drinks_routes import menue_food_or_drinks_routes
+from .api.menu_list_routes import menu_list_routes
 
 from .seeds import seed_commands
 

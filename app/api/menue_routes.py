@@ -47,3 +47,12 @@ def delete(menuId):
     db.session.delete(menu)
     db.session.commit()
     return menu.to_dict()
+
+
+@menue_routes.route("/edit/<int:menuId>", methods=["PATCH"])
+def add_list(menuId):
+    data = request.json
+    menu = Menu.query.filter(Menu.id == menuId).first()
+    menu.picture = data["picture"]
+    db.session.commit()
+    return menu.to_dict()

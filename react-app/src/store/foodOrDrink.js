@@ -1,11 +1,18 @@
 const initialState = {};
 
 
-const GET_FOOD_OR_DRINK = "foodOrDrink/getFoodOrDrink"
-const CREATE_FOOD_OR_DRINK = "foodOrDrink/createFoodOrDrink"
-const DELETE_FOOD_OR_DRINK = "foodOrDrink/deleteFoodOrDrink"
-const EDIT_FOOD_OR_DRINK = "foodOrDrink/editFoodOrDrink"
-const DRAG_HAPPENED = "dragDrop/dragHappened"
+const GET_FOOD_OR_DRINK = "foodOrDrink/getFoodOrDrink";
+const CREATE_FOOD_OR_DRINK = "foodOrDrink/createFoodOrDrink";
+const DELETE_FOOD_OR_DRINK = "foodOrDrink/deleteFoodOrDrink";
+const EDIT_FOOD_OR_DRINK = "foodOrDrink/editFoodOrDrink";
+const DRAG_HAPPENED = "dragDrop/dragHappened";
+const CREATE_MENU_LIST = "foodOrDrink/createMenuList"
+
+
+const createMenuListAction = (body) => ({
+    type: CREATE_MENU_LIST,
+    payload: body
+});
 
 
 const createFoodOrDrinkAction = (body) => ({
@@ -22,6 +29,21 @@ const deleteFoodOrDrinkAction = (body) => ({
     type: DELETE_FOOD_OR_DRINK,
     payload: body
 });
+
+export const createMenuList = (menuId, picture) => {
+    return async (dispatch) => {
+        const res = await fetch(`/api/menue/edit/${menuId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ picture })
+
+        })
+        if (res.ok) {
+            const data = await res.json();
+            return dispatch(createMenuListAction(data));
+        }
+    }
+}
 
 
 export const createFoodOrDrink = (body) => {
@@ -95,6 +117,19 @@ function reducer(state = initialState, action) {
                 // foodOrDrink.list.splice(droppableIndexEnd, 0, ...list);
                 return { ...state, [droppableIdStart]: list };
             }
+
+        // if (droppableIdStart !== droppableIdEnd) {
+        //     const listStart = state[droppableIdStart];
+        //     // pull out cards from list
+        //     const card = listStart.<<menu>>>.splice(droppableIndexStart, 1);
+
+        //     const listEnd = state[droppableIdEnd];
+
+        //     listEnd.<<menu>>.splice(droppableIndexEnd, 0, ...cards);
+        //     return {
+        //         ...state, [droppableIdStart]: listStart, [droppableIdEnd]: listEnd
+        //     }
+        // }
         case DELETE_FOOD_OR_DRINK:
             anotherNewState = { ...state }
             delete anotherNewState[action.payload.id]

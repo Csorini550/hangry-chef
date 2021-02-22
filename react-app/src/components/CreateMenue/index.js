@@ -2,7 +2,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, draggable } from 'react-beautiful-dnd'
-import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
+import { getFoodOrDrink, createFoodOrDrink, createMenuList } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser, sort, deleteMenu } from '../../store/menue'
 import MenuCards from '../../components/MenuCards'
@@ -34,11 +34,20 @@ const CreateMenue = () => {
         return state.ingredients;
     });
 
+    const menu_list = useSelector((state) => {
+        return state.foodOrDrink
+    })
+
     const handleDelete = (menuId) => {
         // e.preventDefault();
         dispatch(deleteMenu(menuId))
     };
-
+    const handleSaveMenu = (menuId) => {
+        dispatch(createMenuList(menuId))
+    }
+    useEffect(() => {
+        console.log(JSON.stringify(menu_list))
+    }, [menu_list])
 
     useEffect(() => {
         dispatch(getMenueByUser(userId));
@@ -70,7 +79,8 @@ const CreateMenue = () => {
                     <div {...provided.droppableProps}
                         ref={provided.innerRef}>
                         <div className="full-menu">
-                            <h1 id="menu-name">{menuName}</h1>
+
+                            <h1 id="menu-name">{menuName} <Button onClick={handleSaveMenu}> Save Menu</Button></h1>
 
                             {menus && Object.values(menus).map((menu, index) => {
                                 return (
