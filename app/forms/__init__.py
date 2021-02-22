@@ -8,4 +8,5 @@ from .new_qr_code import NewQrCodeForm
 from .new_inventory_form import NewInventoryForm
 from .new_table_form import NewTableForm
 from .new_customer_form import NewCustomerForm
+# from .new_order_form import NewOrderForm
 from .new_menue_food_or_drinks_form import NewMenueFoodOrDrinksForm
