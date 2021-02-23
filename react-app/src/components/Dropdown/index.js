@@ -1,14 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import { useSelector, useDispatch } from 'react-redux';
+
+
 
 
 const Dropdown = ({ setAuthenticated }) => {
+  const loggedInUser = useSelector(state => {
+    return state.session.user;
+  })
+  const userId = loggedInUser.id
+
   return (
     <nav>
       <ul>
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink to={`/${userId}`} exact={true} activeClassName="active">
             Home
           </NavLink>
         </li>

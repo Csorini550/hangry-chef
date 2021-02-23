@@ -45,7 +45,7 @@ function App() {
     <BrowserRouter>
       <NavBarHome setAuthenticated={setAuthenticated} />
       <Switch>
-        <Route path="/" exact={true}>
+        <Route path="/:userId" exact={true}>
           <Home />
         </Route>
         <Route path="/login" exact={true}>
@@ -79,7 +79,7 @@ function App() {
         <ProtectedRoute path="/manage-staff/:userId" exact={true} authenticated={authenticated}>
           <ManageStaff />
         </ProtectedRoute>
-        <ProtectedRoute path="/create-qr-code" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/create-qr-code/:userId" exact={true} authenticated={authenticated}>
           <CreateQrCode />
         </ProtectedRoute>
         <ProtectedRoute path="/inventory/:userId" authenticated={authenticated}>

@@ -17,7 +17,7 @@ import './CreateMenue.css'
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
     const [header, setHeader] = useState("");
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
@@ -50,6 +50,7 @@ const CreateMenue = () => {
             user_id: userId
         }
         dispatch(createMenuList(newMenuList))
+        history.push(`/create-qr-code/${userId}`)
     }
     useEffect(() => {
         getMenuList(userId)

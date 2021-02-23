@@ -3,9 +3,14 @@ import { Fab, TextField, TextareaAutosize, Grid } from '@material-ui/core'
 import { ArrowBack, GetApp } from '@material-ui/icons'
 import { Link } from "react-router-dom";
 import QRcode from 'qrcode.react'
+import { useSelector, useDispatch } from 'react-redux';
 
 function CreateQrCode() {
-    const [qr, setQr] = useState('http://localhost:3000/create-menue/1');
+    const loggedInUser = useSelector(state => {
+        return state.session.user;
+    })
+    const userId = loggedInUser.id
+    const [qr, setQr] = useState(`https://hangrychef.herokuapp.com/${userId}`);
     const handleChange = (event) => {
         setQr(event.target.value);
     };
@@ -24,7 +29,7 @@ function CreateQrCode() {
 
     return (
         <div>
-            <Link to="/">
+            <Link to={`/${userId}`}>
                 <Fab style={{ marginRight: 10 }} color="primary">
                     <ArrowBack />
                 </Fab>

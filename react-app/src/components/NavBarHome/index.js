@@ -93,7 +93,7 @@ const NavBarHome = ({ setAuthenticated }) => {
                         </div>
                         <div>
                             <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link to={`/create-qr-code`} id="nav-link">
+                                <Link to={`/create-qr-code/${userId}`} id="nav-link">
                                     Create QR Code
                         </Link>
                             </Typography>
