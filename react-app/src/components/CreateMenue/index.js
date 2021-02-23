@@ -43,6 +43,7 @@ const CreateMenue = () => {
         dispatch(deleteMenu(menuId))
     };
     const handleSaveMenu = (e) => {
+        console.log("why am i not working", JSON.stringify(menuItems))
         e.preventDefault();
         const newMenuList = {
             menu_list: JSON.stringify(menus),

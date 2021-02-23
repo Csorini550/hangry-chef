@@ -10,13 +10,15 @@ menu_list_routes = Blueprint("menu_list", __name__)
 
 @menu_list_routes.route("/<int:userId>")
 def menu_list_by_user(userId):
-    menu_list = Menu_list.query.filter_by(user_id=userId).all()
-    return {menu_list.id: menu_list.to_dict() for menu_list in menu_lists}
+    menu_list = Menu_list.query.filter_by(
+        user_id=userId).order_by(Menu_list.id.desc()).first()
+    return menu_list.to_dict()
 
 
-@menu_list_routes.route("/create", methods=["POST"])
+@ menu_list_routes.route("/create", methods=["POST"])
 def new_menu_list():
     form = NewMenuListForm()
+    print("menu!!!", form.data["menu_list"])
     newMenuList = Menu_list(
         user_id=form.data["user_id"],
         menu_list=form.data["menu_list"],

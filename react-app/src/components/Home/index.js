@@ -8,6 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { common } from '@material-ui/core/colors';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -15,21 +16,25 @@ const Home = () => {
         return state.session.user
     })
     const { userId } = useParams();
-    const menuLists = useSelector((state) => {
+    const menuList = useSelector((state) => {
         return state.menuList
     });
-    const foodOrDrinks = useSelector((state) => {
-        return state.menuList.foodOrDrink
+
+
+    const menuLists = useSelector((state) => {
+        return JSON.parse(state.menuList.menu_list)
     });
-    const menus = useSelector((state) => {
-        return state.menuList.menue
+    const foodOrDrinks = useSelector((state) => {
+        return JSON.parse(state.menuList.food_or_drink_list)
     });
 
     useEffect(() => {
         dispatch(getMenuList(userId));
     }, [])
 
-    // if (!loggedInUser) return <Redirect to="/login" />;
+    console.log(foodOrDrinks)
+    console.log(menuLists)
+
 
     return (
         <div>
@@ -38,31 +43,33 @@ const Home = () => {
                 Checkout button goes here
             </div>
             <div>
-                {/* {menuLists && Object.values(menus).map((menu, index) => {
+                {menuLists && Object.values(menuLists).map((menuList, index) => {
                     return (
-                        <div menue_id={menu.id} className="full-menu-text">
+                        <div className="full-menu-text">
                             <Card>
-                                <h2>{menu.food_item}</h2>
-                                {menuLists && Object.values(foodOrDrinks).map((foodOrDrink) => {
+                                <h2>{menuList.food_item}</h2>
+                                {foodOrDrinks[menuList.id].map((food) => {
                                     return (
-                                        <Card className="food-card">
+                                        <Card style={{ margin: "15px" }} className="food-card">
                                             <CardContent className="menu-card">
                                                 <Typography gutterBottom>
-                                                    <h3>{foodOrDrink.name}</h3>
-                                                <h4>{foodOrDrink.description}</h4>
-                                                <h4>${foodOrDrink.price}</h4>
+                                                    <h3>{food.name}</h3>
+                                                    <h4>{food.description}</h4>
+                                                    <h4>${food.price}</h4>
                                                 </Typography>
-                                                <Button>Add to Cart</Button>
                                             </CardContent>
+                                            <Button>Add to Cart</Button>
                                         </Card>
                                     )
+
                                 })}
+
                             </Card>
                         </div>
                     )
-                })} */}
+                })}
             </div>
-        </div>
+        </div >
     )
 
 }
