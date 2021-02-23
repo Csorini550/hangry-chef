@@ -2,9 +2,11 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, draggable } from 'react-beautiful-dnd'
-import { getFoodOrDrink, createFoodOrDrink, createMenuList } from '../../store/foodOrDrink'
+import { getFoodOrDrink, createFoodOrDrink } from '../../store/foodOrDrink'
 import { getIngredientsByUser } from '../../store/ingredient'
 import { createMenue, getMenueByUser, sort, deleteMenu } from '../../store/menue'
+import { createMenuList, getMenuList } from "../../store/menuList"
+// import { createMenuList } from "../../store/menuList"
 import MenuCards from '../../components/MenuCards'
 import MenuList from '../../components/MenuList'
 import MenuActionButton from '../../components/MenuActionButton'
@@ -15,10 +17,8 @@ import './CreateMenue.css'
 const CreateMenue = () => {
     const [menuTitle, setMenuTitle] = useState("");
     const [header, setHeader] = useState("");
-    // const [] 
 
     const dispatch = useDispatch();
-    // const { menueId } = useParams();
     const loggedInUser = useSelector((state) => {
         return state.session.user;
     });
@@ -34,20 +34,26 @@ const CreateMenue = () => {
         return state.ingredients;
     });
 
-    const menu_list = useSelector((state) => {
+    const menuList = useSelector((state) => {
         return state.foodOrDrink
-    })
+    });
 
     const handleDelete = (menuId) => {
         // e.preventDefault();
         dispatch(deleteMenu(menuId))
     };
-    const handleSaveMenu = (menuId) => {
-        dispatch(createMenuList(menuId))
+    const handleSaveMenu = (e) => {
+        e.preventDefault();
+        const newMenuList = {
+            menu_list: JSON.stringify(menus),
+            food_or_drink_list: JSON.stringify(menuItems),
+            user_id: userId
+        }
+        dispatch(createMenuList(newMenuList))
     }
     useEffect(() => {
-        console.log(JSON.stringify(menu_list))
-    }, [menu_list])
+        getMenuList(userId)
+    }, [menuList])
 
     useEffect(() => {
         dispatch(getMenueByUser(userId));

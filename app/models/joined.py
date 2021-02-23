@@ -2,10 +2,10 @@ from .db import db
 from sqlalchemy.orm import relationship, backref
 
 
-Menue_food_or_drinks = db.Table("menue_food_or_drinks",
-                                db.Column("menue_id", db.Integer, db.ForeignKey(
-                                    "menues.id"), primary_key=False),
-                                db.Column("food_or_drink_id", db.Integer, db.ForeignKey("food_or_drinks.id"), primary_key=False))
+# Menue_food_or_drinks = db.Table("menue_food_or_drinks",
+#                                 db.Column("menue_id", db.Integer, db.ForeignKey(
+#                                     "menues.id"), primary_key=False),
+#                                 db.Column("food_or_drink_id", db.Integer, db.ForeignKey("food_or_drinks.id"), primary_key=False))
 
 
 Food_or_drink_customers = db.Table("food_or_drink_customers",

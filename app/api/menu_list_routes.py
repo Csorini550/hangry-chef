@@ -24,4 +24,4 @@ def new_menu_list():
     )
     db.session.add(newMenuList)
     db.session.commit()
-    return newInventory.to_dict()
+    return newMenuList.to_dict()

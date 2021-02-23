@@ -16,7 +16,7 @@ from .api.inventory_routes import inventory_routes
 from .api.menue_routes import menue_routes
 from .api.qr_code_route import qr_code_routes
 from .api.table_routes import table_routes
-from .api.menue_food_or_drinks_routes import menue_food_or_drinks_routes
+# from .api.menue_food_or_drinks_routes import menue_food_or_drinks_routes
 from .api.menu_list_routes import menu_list_routes
 
 from .seeds import seed_commands
@@ -49,8 +49,9 @@ app.register_blueprint(inventory_routes, url_prefix='/api/inventory')
 app.register_blueprint(menue_routes, url_prefix='/api/menue')
 app.register_blueprint(qr_code_routes, url_prefix='/api/qr_code')
 app.register_blueprint(table_routes, url_prefix='/api/table')
-app.register_blueprint(menue_food_or_drinks_routes,
-                       url_prefix='/api/menue_food_or_drinks')
+app.register_blueprint(menu_list_routes, url_prefix='/api/menu_list')
+# app.register_blueprint(menue_food_or_drinks_routes,
+#                        url_prefix='/api/menue_food_or_drinks')
 
 db.init_app(app)
 Migrate(app, db)

@@ -10,4 +10,4 @@ from .new_table_form import NewTableForm
 from .new_customer_form import NewCustomerForm
 # from .new_order_form import NewOrderForm
 from .new_menu_list import NewMenuListForm
-from .new_menue_food_or_drinks_form import NewMenueFoodOrDrinksForm
+# from .new_menue_food_or_drinks_form import NewMenueFoodOrDrinksForm

@@ -4,7 +4,7 @@ WORKDIR /react-app
 COPY react-app/. .
 
 # You have to set this because it should be set during build time.
-ENV REACT_APP_BASE_URL="postgres://ojiyntbiddhgpz:a283c283b46c558abdb2740d819b54fdb26780b3754305d73bc65e78eccd7df3@ec2-100-24-139-146.compute-1.amazonaws.com:5432/dfi4f226q0mnaf"
+ENV REACT_APP_BASE_URL="postgres://etmjuhtmdsiyiq:261b723279f3185343e67ab11673cc823ff0c93f6fb6350c06c7b97aa99c4494@ec2-52-70-67-123.compute-1.amazonaws.com:5432/d62q2b94la0gie"
 # Build our React App
 RUN npm install
 RUN npm run build
