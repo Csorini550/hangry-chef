@@ -9,8 +9,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { common } from '@material-ui/core/colors';
+import Cart from "../../components/Cart"
+import { addToCart } from "../../store/cart"
 
 const Home = () => {
+    const [cart, setCart] = useState()
     const dispatch = useDispatch();
     const loggedInUser = useSelector(state => {
         return state.session.user
@@ -35,12 +38,17 @@ const Home = () => {
     console.log(foodOrDrinks)
     console.log(menuLists)
 
+    const handleAddItem = (food) => {
+        // e.preventDefault();
+        dispatch(addToCart(food.name, food.price))
+    }
+
 
     return (
         <div>
             <h1>Home Page</h1>
             <div>
-                Checkout button goes here
+                <Cart />
             </div>
             <div>
                 {menuLists && Object.values(menuLists).map((menuList, index) => {
@@ -58,7 +66,7 @@ const Home = () => {
                                                     <h4>${food.price}</h4>
                                                 </Typography>
                                             </CardContent>
-                                            <Button>Add to Cart</Button>
+                                            <Button onClick={handleAddItem}>Add to Cart</Button>
                                         </Card>
                                     )
 

@@ -12,7 +12,7 @@ import customer from "./customer"
 import employee2 from "./employee2"
 import dragDrop from "./dragDrop"
 import menuList from "./menuList"
-
+import cart from "./cart"
 // Reducer
 const rootReducer = combineReducers({
     session,
@@ -24,7 +24,8 @@ const rootReducer = combineReducers({
     table,
     customer,
     employee2,
-    menuList
+    menuList,
+    cart
     // dragDrop
 })
 
