@@ -87,9 +87,10 @@ const CreateMenue = () => {
                     <div {...provided.droppableProps}
                         ref={provided.innerRef}>
                         <div className="full-menu">
-
-                            <h1 id="menu-name">{menuName} <Button onClick={handleSaveMenu}> Save Menu</Button></h1>
-
+                            <div id="menu-name">
+                                <h1 >{menuName} </h1>
+                                <Button onClick={handleSaveMenu}> Save Menu</Button>
+                            </div>
                             {menus && Object.values(menus).map((menu, index) => {
                                 return (
                                     <div menue_id={menu.id} className="full-menu-text">

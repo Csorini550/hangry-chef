@@ -100,7 +100,7 @@ const Inventory = () => {
 
         return (
             <div>
-                <Button style={{ backgroundColor: "#F4A261" }} onClick={openForm} >Add new Inventory</Button>
+
                 <h1>Inventory</h1>
                 <div className="inventory-main">
                     {inventories && Object.values(inventories).map((inventory, i) => {
@@ -118,7 +118,8 @@ const Inventory = () => {
                         )
                     })}
                 </div>
-                <Button style={{ backgroundColor: "#F4A261", alignItems: "center" }} onClick={redirectToIngredients}>Want to checkout your ingredients?</Button>
+                <Button style={{ backgroundColor: "#F4A261" }} onClick={openForm} >Add new Inventory</Button>
+                {/* <Button style={{ backgroundColor: "#F4A261", alignItems: "center" }} onClick={redirectToIngredients}>Want to checkout your ingredients?</Button> */}
             </div>
         )
     } else {
@@ -155,7 +156,7 @@ const Inventory = () => {
                     </FormLabel>
                     <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Add as a new inventory </Button>
                 </form>
-                <form onSubmit={handleDoubleSubmit}>
+                {/* <form onSubmit={handleDoubleSubmit}>
                     <h3> Do you also want to add this item as an ingredient to be used in a meal?</h3>
                     <FormLabel className="create-venue">
                         Do you want to call this item something different on your menu?
@@ -178,7 +179,7 @@ const Inventory = () => {
                     </FormLabel>
                     <Button style={{ backgroundColor: "#2A9D8F" }} type="submit">Submit as a new ingredient as well</Button>
 
-                </form>
+                </form> */}
             </Card >
         )
     }

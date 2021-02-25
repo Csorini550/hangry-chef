@@ -66,9 +66,9 @@ const InventoryModal = ({ inventory_Id, name, quant, price, setModal }) => {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
+                    <div style={{ marginTop: "40px", display: "flex", alignItems: "center", justifyContent: "center" }} className={classes.paper}>
                         <Card>
-                            <form style={{ backgroundColor: "#264653" }}>
+                            <form >
 
                                 <FormLabel className="create-venue">
                                     Name of new item

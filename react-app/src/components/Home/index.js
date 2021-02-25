@@ -11,17 +11,15 @@ import Typography from '@material-ui/core/Typography';
 import { common } from '@material-ui/core/colors';
 import Cart from "../../components/Cart"
 import { addToCart } from "../../store/cart"
+import AddToCart from "../../components/AddToCart"
 
 const Home = () => {
-    const [cart, setCart] = useState()
+    const [cart, setCart] = useState([])
     const dispatch = useDispatch();
-    const loggedInUser = useSelector(state => {
-        return state.session.user
-    })
     const { userId } = useParams();
-    const menuList = useSelector((state) => {
-        return state.menuList
-    });
+    // const menuList = useSelector((state) => {
+    //     return state.menuList
+    // });
 
 
     const menuLists = useSelector((state) => {
@@ -35,12 +33,11 @@ const Home = () => {
         dispatch(getMenuList(userId));
     }, [])
 
-    console.log(foodOrDrinks)
-    console.log(menuLists)
-
-    const handleAddItem = (food) => {
+    const handleAddItem = (item) => {
+        setCart([...cart, item])
         // e.preventDefault();
-        dispatch(addToCart(food.name, food.price))
+        // dispatch(addToCart(food.name, food.price))
+
     }
 
 
@@ -48,9 +45,10 @@ const Home = () => {
         <div>
             <h1>Home Page</h1>
             <div>
-                <Cart />
+
             </div>
             <div>
+                <Cart items={cart} />
                 {menuLists && Object.values(menuLists).map((menuList, index) => {
                     return (
                         <div className="full-menu-text">
@@ -66,7 +64,8 @@ const Home = () => {
                                                     <h4>${food.price}</h4>
                                                 </Typography>
                                             </CardContent>
-                                            <Button onClick={handleAddItem}>Add to Cart</Button>
+                                            {/* <AddToCart items={food.name, food.price} /> */}
+                                            <Button onClick={() => handleAddItem({ [food.id]: { name: food.name, price: food.price } })}>Add to Cart</Button>
                                         </Card>
                                     )
 

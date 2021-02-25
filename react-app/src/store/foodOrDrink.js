@@ -86,8 +86,8 @@ function reducer(state = initialState, action) {
     switch (action.type) {
         case CREATE_FOOD_OR_DRINK:
             // 
-            const newItems = [...[action.payload.menue_id], action.payload];
-            return { state, [action.payload.menue_id]: newItems };
+            const newItems = [...state[action.payload.menue_id], action.payload];
+            return { ...state, [action.payload.menue_id]: newItems };
         // return { ...state, [action.payload.id]: action.payload };
         case GET_FOOD_OR_DRINK:
             const newObject = {};
@@ -132,11 +132,13 @@ function reducer(state = initialState, action) {
         // }
         case DELETE_FOOD_OR_DRINK:
             anotherNewState = { ...state }
-            delete anotherNewState[action.payload.id]
+
+            const menu = anotherNewState[action.payload.menue_id]
+            const newFoods = menu.filter(item => item.id !== action.payload.id)
+            anotherNewState[action.payload.menue_id] = newFoods;
             return anotherNewState;
         default:
             return state;
     }
 }
-
 export default reducer;

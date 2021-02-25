@@ -1,5 +1,6 @@
 
 .full-menu {
+    margin-top: 160px;
     border-radius: 3px;
     width: 1300px;
     height: 100%;
@@ -15,6 +16,7 @@
 }
 
 #menu-name { 
+    /* margin-top: 20px; */
     overflow: hidden;
     white-space: nowrap;
     color:black;

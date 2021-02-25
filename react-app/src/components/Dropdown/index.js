@@ -20,7 +20,7 @@ const Dropdown = ({ setAuthenticated }) => {
             Home
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
@@ -34,7 +34,7 @@ const Dropdown = ({ setAuthenticated }) => {
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </li>

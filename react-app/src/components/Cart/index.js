@@ -8,7 +8,7 @@ import { Button, Input, FormLabel, Typography } from "@material-ui/core";
 
 
 
-const Cart = (cart) => {
+const Cart = (items) => {
 
     const [open, setOpen] = useState(false);
     const [tipp, setTipp] = useState("");
@@ -22,7 +22,7 @@ const Cart = (cart) => {
     const loggedInUser = useSelector(state => {
         return state.session.user;
     });
-
+    console.log("my Items", items)
     const handlePurchase = (e) => {
         e.preventDefault();
         const items = {
@@ -45,11 +45,11 @@ const Cart = (cart) => {
     if (open === true) {
         return (
             <div>
-                {cart && cart.map((item) => {
+                {items && items.map((item) => {
                     return (
                         <Card>
                             <Typography gutterBottom>
-                                {item}
+                                <h1>{item.name}</h1>
                             </Typography>
                         </Card>
                     )
@@ -70,10 +70,29 @@ const Cart = (cart) => {
                    <Input
                             style={{ margin: "20px" }}
                             value={server_rating}
+                            type="number"
+                            multiple
+                            onChange={(e) => setServerReview(e.target.value)} />
+                    </FormLabel>
+                    {/* <FormLabel>
+                        Total price
+                   <Input
+                            style={{ margin: "20px" }}
+                            value={total_price}
+                            type="number"
+                            multiple
+                            onChange={(e) => setServerReview(e.target.value)} />
+                    </FormLabel> */}
+                    <FormLabel>
+                        Issue with order
+                   <Input
+                            style={{ margin: "20px" }}
+                            value={order_issue}
                             type="text"
                             multiple
                             onChange={(e) => setServerReview(e.target.value)} />
                     </FormLabel>
+
                     <Button onClick={handlePurchase}>Continue to Payment</Button>
                 </form>
                 <h1>Cart</h1>
