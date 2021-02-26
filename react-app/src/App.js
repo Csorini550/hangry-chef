@@ -19,6 +19,7 @@ import { restoreUser } from "./store/session"
 import MenuList from "./components/MenuList"
 import MenuCards from "./components/MenuCards"
 import CreateQrCode from "./components/CreateQrCode"
+import Payment from "./components/Payment"
 // import ManageTables from "./components/ManageTables"
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
       <Switch>
         <Route path="/:userId" exact={true}>
           <Home />
+        </Route>
+        <Route path="/paymentpayment" exact={true}>
+          <Payment />
         </Route>
         <Route path="/login" exact={true}>
           <Login

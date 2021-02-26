@@ -50,8 +50,8 @@ function reducer(state = initialState, action) {
             })
             return { ...newObj, ...state };
         case CREATE_CUSTOMER:
-            const newItems = [...state[action.payload.table_number], action.payload];
-            return { ...state, [action.payload.table_number]: newItems };
+            // const newItems = [...state[action.payload.id], action.payload];
+            return { ...state, [action.payload.id]: action.payload };
         default:
             return state;
     }

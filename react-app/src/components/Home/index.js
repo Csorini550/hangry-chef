@@ -43,12 +43,12 @@ const Home = () => {
 
     return (
         <div>
-            <h1>Home Page</h1>
+            <h1>Menu</h1>
             <div>
 
             </div>
             <div>
-                <Cart items={cart} />
+                <Cart items={cart} cart={cart} setCart={cart} />
                 {menuLists && Object.values(menuLists).map((menuList, index) => {
                     return (
                         <div className="full-menu-text">
@@ -64,8 +64,8 @@ const Home = () => {
                                                     <h4>${food.price}</h4>
                                                 </Typography>
                                             </CardContent>
-                                            {/* <AddToCart items={food.name, food.price} /> */}
-                                            <Button onClick={() => handleAddItem({ [food.id]: { name: food.name, price: food.price } })}>Add to Cart</Button>
+
+                                            <Button onClick={() => handleAddItem({ name: food.name, price: food.price, id: food.id })}>Add to Cart</Button>
                                         </Card>
                                     )
 
