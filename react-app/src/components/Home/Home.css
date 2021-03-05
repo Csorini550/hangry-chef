@@ -1,0 +1,13 @@
+.full-menu-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-menu-text h2 {
+    text-align: center;    
+}
+
+.home-container { 
+    background-color:rgb(38, 70, 83);
+}

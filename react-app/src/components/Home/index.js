@@ -13,6 +13,7 @@ import Cart from "../../components/Cart"
 import { addToCart } from "../../store/cart"
 import AddToCart from "../../components/AddToCart"
 import Login from "../../components/Login"
+import "./Home.css"
 
 const Home = ({ authenticated, setAuthenticated }) => {
     const [cart, setCart] = useState([])
@@ -57,16 +58,16 @@ const Home = ({ authenticated, setAuthenticated }) => {
                 <div>
 
                 </div>
-                <div>
+                <div className="home-container">
                     <Cart items={cart} cart={cart} setCart={cart} />
                     {menuLists && Object.values(menuLists).map((menuList, index) => {
                         return (
                             <div className="full-menu-text">
-                                <Card>
+                                <Card style={{ margin: "15px", alignItems: "center", columns: "1", backgroundColor: "rgb(42, 157, 143)" }}>
                                     <h2>{menuList.food_item}</h2>
                                     {foodOrDrinks && foodOrDrinks[menuList.id].map((food) => {
                                         return (
-                                            <Card style={{ margin: "15px" }} className="food-card">
+                                            <Card style={{ margin: "15px", width: "400px", backgroundColor: "rgb(233, 196, 106)" }} className="food-card">
                                                 <CardContent className="menu-card">
                                                     <Typography gutterBottom>
                                                         <h3>{food.name}</h3>
