@@ -66,6 +66,13 @@ const NavBarHome = ({ authenticated, setAuthenticated }) => {
                         </IconButton>
                         <div>
                             <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                <Link style={{ color: "#E9C46A" }} to={`/${userId}`} exact={true} >
+                                    Home
+          </Link>
+                            </Typography>
+                        </div>
+                        <div>
+                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
                                 <Link style={{ color: "#E9C46A" }} to={`/create-menue/${userId}`} id="nav-link">
                                     Create Menu
                         </Link>

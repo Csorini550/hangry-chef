@@ -14,13 +14,13 @@ const Dropdown = ({ setAuthenticated }) => {
 
   return (
     <nav>
-      <ul>
+      {/* <ul>
         <li>
           <NavLink to={`/${userId}`} exact={true} activeClassName="active">
             Home
           </NavLink>
         </li>
-        {/* <li>
+        <li>
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
@@ -35,10 +35,10 @@ const Dropdown = ({ setAuthenticated }) => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
+      {/* <li> */}
+      <LogoutButton setAuthenticated={setAuthenticated} />
+      {/* </li> */}
+      {/* </ul> */}
     </nav>
   );
 }

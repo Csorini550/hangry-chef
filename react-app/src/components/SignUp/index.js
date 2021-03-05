@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-// import './SignupForm.css';
+import './SignUp.css';
 
 function SignUp() {
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ function SignUp() {
 
     if (sessionUser) return <Redirect to="/" />;
     return (
-        <>
+        <div className="signup-main">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
@@ -86,7 +86,7 @@ function SignUp() {
                 </label>
                 <button type="submit">Sign Up</button>
             </form>
-        </>
+        </div>
     );
 }
 
