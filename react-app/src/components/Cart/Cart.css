@@ -1,0 +1,17 @@
+.cart-content { 
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+#cart-checkout {
+    background-color: white;
+    border: 3px solid black;
+    margin: 10px;
+}
+
+.form-label { 
+    margin-left: 10px;
+    display: inline-block;
+    flex-direction: column;
+}

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeeByUser, createEmployee, deleteEmployee } from '../../store/employee'
-import Button from "@material-ui/core/Button";
+import { Button, Card } from "@material-ui/core";
 import "./ManageStaff.css";
 
 const ManageStaff = () => {
@@ -124,11 +124,13 @@ const ManageStaff = () => {
                     <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm}>Add Employee</Button>
                     {employees && Object.values(employees).map((employee) => {
                         return (
-                            <div>
-                                <Link className="staff-link" to={`/staff/${employee.id}`} >
-                                    <h3>{employee.first_name} {employee.last_name}</h3>
-                                </Link>
-                                <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(employee.id)}> Delete</Button>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                <Card style={{ width: "200px", textAlign: "center", margin: "20px", left: "50%" }}>
+                                    <Link className="staff-link" to={`/staff/${employee.id}`} >
+                                        <h3>{employee.first_name} {employee.last_name}</h3>
+                                    </Link>
+                                    <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(employee.id)}> Delete</Button>
+                                </Card>
                             </div>
                         )
                     })}

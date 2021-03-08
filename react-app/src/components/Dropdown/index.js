@@ -1,12 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector, useDispatch } from 'react-redux';
+import Login from "../../components/Login"
+import "./Dropdown.css"
 
 
-
-
-const Dropdown = ({ setAuthenticated }) => {
+const Dropdown = ({ authenticated, setAuthenticated }) => {
   const loggedInUser = useSelector(state => {
     return state.session.user;
   })
@@ -36,7 +36,15 @@ const Dropdown = ({ setAuthenticated }) => {
           </NavLink>
         </li> */}
       {/* <li> */}
-      <LogoutButton setAuthenticated={setAuthenticated} />
+      <div className="dropdown-container">
+        <LogoutButton setAuthenticated={setAuthenticated} />
+        <button>
+          <Link to="/login" exact={true} activeClassName="active">
+            Login
+          </Link>
+        </button>
+      </div>
+      {/* <Login setAuthenticated={setAuthenticated} authenticated={authenticated} /> */}
       {/* </li> */}
       {/* </ul> */}
     </nav>

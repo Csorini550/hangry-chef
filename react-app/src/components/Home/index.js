@@ -13,6 +13,8 @@ import Cart from "../../components/Cart"
 import { addToCart } from "../../store/cart"
 import AddToCart from "../../components/AddToCart"
 import Login from "../../components/Login"
+
+
 import "./Home.css"
 
 const Home = ({ authenticated, setAuthenticated }) => {
@@ -24,13 +26,15 @@ const Home = ({ authenticated, setAuthenticated }) => {
     //     return state.menuList
     // });
 
-
     const menuLists = useSelector((state) => {
         return JSON.parse(state.menuList.menu_list)
     });
+    console.log("im here!!", menuLists)
     const foodOrDrinks = useSelector((state) => {
         return JSON.parse(state.menuList.food_or_drink_list)
     });
+
+    console.log("FOOD!!!", foodOrDrinks)
 
     useEffect(() => {
         dispatch(getMenuList(userId));
@@ -48,24 +52,26 @@ const Home = ({ authenticated, setAuthenticated }) => {
     const closeForm = () => {
         setOpen(!open);
     };
+    console.log("OBJECT", Object.values(menuLists))
 
     if (Object.values(menuLists).length === 0) return null;
     if (open === false) {
         return (
             <div>
                 <h1>Menu</h1>
-                <Button onClick={openForm}>Login</Button>
+                {/* <Button onClick={openForm}>Login</Button> */}
                 <div>
 
                 </div>
                 <div className="home-container">
                     <Cart items={cart} cart={cart} setCart={cart} />
-                    {menuLists && Object.values(menuLists).map((menuList, index) => {
+                    {menuLists && Object.values(menuLists)?.map((menuList, index) => {
+                        console.log(menuList, "im a menulist!!!!!")
                         return (
                             <div className="full-menu-text">
                                 <Card style={{ margin: "15px", alignItems: "center", columns: "1", backgroundColor: "rgb(42, 157, 143)" }}>
                                     <h2>{menuList.food_item}</h2>
-                                    {foodOrDrinks && foodOrDrinks[menuList.id].map((food) => {
+                                    {foodOrDrinks && foodOrDrinks[menuList.id]?.map((food) => {
                                         return (
                                             <Card style={{ margin: "15px", width: "400px", backgroundColor: "rgb(233, 196, 106)" }} className="food-card">
                                                 <CardContent className="menu-card">
@@ -92,7 +98,6 @@ const Home = ({ authenticated, setAuthenticated }) => {
     } else {
         return (
             <div>
-                <Login setAuthenticated={setAuthenticated} authenticated={authenticated} />
                 <Button onClick={closeForm}>Cancel</Button>
             </div>
         )

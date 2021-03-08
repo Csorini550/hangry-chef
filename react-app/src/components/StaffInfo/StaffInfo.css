@@ -12,5 +12,10 @@ overflow: hidden;
 .staff-salary { 
    /* float: left */
    display: inline-block;
-    /* margin-left: 50%; */
+   /* margin-left: 20px; */
+    margin-left: 50%;
+}
+
+.card-content { 
+    margin-left: 20px;
 }

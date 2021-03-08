@@ -6,7 +6,7 @@ import Icon from "@material-ui/core/Icon";
 import Card from '@material-ui/core/Card';
 import { Button, Input, FormLabel, Typography } from "@material-ui/core";
 import ReactStars from "react-rating-stars-component"
-
+import "./Cart.css"
 
 
 const Cart = ({ items, cart, setCart }) => {
@@ -64,20 +64,21 @@ const Cart = ({ items, cart, setCart }) => {
                 <div>
                     {items && items.map((item) => {
                         return (
-                            <Card>
-                                <Typography gutterBottom>
-                                    <h1>{item.name} ${item.price}</h1>
-                                </Typography>
-                                <Button >x</Button>
-                            </Card>
-
+                            <div className="cart-content">
+                                <Card style={{ width: "300px", margin: "20px" }}>
+                                    <Typography gutterBottom>
+                                        <h1>{item.name} ${item.price}</h1>
+                                    </Typography>
+                                    <Button >x</Button>
+                                </Card>
+                            </div>
                         )
                     })
                     }
                     <h2>Total Price: ${cartTotal}</h2>
                 </div>
-                <form>
-                    <FormLabel>
+                <form id="cart-checkout">
+                    <FormLabel className="form-label">
                         Table Number
                    <Input
                             style={{ margin: "20px" }}
@@ -86,7 +87,7 @@ const Cart = ({ items, cart, setCart }) => {
                             multiple
                             onChange={(e) => setTableNumber(e.target.value)} />
                     </FormLabel>
-                    <FormLabel>
+                    <FormLabel className="form-label">
                         How was your server?
                    <Input
                             style={{ margin: "20px" }}
@@ -95,7 +96,7 @@ const Cart = ({ items, cart, setCart }) => {
                             multiple
                             onChange={(e) => setServerReview(e.target.value)} />
                     </FormLabel>
-                    <FormLabel>
+                    <FormLabel className="form-label">
                         Server Rating
                         <ReactStars
                             count={5}
@@ -117,7 +118,7 @@ const Cart = ({ items, cart, setCart }) => {
 
                     </FormLabel>
 
-                    <FormLabel>
+                    <FormLabel className="form-label">
                         Tip: $
                    <Input
                             style={{ margin: "20px" }}
@@ -126,7 +127,7 @@ const Cart = ({ items, cart, setCart }) => {
                             multiple
                             onChange={(e) => setTipp(e.target.value)} />
                     </FormLabel>
-                    <FormLabel>
+                    <FormLabel className="form-label">
                         Issue with order
                    <Input
                             style={{ margin: "20px" }}
