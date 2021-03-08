@@ -6,3 +6,9 @@
 .staff-link:hover {
     color: #F4A261;
 }
+
+.stupid-form { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

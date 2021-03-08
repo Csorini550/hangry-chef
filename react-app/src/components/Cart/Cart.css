@@ -15,3 +15,8 @@
     display: inline-block;
     flex-direction: column;
 }
+
+.rating {
+    margin: 10px;
+    margin-top: 20px;
+}

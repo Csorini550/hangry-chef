@@ -31,6 +31,7 @@ const NavBarHome = ({ authenticated, setAuthenticated }) => {
     const [auth, setAuth] = React.useState(true);
     // const [authenticated, setA] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [profile, setProfile] = useState(false)
     const open = Boolean(anchorEl);
     const [dropdown, setDropdown] = useState(false);
 
@@ -43,109 +44,214 @@ const NavBarHome = ({ authenticated, setAuthenticated }) => {
         setAuth(event.target.checked);
     };
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleMenu = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
+    const handleOpen = (e) => {
+        setProfile(!profile)
+    }
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const handleClose = (e) => {
+        setProfile(!profile)
+    }
+    // const handleClose = () => {
+    //     setAnchorEl(null);
+    // };
     // <LogoutButton setAuthenticated={setAuthenticated} />
-    return (
-        <>
-            <div className={classes.root}>
-                {/* <FormGroup>
+
+    if (profile === false) {
+        return (
+            <>
+                <div className={classes.root}>
+                    {/* <FormGroup>
                     <FormControlLabel
                         control={<Switch setAuthenticated={setAuthenticated} onChange={handleChange} aria-label="login switch" />}
                         label={authenticated ? 'Logout' : 'Login'}
                     />
                 </FormGroup> */}
-                <AppBar position="static">
-                    <Toolbar style={{ backgroundColor: "#264653", color: "#E9C46A" }}>
-                        <IconButton edge="start" style={{ color: "#E9C46A" }} className={classes.menuButton} color="inherit" aria-label="menu">
-                            {/* <MenuIcon /> */}
-                        </IconButton>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/${userId}`} exact={true} >
-                                    Home
-          </Link>
-                            </Typography>
-                        </div>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/create-menue/${userId}`} id="nav-link">
-                                    Create Menu
-                        </Link>
-                            </Typography>
-                        </div>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/manage-staff/${userId}`} id="nav-link">
-                                    Manage Staff
-                        </Link>
-                            </Typography>
-                        </div>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/manage-tables/${userId}`} id="nav-link">
-                                    Manage Tables
-                        </Link>
-                            </Typography>
-                        </div>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/inventory/${userId}`} id="nav-link">
-                                    Inventory
-                        </Link>
-                            </Typography>
-                        </div>
-                        <div>
-                            <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
-                                <Link style={{ color: "#E9C46A" }} to={`/create-qr-code/${userId}`} id="nav-link">
-                                    Create QR Code
-                        </Link>
-                            </Typography>
-                        </div>
-                        {auth && (
+                    <AppBar position="static" >
+                        <Toolbar style={{ backgroundColor: "#264653", color: "#E9C46A", display: "flex", justifyContent: "space-around" }}>
+                            <IconButton edge="start" style={{ color: "#E9C46A" }} className={classes.menuButton} color="inherit" aria-label="menu">
+                                {/* <MenuIcon /> */}
+                            </IconButton>
                             <div>
-                                <IconButton
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleMenu}
-                                    color="inherit"
-                                >
-                                    <AccountCircle />
-                                </IconButton>
-                                <div
-                                    id="menu-appbar"
-                                    anchorEl={anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={open}
-                                    onClose={handleClose}
-                                >
-                                    <MenuItem onClick={handleClose}>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/${userId}`} exact={true} id="nav-link" >
+                                        Home
+          </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/create-menue/${userId}`} id="nav-link">
+                                        Create Menu
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/manage-staff/${userId}`} id="nav-link">
+                                        Manage Staff
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/manage-tables/${userId}`} id="nav-link">
+                                        Manage Tables
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/inventory/${userId}`} id="nav-link">
+                                        Inventory
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/create-qr-code/${userId}`} id="nav-link">
+                                        Create QR Code
+                        </Link>
+                                </Typography>
+                            </div>
+                            {auth && (
+                                <div>
+                                    <IconButton
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleOpen}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                    <div
+                                        id="menu-appbar"
+                                        // anchorEl={anchorEl}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={open}
+                                        onClose={handleClose}
+                                    >
+                                        <MenuItem style={{ marginTop: "-15px" }} onClick={handleClose}>
+
+                                        </MenuItem>
+                                        {/* <Dropdown setAuthenticated={setAuthenticated} /> */}
+
+                                    </div>
+                                </div>
+                            )}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <div className={classes.root}>
+                    {/* <FormGroup>
+                    <FormControlLabel
+                        control={<Switch setAuthenticated={setAuthenticated} onChange={handleChange} aria-label="login switch" />}
+                        label={authenticated ? 'Logout' : 'Login'}
+                    />
+                </FormGroup> */}
+                    <AppBar position="static">
+                        <Toolbar style={{ backgroundColor: "#264653", color: "#E9C46A", display: "flex", justifyContent: "space-around" }}>
+                            <IconButton edge="start" style={{ color: "#E9C46A" }} className={classes.menuButton} color="inherit" aria-label="menu">
+                                {/* <MenuIcon /> */}
+                            </IconButton>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/${userId}`} exact={true} id="nav-link" >
+                                        Home
+          </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/create-menue/${userId}`} id="nav-link">
+                                        Create Menu
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/manage-staff/${userId}`} id="nav-link">
+                                        Manage Staff
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/manage-tables/${userId}`} id="nav-link">
+                                        Manage Tables
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/inventory/${userId}`} id="nav-link">
+                                        Inventory
+                        </Link>
+                                </Typography>
+                            </div>
+                            <div>
+                                <Typography variant="h6" className={classes.title} style={{ margin: "30px" }}>
+                                    <Link style={{ color: "#E9C46A" }} to={`/create-qr-code/${userId}`} id="nav-link">
+                                        Create QR Code
+                        </Link>
+                                </Typography>
+                            </div>
+                            {auth && (
+                                <div>
+                                    <IconButton
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleOpen}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                    <div
+                                        id="menu-appbar"
+                                        // anchorEl={anchorEl}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={open}
+                                        onClose={handleClose}
+                                    >
+                                        <MenuItem onClick={handleClose}>
+
+                                        </MenuItem>
                                         <Dropdown setAuthenticated={setAuthenticated} />
 
-                                    </MenuItem>
-
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </Toolbar>
-                </AppBar>
-            </div>
-        </>
-    )
+                            )}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+            </>
+        )
+    }
 
 }
 

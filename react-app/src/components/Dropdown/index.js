@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import Login from "../../components/Login"
+import { Button, Card } from "@material-ui/core"
 import "./Dropdown.css"
 
 
@@ -37,12 +38,14 @@ const Dropdown = ({ authenticated, setAuthenticated }) => {
         </li> */}
       {/* <li> */}
       <div className="dropdown-container">
-        <LogoutButton setAuthenticated={setAuthenticated} />
-        <button>
-          <Link to="/login" exact={true} activeClassName="active">
-            Login
+        <Card>
+          <LogoutButton setAuthenticated={setAuthenticated} />
+          <Button>
+            <Link style={{ textDecoration: "none" }} to="/login" exact={true} activeClassName="active">
+              Login
           </Link>
-        </button>
+          </Button>
+        </Card>
       </div>
       {/* <Login setAuthenticated={setAuthenticated} authenticated={authenticated} /> */}
       {/* </li> */}

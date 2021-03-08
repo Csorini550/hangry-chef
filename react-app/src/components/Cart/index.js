@@ -85,6 +85,7 @@ const Cart = ({ items, cart, setCart }) => {
                             value={table_number}
                             type="number"
                             multiple
+                            min="0"
                             onChange={(e) => setTableNumber(e.target.value)} />
                     </FormLabel>
                     <FormLabel className="form-label">
@@ -96,7 +97,7 @@ const Cart = ({ items, cart, setCart }) => {
                             multiple
                             onChange={(e) => setServerReview(e.target.value)} />
                     </FormLabel>
-                    <FormLabel className="form-label">
+                    <FormLabel className="form-label rating">
                         Server Rating
                         <ReactStars
                             count={5}
@@ -109,12 +110,12 @@ const Cart = ({ items, cart, setCart }) => {
                             fullIcon={<i className="fa fa-star"></i>}
                             edit={true}
                         />
-                        <Input
+                        {/* <Input
                             style={{ margin: "20px" }}
                             value={server_rating}
                             type="number"
                             multiple
-                            onChange={(e) => setServerRating(e.target.value)} />
+                            onChange={(e) => setServerRating(e.target.value)} /> */}
 
                     </FormLabel>
 
@@ -124,6 +125,7 @@ const Cart = ({ items, cart, setCart }) => {
                             style={{ margin: "20px" }}
                             value={tipp}
                             type="number"
+                            min="0"
                             multiple
                             onChange={(e) => setTipp(e.target.value)} />
                     </FormLabel>
@@ -136,8 +138,8 @@ const Cart = ({ items, cart, setCart }) => {
                             multiple
                             onChange={(e) => setOrderIssue(e.target.value)} />
                     </FormLabel>
-
                     <Button onClick={handlePurchase}>Continue to Payment</Button>
+                    <Button onClick={closeForm}>Cancel</Button>
                 </form>
             </div >
         )
