@@ -46,7 +46,9 @@ function App() {
     <BrowserRouter>
       <NavBarHome setAuthenticated={setAuthenticated} setAuthenticated={setAuthenticated} />
       <Switch>
-
+        <Route path="/sign-up" exact={true} >
+          <SignUp authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        </Route>
         <Route path="/login" exact={true}>
           <Login
             authenticated={authenticated}
@@ -56,15 +58,8 @@ function App() {
         <Route path="/:userId" exact={true} >
           <Home authenticated={authenticated} setAuthenticated={setAuthenticated} />
         </Route>
-        <Route path="/sign-up" exact={true} >
-          <SignUp authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
 
 
-
-        <Route path="/paymentpayment" exact={true}>
-          <Payment />
-        </Route>
 
 
         <ProtectedRoute path="/menu-list" authenticated={authenticated}>
@@ -98,6 +93,9 @@ function App() {
         <ProtectedRoute path="/staff/:employeeId" exact={true} authenticated={authenticated}>
           <StaffInfo />
         </ProtectedRoute>
+        <Route path="/payment">
+          <Payment />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

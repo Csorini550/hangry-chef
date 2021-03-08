@@ -1,5 +1,6 @@
 .signup-main { 
     display:flex;
     align-items:center;
-    margin-top: 100px;
+    justify-content: center;
+    margin-top: 70px;
 }

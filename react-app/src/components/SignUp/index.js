@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { Card, InputLabel, Input, Button } from "@material-ui/core"
 import './SignUp.css';
 
 function SignUp() {
@@ -29,63 +30,71 @@ function SignUp() {
     };
     const sessionUser = useSelector((state) => state.session.user);
 
-    if (sessionUser) return <Redirect to="/" />;
+    // if (sessionUser) return <Redirect to="/" />;
     return (
-        <div className="signup-main">
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>
-                    Name
-          <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Email
-          <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
+        <div>
+            <div>
 
-                <label>
-                    Restaurant Name
-          <input
-                        type="text"
-                        value={restaurant_name}
-                        onChange={(e) => setRestaurant_name(e.target.value)}
-                        required
-                    />
-                </label>
+                <h1>Sign Up</h1>
+            </div>
+            <div className="signup-main">
+                <Card style={{ padding: "20px" }}>
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                        <div>
+                            <Input
+                                placeholder="Name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                placeholder="Email"
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
 
-                <label>
-                    Password
-          <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Confirm Password
-          <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                    />
-                </label>
-                <button type="submit">Sign Up</button>
-            </form>
+                        <div>
+                            <Input
+                                placeholder="Restaurant Name"
+                                type="text"
+                                value={restaurant_name}
+                                onChange={(e) => setRestaurant_name(e.target.value)}
+                                required
+                            />
+
+                        </div>
+                        <div>
+                            <Input
+                                placeholder="Password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <Input
+                                placeholder="Confirm Password"
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                    </form>
+                    <Button type="submit">Sign Up</Button>
+                </Card>
+            </div>
         </div>
     );
 }

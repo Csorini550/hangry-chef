@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import { NavLink, Link } from 'react-router-dom';
 import { login, setUser } from "../../store/session";
 import { useDispatch } from 'react-redux'
+import { Button, Card } from '@material-ui/core';
 import "./Login.css";
 
 
@@ -46,44 +48,55 @@ const Login = ({ authenticated, setAuthenticated }) => {
     }
 
     return (
-        <div className="login-container">
-            <form id="login-form" onSubmit={onLogin}>
-                <div className="login-inputs">
-                    <div id="errors">
-                        {errors.map((error) => (
-                            <div>{error}</div>
-                        ))}
-                    </div>
-                    <div id="email">
-                        <label htmlFor="email">
-                            <input
-                                id="email-field"
-                                name="email"
-                                type="text"
-                                placeholder="Email"
-                                value={email}
-                                onChange={updateEmail}
-                            />
-                        </label>
-                    </div>
-                    <div id="password">
-                        <label htmlFor="password">
-                            <input
-                                id="password-field"
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={updatePassword}
-                            />
-                        </label>
-                    </div>
-                    <div className="login-btn">
-                        <button type="submit" id="login-btn">Login</button>
-                        <button type='submit' onClick={demoLogin}>Demo Login</button>
-                    </div>
+        <div id="login-field">
+            <h1> Welcome to HangryChef</h1>
+            <div id="login-container">
+                <div>
+                    <Card style={{ width: "300px" }}>
+                        <form id="login-form" onSubmit={onLogin}>
+                            <div className="login-inputs">
+                                <div id="errors">
+                                    {errors.map((error) => (
+                                        <div>{error}</div>
+                                    ))}
+                                </div>
+
+                                <div id="email">
+                                    <label htmlFor="email">
+                                        <input
+                                            id="email-field"
+                                            name="email"
+                                            type="text"
+                                            placeholder="Email"
+                                            value={email}
+                                            onChange={updateEmail}
+                                        />
+                                    </label>
+                                </div>
+                                <div id="password">
+                                    <label htmlFor="password">
+                                        <input
+                                            id="password-field"
+                                            name="password"
+                                            type="password"
+                                            placeholder="Password"
+                                            value={password}
+                                            onChange={updatePassword}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="login-btn">
+                                    <Button type="submit" id="login-btn">Login</Button>
+                                    <Button type='submit' onClick={demoLogin}>Demo Login</Button>
+                                </div>
+                            </div>
+                        </form>
+                    </Card>
+                    <Link id="link" to="/sign-up">
+                        <h4>Don't have an account?</h4>
+                    </Link>
                 </div>
-            </form>
+            </div>
         </div>
     );
 };

@@ -19,7 +19,7 @@ const Cart = ({ items, cart, setCart }) => {
     const dispatch = useDispatch();
     const cartTotal = cart.reduce((total, { price = 0 }) => total + price, 0);
     const [priceBeforeTip, setPriceBeforeTip] = useState(cartTotal)
-
+    const history = useHistory();
     const twentyPercent = priceBeforeTip * .20;
     const [tipp, setTipp] = useState("");
     const totalWithTip = cartTotal + tipp
@@ -43,6 +43,7 @@ const Cart = ({ items, cart, setCart }) => {
         }
         dispatch(createCustomer(items))
         closeForm();
+        history.push("/payment")
     }
     const openForm = () => {
         setOpen(!open);
