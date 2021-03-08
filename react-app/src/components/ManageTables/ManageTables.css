@@ -1,6 +1,6 @@
 
 .table {
-    margin: 40px;
+    margin: 10px;
     background-color: #264653;
     border-radius: 50px;
     width:100px;
@@ -21,7 +21,43 @@
 }
 
 .table-main {
-    width: 400px;
-    height: 100%;
-    display:table-row
+    /* margin-top:10px; */
+    column-count: 3;
+    column-gap: 40px;
+}
+
+.big-div {
+    background-image: url("table.png");
+    height:1000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+
+}
+
+.table-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-con {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px black solid;
+ 
+}
+.table-con2 {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
 }

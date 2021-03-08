@@ -99,27 +99,29 @@ const Inventory = () => {
 
 
         return (
-            <div>
+            <div className="big-div">
+                <div className="inv-container">
 
-                <h1>Inventory</h1>
-                <div className="inventory-main">
-                    {inventories && Object.values(inventories).map((inventory, i) => {
-                        return (
-                            <Card style={{ backgroundColor: "#2A9D8F", width: "200px", margin: "15px" }}>
-                                <ul className="inv-list">
-                                    <ListItemText>{inventory.food_item}</ListItemText>
-                                    <ListItemText>Quantity: {inventory.quantity}</ListItemText>
-                                    <ListItemText>Price: ${inventory.market_price}</ListItemText>
-                                </ul>
-                                <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
-                                {/* <Button type="edit" value="Edit" className='input' > </Button> */}
-                                <InventoryModal setModal={setModal} inventory_Id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
-                            </Card>
-                        )
-                    })}
+                    <h1>Inventory</h1>
+                    <div className="inventory-main">
+                        {inventories && Object.values(inventories).map((inventory, i) => {
+                            return (
+                                <Card style={{ backgroundColor: "#2A9D8F", width: "200px", margin: "15px" }}>
+                                    <ul className="inv-list">
+                                        <ListItemText>{inventory.food_item}</ListItemText>
+                                        <ListItemText>Quantity: {inventory.quantity}</ListItemText>
+                                        <ListItemText>Price: ${inventory.market_price}</ListItemText>
+                                    </ul>
+                                    <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(inventory.id)}> Delete</Button>
+                                    <Button type="edit" value="Edit" className='input' > </Button>
+                                    <InventoryModal setModal={setModal} inventory_Id={inventory.id} name={inventory.food_item} quant={inventory.quantity} price={inventory.market_price} />
+                                </Card>
+                            )
+                        })}
+                    </div>
+                    <Button style={{ backgroundColor: "#F4A261" }} onClick={openForm} >Add new Inventory</Button>
+                    {/* <Button style={{ backgroundColor: "#F4A261", alignItems: "center" }} onClick={redirectToIngredients}>Want to checkout your ingredients?</Button> */}
                 </div>
-                <Button style={{ backgroundColor: "#F4A261" }} onClick={openForm} >Add new Inventory</Button>
-                {/* <Button style={{ backgroundColor: "#F4A261", alignItems: "center" }} onClick={redirectToIngredients}>Want to checkout your ingredients?</Button> */}
             </div>
         )
     } else {

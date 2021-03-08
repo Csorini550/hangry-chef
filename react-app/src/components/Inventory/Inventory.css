@@ -12,3 +12,21 @@
     flex-direction: row;
 }
 
+.big-div {
+    background-image: url("inventory.png");
+    height:1000px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+
+}
+
+.inv-container { 
+    margin-top: 120px;
+}
+

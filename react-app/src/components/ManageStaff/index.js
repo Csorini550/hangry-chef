@@ -53,90 +53,96 @@ const ManageStaff = () => {
     if (Object.keys(employees).length === 0) return null;
     if (open === true) {
         return (
-            <div>
-                <h1>Manage Staff</h1>
-                <div className="stupid-form">
-                    <Card style={{ width: "200px", margin: "10px", padding: "20px" }}>
-                        <form>
-                            <div className="stupid-form">
-                                <input
-                                    autoFocus
-                                    id=""
-                                    name="First name"
-                                    type="text"
-                                    placeholder="First Name"
-                                    value={first_name}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                />
-                            </div>
-                            <div className="stupid-form">
-                                <input
-                                    autoFocus
-                                    id=""
-                                    name="Last name"
-                                    type="text"
-                                    placeholder="Last Name"
-                                    value={last_name}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                />
-                            </div>
-                            <div className="stupid-form">
-                                <input
-                                    autoFocus
-                                    id=""
-                                    name="Menu Name"
-                                    type="number"
-                                    placeholder="Hourly Salary"
-                                    value={salary}
-                                    onChange={(e) => setSalary(e.target.value)}
-                                />
-                            </div>
-                            <div className="stupid-form">
-                                <input
-                                    autoFocus
-                                    id=""
-                                    name="Menu Name"
-                                    type="number"
-                                    placeholder="Table Number"
-                                    value={table_number}
-                                    onChange={(e) => setTableNumber(e.target.value)}
-                                />
-                            </div>
-                            <div className="stupid-form">
-                                <Button type="submit" className="food-add-button" onClick={handleSubmit}>Add</Button>
-                                <Button onClick={closeForm}>Cancel</Button>
-                            </div>
-                        </form>
-                        {/* {employees && Object.values(employees).map((employee) => {
+            <div className="big-div2">
+                <div className="container">
+                    <h1>Manage Staff</h1>
+                    <div className="stupid-form">
+                        <Card style={{ width: "200px", margin: "10px", padding: "20px" }}>
+                            <form>
+                                <div className="stupid-form">
+                                    <input
+                                        autoFocus
+                                        id=""
+                                        name="First name"
+                                        type="text"
+                                        placeholder="First Name"
+                                        value={first_name}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="stupid-form">
+                                    <input
+                                        autoFocus
+                                        id=""
+                                        name="Last name"
+                                        type="text"
+                                        placeholder="Last Name"
+                                        value={last_name}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="stupid-form">
+                                    <input
+                                        autoFocus
+                                        id=""
+                                        name="Menu Name"
+                                        type="number"
+                                        placeholder="Hourly Salary"
+                                        value={salary}
+                                        onChange={(e) => setSalary(e.target.value)}
+                                    />
+                                </div>
+                                <div className="stupid-form">
+                                    <input
+                                        autoFocus
+                                        id=""
+                                        name="Menu Name"
+                                        type="number"
+                                        placeholder="Table Number"
+                                        value={table_number}
+                                        onChange={(e) => setTableNumber(e.target.value)}
+                                    />
+                                </div>
+                                <div className="stupid-form">
+                                    <Button type="submit" className="food-add-button" onClick={handleSubmit}>Add</Button>
+                                    <Button onClick={closeForm}>Cancel</Button>
+                                </div>
+                            </form>
+                            {/* {employees && Object.values(employees).map((employee) => {
                         return (
                             <Link to={`/staff/${employee.id}`} >
                                 <h3>{employee.first_name} {employee.last_name}</h3>
                             </Link>
                         )
                     })} */}
-                    </Card>
+                        </Card>
+                    </div>
                 </div>
             </div >
         )
     } else {
         if (Object.keys(employees).length === 0) return null;
         return (
-            <div>
-                <h1>Manage Staff</h1>
-                <div>
-                    <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm}>Add Employee</Button>
-                    {employees && Object.values(employees).map((employee) => {
-                        return (
-                            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                <Card style={{ width: "200px", textAlign: "center", margin: "20px", left: "50%" }}>
-                                    <Link className="staff-link" to={`/staff/${employee.id}`} >
-                                        <h3>{employee.first_name} {employee.last_name}</h3>
-                                    </Link>
-                                    <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(employee.id)}> Delete</Button>
-                                </Card>
-                            </div>
-                        )
-                    })}
+            <div className="big-div2">
+                <div className="container">
+                    <h1>Manage Staff</h1>
+                    <div>
+                        <div className="btn">
+                            <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm}>Add Employee</Button>
+                        </div>
+                        {employees && Object.values(employees).map((employee) => {
+                            return (
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    <Card style={{ width: "200px", textAlign: "center", margin: "20px", left: "50%" }}>
+                                        <Link className="staff-link" to={`/staff/${employee.id}`} >
+                                            <h3>{employee.first_name} {employee.last_name}</h3>
+                                        </Link>
+                                        <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(employee.id)}> Delete</Button>
+                                    </Card>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div >
         )

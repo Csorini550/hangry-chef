@@ -21,3 +21,23 @@ h1 {
     color: black;
     text-decoration: none;
 }
+
+.big-div {
+    /* width: 1000px;
+    height: 1000px; */
+    /* background-image: url("https://cdn.pixabay.com/photo/2016/03/09/09/42/buildings-1245953__480.jpg"); */
+    background-image: url("food.jpg");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+  /* display: flex;
+  justify-content: center;
+ align-items: center; */
+}

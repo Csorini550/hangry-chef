@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getTableByUser, createTable, deleteTable } from '../../store/table'
 import { getEmployeeByUser } from '../../store/employee'
 import { makeStyles } from '@material-ui/core/styles';
-import { Select, Button, FormLabel, InputLabel, FormControl, Input, MenuItem } from '@material-ui/core';
+import { Select, Button, FormLabel, InputLabel, FormControl, Input, MenuItem, Card } from '@material-ui/core';
 import "./ManageTables.css"
 
 const ManageTables = () => {
@@ -86,49 +86,59 @@ const ManageTables = () => {
 
 
     return (
-        <div>
-            <div>
+        <div className="big-div">
+            <div className="table-container">
                 <h1>Manage Tables</h1>
             </div>
-            <form onSubmit={handleSubmit}>
-                <FormLabel className="create-venue" style={{ margin: "20px" }}>
-                    Table number
+            <div className="table-con">
+                <Card style={{ margin: "20px", width: "400px" }}>
+                    <form onSubmit={handleSubmit}>
+                        <FormLabel className="create-venue" style={{ margin: "20px" }}>
+                            Table number
                    <Input
-                        value={table_number}
-                        type="number"
-                        multiple
-                        style={{ margin: "20px" }}
-                        onChange={(e) => setTableNumber(e.target.value)} />
-                </FormLabel>
-                <Select
-                    labelId="demo-controlled-open-select-label"
-                    id="demo-controlled-open-select"
-                    open={open}
-                    onClose={handleClose}
-                    onOpen={handleOpen}
-                    value={employeeId}
-                    onChange={(e) => setEmployeeId(e.target.value)}
-                >
-                    {employees && Object.values(employees).map((employee) => {
+                                value={table_number}
+                                type="number"
+                                multiple
+                                style={{ margin: "20px" }}
+                                onChange={(e) => setTableNumber(e.target.value)} />
+                        </FormLabel>
+                        <FormLabel className="create-venue" style={{ margin: "20px" }}>
+                            Employee
+                        <Select
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                open={open}
+                                style={{ width: "150px" }}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={employeeId}
+                                onChange={(e) => setEmployeeId(e.target.value)}
+                            >
+                                {employees && Object.values(employees).map((employee) => {
+                                    return (
+                                        <MenuItem value={employee.id}>{employee.first_name}, {employee.last_name}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormLabel>
+                        <Button style={{ margin: "20px", backgroundColor: "#E9C46A" }} type="submit" > Create</Button>
+                    </form>
+                </Card>
+            </div>
+            <div className="table-con2">
+                <div className="table-main">
+                    {tables && Object.values(tables).map((table) => {
                         return (
-                            <MenuItem value={employee.id}>{employee.first_name}, {employee.last_name}</MenuItem>
+                            <Card style={{ margin: "20px", width: "300px", marginLeft: "50px" }}>
+                                <div className="table">
+                                    <h2>{table.table_number}</h2>
+                                </div>
+                                <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(table.id)}> Delete Table</Button>
+                            </Card>
                         )
-                    })}
-                </Select>
-                <Button style={{ margin: "20px", backgroundColor: "#E9C46A" }} type="submit" > Create</Button>
-            </form>
-            <div className="table-main">
-                {tables && Object.values(tables).map((table) => {
-                    return (
-                        <div>
-                            <div className="table">
-                                <h2>{table.table_number}</h2>
-                            </div>
-                            <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(table.id)}> Delete Table</Button>
-                        </div>
-                    )
 
-                })}
+                    })}
+                </div>
             </div>
         </div >
     )

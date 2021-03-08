@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { common } from '@material-ui/core/colors';
 import Cart from "../../components/Cart"
 import { addToCart } from "../../store/cart"
-import AddToCart from "../../components/AddToCart"
+// import AddToCart from "../../components/AddToCart"
 import Login from "../../components/Login"
 
 

@@ -32,7 +32,7 @@ function SignUp() {
 
     // if (sessionUser) return <Redirect to="/" />;
     return (
-        <div>
+        <div className="big-div">
             <div>
 
                 <h1>Sign Up</h1>
@@ -92,7 +92,9 @@ function SignUp() {
                             />
                         </div>
                     </form>
-                    <Button type="submit">Sign Up</Button>
+                    <div className="btn">
+                        <Button type="submit">Sign Up</Button>
+                    </div>
                 </Card>
             </div>
         </div>

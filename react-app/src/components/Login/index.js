@@ -3,7 +3,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { NavLink, Link } from 'react-router-dom';
 import { login, setUser } from "../../store/session";
 import { useDispatch } from 'react-redux'
-import { Button, Card } from '@material-ui/core';
+import { Button, Card, Input } from '@material-ui/core';
 import "./Login.css";
 
 
@@ -48,7 +48,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
     }
 
     return (
-        <div id="login-field">
+        <div id="login-field" className="big-div">
             <h1> Welcome to HangryChef</h1>
             <div id="login-container">
                 <div>
@@ -63,7 +63,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
                                 <div id="email">
                                     <label htmlFor="email">
-                                        <input
+                                        <Input
                                             id="email-field"
                                             name="email"
                                             type="text"
@@ -75,7 +75,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
                                 </div>
                                 <div id="password">
                                     <label htmlFor="password">
-                                        <input
+                                        <Input
                                             id="password-field"
                                             name="password"
                                             type="password"
