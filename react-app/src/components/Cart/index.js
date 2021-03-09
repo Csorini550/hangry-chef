@@ -146,10 +146,11 @@ const Cart = ({ items, cart, setCart }) => {
         )
     } else {
         return (
-
-            <Button style={{ backgroundColor: "red" }} onClick={openForm} id="add-button">
-                Checkout
+            <div className="btn-check">
+                <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm} id="add-button">
+                    Checkout
             </Button >
+            </div>
         )
     }
 }

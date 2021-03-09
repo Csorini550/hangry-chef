@@ -81,6 +81,7 @@ const CreateMenue = () => {
     const menuName = menus[1] ? menus[1].menue_name : ""
 
     return (
+        // <div className="big-div-cre">
         <DragDropContext onDragEnd={onDragEnd}>
             <Droppable direction="horizontal" droppableId={String(userId)}>
                 {(provided) => (
@@ -109,6 +110,7 @@ const CreateMenue = () => {
                 )}
             </Droppable>
         </DragDropContext>
+        // </div>
     )
 
 }

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeeByUser, createEmployee, deleteEmployee } from '../../store/employee'
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, Input } from "@material-ui/core";
 import "./ManageStaff.css";
 
 const ManageStaff = () => {
@@ -58,9 +58,10 @@ const ManageStaff = () => {
                     <h1>Manage Staff</h1>
                     <div className="stupid-form">
                         <Card style={{ width: "200px", margin: "10px", padding: "20px" }}>
+                            <h1>New Employee</h1>
                             <form>
                                 <div className="stupid-form">
-                                    <input
+                                    <Input
                                         autoFocus
                                         id=""
                                         name="First name"
@@ -71,7 +72,7 @@ const ManageStaff = () => {
                                     />
                                 </div>
                                 <div className="stupid-form">
-                                    <input
+                                    <Input
                                         autoFocus
                                         id=""
                                         name="Last name"
@@ -82,7 +83,7 @@ const ManageStaff = () => {
                                     />
                                 </div>
                                 <div className="stupid-form">
-                                    <input
+                                    <Input
                                         autoFocus
                                         id=""
                                         name="Menu Name"
@@ -93,7 +94,7 @@ const ManageStaff = () => {
                                     />
                                 </div>
                                 <div className="stupid-form">
-                                    <input
+                                    <Input
                                         autoFocus
                                         id=""
                                         name="Menu Name"
@@ -130,18 +131,20 @@ const ManageStaff = () => {
                         <div className="btn">
                             <Button style={{ backgroundColor: "#E9C46A" }} onClick={openForm}>Add Employee</Button>
                         </div>
-                        {employees && Object.values(employees).map((employee) => {
-                            return (
-                                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <Card style={{ width: "200px", textAlign: "center", margin: "20px", left: "50%" }}>
-                                        <Link className="staff-link" to={`/staff/${employee.id}`} >
-                                            <h3>{employee.first_name} {employee.last_name}</h3>
-                                        </Link>
-                                        <Button type='delete' value='Delete' className='input' onClick={() => handleDelete(employee.id)}> Delete</Button>
-                                    </Card>
-                                </div>
-                            )
-                        })}
+                        <div style={{ columns: "3", columnGap: "20px" }}>
+                            {employees && Object.values(employees).map((employee) => {
+                                return (
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                        <Card style={{ width: "200px", textAlign: "center", margin: "20px", left: "50%" }}>
+                                            <Link className="staff-link" to={`/staff/${employee.id}`} >
+                                                <h3>{employee.first_name} {employee.last_name}</h3>
+                                            </Link>
+                                            <Button type='delete' value='Delete' className='Input' onClick={() => handleDelete(employee.id)}> Delete</Button>
+                                        </Card>
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div >

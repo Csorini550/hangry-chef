@@ -57,7 +57,7 @@ const Home = ({ authenticated, setAuthenticated }) => {
     if (Object.values(menuLists).length === 0) return null;
     if (open === false) {
         return (
-            <div>
+            <div className="big-div-cre">
                 <h1>Menu</h1>
                 {/* <Button onClick={openForm}>Login</Button> */}
                 <div>
@@ -69,11 +69,11 @@ const Home = ({ authenticated, setAuthenticated }) => {
                         console.log(menuList, "im a menulist!!!!!")
                         return (
                             <div className="full-menu-text">
-                                <Card style={{ margin: "15px", alignItems: "center", columns: "1", backgroundColor: "rgb(42, 157, 143)" }}>
-                                    <h2>{menuList.food_item}</h2>
+                                <Card style={{ margin: "15px", alignItems: "center", columns: "1", backgroundColor: "black" }}>
+                                    <h2 style={{ color: "white" }}>{menuList.food_item}</h2>
                                     {foodOrDrinks && foodOrDrinks[menuList.id]?.map((food) => {
                                         return (
-                                            <Card style={{ margin: "15px", width: "400px", backgroundColor: "rgb(233, 196, 106)" }} className="food-card">
+                                            <Card style={{ margin: "15px", width: "400px", backgroundColor: "white" }} className="food-card">
                                                 <CardContent className="menu-card">
                                                     <Typography gutterBottom>
                                                         <h3>{food.name}</h3>

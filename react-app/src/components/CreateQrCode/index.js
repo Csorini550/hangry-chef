@@ -28,7 +28,7 @@ function CreateQrCode() {
     };
 
     return (
-        <div className="big-div">
+        <div className="big-div-qr">
             <div className="container">
                 <Link to={`/${userId}`}>
                     <Fab style={{ marginRight: 10 }} color="primary">
