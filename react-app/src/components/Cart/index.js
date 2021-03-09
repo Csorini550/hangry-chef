@@ -60,9 +60,9 @@ const Cart = ({ items, cart, setCart }) => {
 
     if (open === true) {
         return (
-            <div>
-                <h1>Cart</h1>
-                <div>
+            <div className="cart-container">
+                <div className="cart-card">
+                    <h1>Cart</h1>
                     {items && items.map((item) => {
                         return (
                             <div className="cart-content">
@@ -78,70 +78,83 @@ const Cart = ({ items, cart, setCart }) => {
                     }
                     <h2>Total Price: ${cartTotal}</h2>
                 </div>
-                <form id="cart-checkout">
-                    <FormLabel className="form-label">
-                        Table Number
+                <div className="float-right">
+                    <form id="cart-checkout">
+                        <div>
+                            <FormLabel className="form-label">
+                                Table Number
                    <Input
-                            style={{ margin: "20px" }}
-                            value={table_number}
-                            type="number"
-                            multiple
-                            min="0"
-                            onChange={(e) => setTableNumber(e.target.value)} />
-                    </FormLabel>
-                    <FormLabel className="form-label">
-                        How was your server?
+                                    style={{ margin: "20px" }}
+                                    value={table_number}
+                                    type="number"
+                                    multiple
+                                    min="0"
+                                    onChange={(e) => setTableNumber(e.target.value)} />
+                            </FormLabel>
+                        </div>
+                        <div>
+                            <FormLabel className="form-label">
+                                How was your server?
                    <Input
-                            style={{ margin: "20px" }}
-                            value={server_review}
-                            type="text"
-                            multiple
-                            onChange={(e) => setServerReview(e.target.value)} />
-                    </FormLabel>
-                    <FormLabel className="form-label rating">
-                        Server Rating
+                                    style={{ margin: "20px" }}
+                                    value={server_review}
+                                    type="text"
+                                    multiple
+                                    onChange={(e) => setServerReview(e.target.value)} />
+                            </FormLabel>
+                        </div>
+                        <div>
+                            <FormLabel className="form-label rating">
+                                Server Rating
                         <ReactStars
-                            count={5}
-                            value={server_rating}
-                            color="gray"
-                            isHalf={true}
-                            onChange={ratingChanged}
-                            emptyIcon={<i className="far fa-star"></i>}
-                            halfIcon={<i className="fa fa-star-half-alt"></i>}
-                            fullIcon={<i className="fa fa-star"></i>}
-                            edit={true}
-                        />
-                        {/* <Input
+                                    count={5}
+                                    value={server_rating}
+                                    color="gray"
+                                    isHalf={true}
+                                    onChange={ratingChanged}
+                                    emptyIcon={<i className="far fa-star"></i>}
+                                    halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                    fullIcon={<i className="fa fa-star"></i>}
+                                    edit={true}
+                                />
+                                {/* <Input
                             style={{ margin: "20px" }}
                             value={server_rating}
                             type="number"
                             multiple
                             onChange={(e) => setServerRating(e.target.value)} /> */}
 
-                    </FormLabel>
-
-                    <FormLabel className="form-label">
-                        Tip: $
+                            </FormLabel>
+                        </div>
+                        <div>
+                            <FormLabel className="form-label">
+                                Tip: $
                    <Input
-                            style={{ margin: "20px" }}
-                            value={tipp}
-                            type="number"
-                            min="0"
-                            multiple
-                            onChange={(e) => setTipp(e.target.value)} />
-                    </FormLabel>
-                    <FormLabel className="form-label">
-                        Issue with order
+                                    style={{ margin: "20px" }}
+                                    value={tipp}
+                                    type="number"
+                                    min="0"
+                                    multiple
+                                    onChange={(e) => setTipp(e.target.value)} />
+                            </FormLabel>
+                        </div>
+                        <div>
+                            <FormLabel className="form-label">
+                                Issue with order
                    <Input
-                            style={{ margin: "20px" }}
-                            value={order_issue}
-                            type="text"
-                            multiple
-                            onChange={(e) => setOrderIssue(e.target.value)} />
-                    </FormLabel>
-                    <Button onClick={handlePurchase}>Continue to Payment</Button>
-                    <Button onClick={closeForm}>Cancel</Button>
-                </form>
+                                    style={{ margin: "20px" }}
+                                    value={order_issue}
+                                    type="text"
+                                    multiple
+                                    onChange={(e) => setOrderIssue(e.target.value)} />
+                            </FormLabel>
+                        </div>
+                        <div>
+                            <Button onClick={handlePurchase}>Continue to Payment</Button>
+                            <Button onClick={closeForm}>Cancel</Button>
+                        </div>
+                    </form>
+                </div>
             </div >
         )
     } else {

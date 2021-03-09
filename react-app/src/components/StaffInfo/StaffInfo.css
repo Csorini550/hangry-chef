@@ -10,12 +10,33 @@ overflow: hidden;
 }
 
 .staff-salary { 
+    margin-top: 120px;
    /* float: left */
-   display: inline-block;
+   /* display: inline-block; */
    /* margin-left: 20px; */
-    margin-left: 50%;
+    /* margin-left: 50%; */
 }
 
 .card-content { 
     margin-left: 20px;
+}
+
+.main-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.big-div-info {
+    background-image: url("staffInfo.png");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }

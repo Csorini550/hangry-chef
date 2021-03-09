@@ -58,13 +58,11 @@ const Home = ({ authenticated, setAuthenticated }) => {
     if (open === false) {
         return (
             <div className="big-div-cre">
-                <h1>Menu</h1>
-                {/* <Button onClick={openForm}>Login</Button> */}
                 <div>
-
-                </div>
-                <div className="home-container">
                     <Cart items={cart} cart={cart} setCart={cart} />
+                </div>
+                <h1>Menu</h1>
+                <div className="home-container">
                     {menuLists && Object.values(menuLists)?.map((menuList, index) => {
                         console.log(menuList, "im a menulist!!!!!")
                         return (
