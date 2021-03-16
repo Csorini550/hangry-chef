@@ -26,7 +26,7 @@ const StaffInfo = () => {
     const userId = loggedInUser.id
 
     const table_number = employee.table_number
-    console.log("TABLE NUMBER!!!", table_number)
+        ("TABLE NUMBER!!!", table_number)
 
 
     useEffect(() => {

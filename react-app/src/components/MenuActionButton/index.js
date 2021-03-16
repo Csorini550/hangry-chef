@@ -29,9 +29,12 @@ const MenuActionButton = ({ menue_id, setFixState }) => {
             price,
             menue_id: menue_id
         }
-        dispatch(createFoodOrDrink(newItem))
-        setFixState(true)
-        closeForm()
+        dispatch(createFoodOrDrink(newItem));
+        setFixState(true);
+        setName("");
+        setDescription("");
+        setPrice("");
+        closeForm();
     };
     // useEffect(() => {
     //      dispatch(getFoodOrDrink(userId));

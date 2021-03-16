@@ -31,7 +31,6 @@ const ManageTables = () => {
     const employees = useSelector(state => {
         return state.employee;
     })
-
     useEffect(() => {
         dispatch(getTableByUser(userId));
         dispatch(getEmployeeByUser(userId))
@@ -64,7 +63,7 @@ const ManageTables = () => {
     }
 
     const tablesArray = Object.values(tables)
-    console.log("THis IS TABleARRAY!!! ", tablesArray)
+
     const tableNumberMatch = (employees, tables) => {
         const tablesArray = tables && Object.values(tables)
 

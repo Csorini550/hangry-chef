@@ -22,19 +22,17 @@ const Home = ({ authenticated, setAuthenticated }) => {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const [open, setOpen] = useState(false);
-    // const menuList = useSelector((state) => {
-    //     return state.menuList
-    // });
+
 
     const menuLists = useSelector((state) => {
         return JSON.parse(state.menuList.menu_list)
     });
-    console.log("im here!!", menuLists)
+
     const foodOrDrinks = useSelector((state) => {
         return JSON.parse(state.menuList.food_or_drink_list)
     });
 
-    console.log("FOOD!!!", foodOrDrinks)
+
 
     useEffect(() => {
         dispatch(getMenuList(userId));
@@ -42,9 +40,6 @@ const Home = ({ authenticated, setAuthenticated }) => {
 
     const handleAddItem = (item) => {
         setCart([...cart, item])
-        // e.preventDefault();
-        // dispatch(addToCart(food.name, food.price))
-
     }
     const openForm = () => {
         setOpen(!open);
@@ -52,7 +47,7 @@ const Home = ({ authenticated, setAuthenticated }) => {
     const closeForm = () => {
         setOpen(!open);
     };
-    console.log("OBJECT", Object.values(menuLists))
+
 
     if (Object.values(menuLists).length === 0) return null;
     if (open === false) {
@@ -64,7 +59,6 @@ const Home = ({ authenticated, setAuthenticated }) => {
                 <h1>Menu</h1>
                 <div className="home-container">
                     {menuLists && Object.values(menuLists)?.map((menuList, index) => {
-                        console.log(menuList, "im a menulist!!!!!")
                         return (
                             <div className="full-menu-text">
                                 <Card style={{ margin: "15px", alignItems: "center", columns: "1", backgroundColor: "black" }}>

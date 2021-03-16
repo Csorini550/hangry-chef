@@ -52,10 +52,15 @@ const Cart = ({ items, cart, setCart }) => {
         setOpen(!open);
     };
     const ratingChanged = (newRating) => {
-        // newRating.target.value
         setServerRating(newRating)
-        // console.log(newRating);
     };
+
+
+    //Help
+    // handleDelete = itemId => {
+    //     const items = items.filter(item => item.id !== itemId);
+    //     setCart({ items: items });
+    // };
 
 
     if (open === true) {

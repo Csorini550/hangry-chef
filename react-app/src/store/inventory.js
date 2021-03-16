@@ -62,7 +62,6 @@ export const deleteInventory = (inventoryId) => {
 }
 
 export const editInventory = (inventoryId, food_item, quantity, market_price) => async (dispatch) => {
-    console.log("all the things in edit!!!", inventoryId, quantity, market_price, food_item)
     const res = await fetch(`/api/inventory/edit/${inventoryId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },

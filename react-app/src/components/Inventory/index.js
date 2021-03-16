@@ -74,6 +74,9 @@ const Inventory = () => {
             quantity,
             market_price
         }
+        setFoodItem("")
+        setMarket_price("")
+        setQuantity("")
         dispatch(createInventory(newInventory));
         closeForm()
     }
@@ -85,11 +88,15 @@ const Inventory = () => {
 
     const handleEdit = (inventoryId, food_item, quantity, market_price) => {
         dispatch(editInventory(inventoryId, food_item, quantity, market_price))
+        setFoodItem(food_item)
+        setQuantity(quantity)
+        setMarket_price(market_price)
     }
 
     const inventories = useSelector(state => {
         return state.inventory
     })
+
     useEffect(() => {
         dispatch(getInventoryByUser(userId));
     }, [modal])

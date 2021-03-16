@@ -37,10 +37,11 @@ const MenuCreatorButton = (setFixState) => {
             food_item,
             user_id: userId
 
-        }
-        dispatch(createMenu(newMenu))
-
-        closeForm()
+        };
+        dispatch(createMenu(newMenu));
+        setMenueName("");
+        setFoodItem("");
+        closeForm();
     };
 
 

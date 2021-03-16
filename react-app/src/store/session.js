@@ -29,9 +29,7 @@ export const login = (email, password) => async (dispatch) => {
         body: JSON.stringify({ email, password })
     });
     let data = await res.json()
-
     dispatch(setUser(data));
-    console.log(data, "Hello are we getting this data")
     return data;
 };
 
