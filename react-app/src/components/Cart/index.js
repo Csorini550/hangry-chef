@@ -6,6 +6,7 @@ import Icon from "@material-ui/core/Icon";
 import Card from '@material-ui/core/Card';
 import { Button, Input, FormLabel, Typography } from "@material-ui/core";
 import ReactStars from "react-rating-stars-component"
+import CartItemComp from "../../components/CartItemComp"
 import "./Cart.css"
 
 
@@ -25,6 +26,7 @@ const Cart = ({ items, cart, setCart }) => {
     const totalWithTip = cartTotal + tipp
     // setTipp(twentyPercent)
     const [total_price, setTotalPrice] = useState(cartTotal);
+
 
 
     const loggedInUser = useSelector(state => {
@@ -68,16 +70,9 @@ const Cart = ({ items, cart, setCart }) => {
             <div className="cart-container">
                 <div className="cart-card">
                     <h1>Cart</h1>
-                    {items && items.map((item) => {
+                    {cart?.map((item, index) => {
                         return (
-                            <div className="cart-content">
-                                <Card style={{ width: "300px", margin: "20px" }}>
-                                    <Typography gutterBottom>
-                                        <h1>{item.name} ${item.price}</h1>
-                                    </Typography>
-                                    <Button >x</Button>
-                                </Card>
-                            </div>
+                            <CartItemComp item={item} setCart={setCart} cart={cart} index={index} />
                         )
                     })
                     }

@@ -54,7 +54,7 @@ const Home = ({ authenticated, setAuthenticated }) => {
         return (
             <div className="big-div-cre">
                 <div>
-                    <Cart items={cart} cart={cart} setCart={cart} />
+                    <Cart items={cart} cart={cart} setCart={setCart} />
                 </div>
                 <h1>Menu</h1>
                 <div className="home-container">
