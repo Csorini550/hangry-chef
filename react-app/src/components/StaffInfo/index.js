@@ -25,8 +25,8 @@ const StaffInfo = () => {
     });
     const userId = loggedInUser.id
 
-    const table_number = employee.table_number
-        ("TABLE NUMBER!!!", table_number)
+    // const table_number = employee.table_number
+    //     ("TABLE NUMBER!!!", table_number)
 
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const StaffInfo = () => {
     }, [])
 
     useEffect(() => {
-        dispatch(getCustomerByTableId(table_number))
+        dispatch(getCustomerByTableId(employee.table_number))
     }, [tables, employee])
 
 
@@ -56,7 +56,7 @@ const StaffInfo = () => {
                             <h3>Salary: ${employee.salary} an hour</h3>
                             <h3>Recent tables:</h3>
                             <ul className="table-number">
-                                {Object.values(tables).map((table) => {
+                                {Object.values(tables)?.map((table) => {
                                     return (
                                         <li>
                                             <h4>{table.table_number} </h4>
@@ -65,7 +65,7 @@ const StaffInfo = () => {
                                 })}
                             </ul>
                             <div>
-                                {customers && Object.values(customers).map((customer) => {
+                                {customers && Object.values(customers)?.map((customer) => {
                                     return (
                                         <div>
                                             <h3>Customer rating: {customer.server_rating} </h3>
